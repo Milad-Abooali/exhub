@@ -20,7 +20,7 @@
                     <input type="text" class="form-control mb-2 mr-sm-2 col-md-3" placeholder="Enter Username" name="username" autocomplete="new-username">
                     <input type="password" class="form-control mb-2 mr-sm-2 col-md-3" placeholder="Enter Password" name="password" autocomplete="new-password">
                     <button id="test" type="submit" class="btn btn-primary mb-2 ">Add User</button>
-                    <span id="form-res"></span>
+                    <div class="cb-ltr w-100 d-block alerts"><br></div>
                 </form>
             </div>
         </div>

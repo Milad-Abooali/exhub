@@ -24,3 +24,10 @@
         echo json_encode($output);
     }
 
+    function add () {
+        global $user;
+        $output = new stdClass();
+        $output->e = ($user->add($_POST)) ? false : true;
+        $output->res = null;
+        echo json_encode($output);
+    }

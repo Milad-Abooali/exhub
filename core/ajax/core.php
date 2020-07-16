@@ -23,4 +23,3 @@
         $output->res = $_POST;
         echo json_encode($output);
     }
-

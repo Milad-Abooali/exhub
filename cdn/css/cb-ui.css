@@ -1,7 +1,7 @@
 html {scroll-behavior: smooth;}
 
 #app-body {min-height: 330px;}
-#app-body>div {direction:rtl;unicode-bidi: embed;text-align: right;}
+#app-body>div {direction:ltr;unicode-bidi: embed;text-align: left;}
 #app-body .btn {border-radius: 0;}
 #app-body .btn-r {border-radius: .25rem;}
 

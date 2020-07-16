@@ -145,9 +145,18 @@ $(document).ready(function() {
 
   /* Form Actions */
 
+  // Ajax Alert
+  let alertID = 0;
+  function ajaxAlert (id, type, text) {
+    alertID++;
+    let resAlert = '<div id="'+alertID+'" class="alert alert-'+type+'" role="alert">'+text;
+    resAlert += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+    $('#'+id+' .alerts').append(resAlert);
+    $('#'+id+' #'+alertID).hide().fadeIn(300);
+  }
+
   // Ajax Call
-  var ajaxCallRes;
-  function ajaxCall (classAction,data) {
+  function ajaxCall (classAction, data, callback) {
     $.ajax({
       type: "POST",
       url: cbURL+"ajax/"+classAction+'&token='+cbToken,
@@ -155,8 +164,9 @@ $(document).ready(function() {
       cache: false,
       global: false,
       async: true,
-      success: function(data) {
-        ajaxCallRes = data;
+      success: callback,
+      error: function(request, status, error) {
+        alert(status);
       }
     });
   }
@@ -166,8 +176,11 @@ $(document).ready(function() {
     const id = $(this).attr('id');
     const data = $('#'+id).serialize();
     const classA = $('#'+id).attr('action');
-    ajaxCall (classA,data);
-    console.log(ajaxCallRes);
+    ajaxCall (classA, data,function(response) {
+      let type = (response.e) ? 'danger' : 'success';
+      let text = (response.e) ? 'Error, User not added!' : 'Success, User Added.';
+      ajaxAlert (id, type, text)
+    });
   });
 
 
