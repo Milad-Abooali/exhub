@@ -18,13 +18,19 @@
     /** @var array $page */
     switch ($page['vid']) {
 
-        case "blog":
-            $page['vid']    = 'ffff';
-            $page['upon']   = 'blog/home';
+        case "admin":
+            $page['vid']  = array_shift($page['data']);
+            $page['upon']   = 'admin';
             $page['inc']    = 'home';
-            $page['view']   = "blog/home";
+            switch ($page['vid']) {
+                case "users":
+                    $page['view']   = "admin/users";
+                    break;
+                case "dashboard":
+                default:
+                    $page['view']   = "admin/dashboard";
+            }
             break;
-
         case null:
         case "":    // Site Index/root
             $page['cache']  = false;
