@@ -89,10 +89,8 @@
             $data['data']     = json_encode($data['data'] ?? array());
             $result = $this->db->insert($data);
             if ($result) {
-                M::aLog('SimpleUser',"Add new user, User ID: $result");
                 return $result;
             } else {
-                M::aLog('SimpleUser',"Add new user.",1);
                 return false;
             }
         }
