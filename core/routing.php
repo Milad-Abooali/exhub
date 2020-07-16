@@ -19,18 +19,20 @@
     switch ($page['vid']) {
 
         case "admin":
-            $page['vid']  = array_shift($page['data']);
+            $page['vid']  = 'admin/'.array_shift($page['data']);
             $page['upon']   = 'admin';
-            $page['inc']    = 'home';
+            $page['inc']    = 'admin';
             switch ($page['vid']) {
                 case "users":
                     $page['view']   = "admin/users";
                     break;
                 case "dashboard":
+                case null:
                 default:
                     $page['view']   = "admin/dashboard";
             }
             break;
+
         case null:
         case "":    // Site Index/root
             $page['cache']  = false;
