@@ -21,15 +21,16 @@
         case "admin":
             $page['vid']  = 'admin/'.array_shift($page['data']);
             $page['upon']   = 'admin';
-            $page['inc']    = 'admin';
             switch ($page['vid']) {
                 case "admin/users":
+                    $page['inc']    = 'admin/users';
                     $page['view']   = "admin/users";
                     break;
                 case "admin/dashboard":
                 case "admin/":
                 default:
-                    $page['view']   = "admin/dashboard";
+                $page['inc']    = 'admin';
+                $page['view']   = "admin/dashboard";
             }
             break;
 
