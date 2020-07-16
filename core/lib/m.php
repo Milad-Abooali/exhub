@@ -66,6 +66,7 @@
                         #m-log {
                             height: 10%;
                             overflow: hidden;
+                            margin-bottom:100px;
                         }
                         #m-log:hover {
                             height: auto;

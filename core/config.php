@@ -32,8 +32,8 @@
 /**
  * App Settings
  */
-    define("APP_POR", "http://localhost/git/ex/");
-    define("APP_URL", APP_POR."localhost/git/ex");
+    define("APP_POR", "http://");
+    define("APP_URL", APP_POR."localhost/git/ex/");
     define("APP_ROOT", $_SERVER['DOCUMENT_ROOT'].'git/ex/');
 
 /**

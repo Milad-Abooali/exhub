@@ -1,0 +1,15 @@
+{
+ "@context": "http://schema.org",
+ "@type": "Organization",
+ "name": "Codebox",
+ "url": "https://codebox.ir/",
+ "logo": "https://codebox.ir/brand/logo.png",
+ "sameAs": [
+  "https://www.facebook.com/codebox_ir",
+  "https://twitter.com/codebox_ir",
+  "https://www.instagram.com/codebox_ir/",
+  "http://www.linkedin.com/company/codebox_ir",
+  "https://www.youtube.com/channel/UCZ6pkWQPb47ElXDeF2-73Zg",
+  "https://www.pinterest.com/Hostiran/"
+ ]
+}
