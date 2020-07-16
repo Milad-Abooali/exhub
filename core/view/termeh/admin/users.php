@@ -13,7 +13,7 @@
 ?>
 
 <?php
-    App\Core\M::print($this->page['data']);
+    App\Core\M::print($this->data);
 ?>
 
 <br> ------ <br>

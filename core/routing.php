@@ -23,11 +23,11 @@
             $page['upon']   = 'admin';
             $page['inc']    = 'admin';
             switch ($page['vid']) {
-                case "users":
+                case "admin/users":
                     $page['view']   = "admin/users";
                     break;
-                case "dashboard":
-                case null:
+                case "admin/dashboard":
+                case "admin/":
                 default:
                     $page['view']   = "admin/dashboard";
             }

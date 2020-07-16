@@ -74,7 +74,7 @@ define('SESSION_TIMEOUT', 1800); // Seconds
  * Cache settings
  */
     define("CACHE", [
-      "enable"    => 1, // 0 (Off) - 1 (On)
+      "enable"    => 0, // 0 (Off) - 1 (On)
       "minify"    => 1, // 0 (Yes) - 1 (No)
       "expire"    => 3600 // Seconds
     ]);
