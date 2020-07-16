@@ -1,6 +1,6 @@
 <?php
 /**
- * blog/home
+ * admin/home
  *
  * Mahan | View File
  *
