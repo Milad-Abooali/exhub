@@ -19,45 +19,83 @@
     {
 
         public $user_id;
-        private $db;
+        private $db,$user=array();
 
         /**
          * SimpleUser constructor.
          */
         function __construct() {
-            $this->db = new MySQL(null,'user_list');
+            $this->db = new MySQL(DB_INFO,'user_list');
         }
 
         /**
-         * Register user
+         * Check username
          * @param string $username
          * @return bool
          */
-        public function check($username) {
-            if ($this->db->exist("username='$username'")) {
-                return false;
+        public function getUser($username) {
+            $this->user = $this->db->selectRow("username='$username'");
+            return ($this->user) ? true : false;
+        }
+
+        /**
+         * Check Password
+         * @param $password
+         * @param $username
+         * @return bool
+         */
+        public function checkPass($password) {
+            return (password_verify($password,$this->user['password'])) ? true : false;
+        }
+
+        /**
+         * Login user
+         * @param $password
+         * @param $username
+         * @return bool
+         */
+        public function login($username, $password) {
+            if ($this->getUser($username)) {
+                if ($this->checkPass($password)) {
+                    $_SESSION['M']['user'] = $this->user;
+                    return true;
+                } else {
+                    $_SESSION['M']['user'] = array();
+                    return false;
+                }
             } else {
-                return true;
+                return false;
             }
         }
+
+        /**
+         * Logout user
+         * @return bool
+         */
+        public function logout() {
+            $_SESSION['M']['user'] = array();
+            session_unset();
+            session_destroy();
+            return true;
+        }
+
         /**
          * Register user
+         * @param array $data
+         * @return bool|int|\mysqli_result|string
          */
         public function add($data) {
-
-
-            $data['password'] = password_hash($data['password'], PASSWORD_ARGON2I);
+            $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT, ["cost" => 8]);
             $data['group_id'] = $data['group_id'] ?? 0;
             $data['data']     = json_encode($data['data'] ?? array());
             $result = $this->db->insert($data);
             if ($result) {
                 M::aLog('SimpleUser',"Add new user, User ID: $result");
+                return $result;
             } else {
                 M::aLog('SimpleUser',"Add new user.",1);
+                return false;
             }
         }
-
-
-
 
     }

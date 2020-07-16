@@ -484,7 +484,7 @@
             (!$table) ?: $this->setTable($table);
             $sql = "SELECT * FROM $this->TABLE";
             (!$where) ?: $sql .= " WHERE $where ";
-            return $this->query($sql, 1, $order);
+            return $this->query($sql, 1, $order)[0] ?? false;
         }
 
         /**
@@ -499,7 +499,7 @@
             (!$table) ?: $this->setTable($table);
             $column = $this->escape($column);
             $id = intval($this->escape($id));
-            return $this->query("SELECT $column FROM $this->TABLE WHERE id=$id", 1);
+            return $this->query("SELECT $column FROM $this->TABLE WHERE id=$id", 1)[0] ?? false;
         }
 
         /**
