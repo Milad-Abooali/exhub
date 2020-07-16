@@ -85,14 +85,11 @@
          * @return bool|int|\mysqli_result|string
          */
         public function add($data) {
+            if (getUser($data['username'])) return false;
             $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT, ["cost" => 8]);
             $data['data']     = json_encode($data['data'] ?? array());
             $result = $this->db->insert($data);
-            if ($result) {
-                return $result;
-            } else {
-                return false;
-            }
+            return ($result) ? $result : false;
         }
 
     }

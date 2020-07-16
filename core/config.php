@@ -19,7 +19,7 @@
  * Debug
  */
     error_reporting(E_ALL);
-    define("LOGGER", true);  // Active Logger
+    define("LOGGER", false);  // Active Logger
     define("LOG", [
       "core"          => true,
       "loader"        => true,

@@ -8,7 +8,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!--- CODEBOX -->
-    <meta name="codebox-APP_URL" content="<?= APP_URL ?>" />
+    <meta name="codebox-url" content="<?= APP_URL ?>" />
     <meta name="codebox-cdn" content="<?= CDN ?>" />
     <meta name="codebox-img" content="<?= IMG ?>" />
     <meta name="codebox-js" content="<?= JS ?>" />

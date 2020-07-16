@@ -1,6 +1,6 @@
 /* Pass URLs - C.js */
 var cbURL = $("meta[name=codebox-url]").attr('content');
-var cbBUY = $("meta[name=codebox-buy]").attr('content');
+var cbToken = $("#app-body").data('token');
 var cbCDN = $("meta[name=codebox-cdn]").attr('content');
 var cbIMG = $("meta[name=codebox-img]").attr('content');
 var cbJS = $("meta[name=codebox-js]").attr('content');
@@ -142,6 +142,38 @@ $(document).ready(function() {
       }
     }
   }
-    
+
+  /* Form Actions */
+
+  // Ajax Call
+  var ajaxCallRes;
+  function ajaxCall (classAction,data) {
+    $.ajax({
+      type: "POST",
+      url: cbURL+"ajax/"+classAction+'&token='+cbToken,
+      data: data,
+      cache: false,
+      global: false,
+      async: true,
+      success: function(data) {
+        ajaxCallRes = data;
+      }
+    });
+  }
+
+  $("form").submit(function(event){
+    event.preventDefault();
+    let id = $(this).attr('id');
+    console.log(id);
+    ajaxCall ('core','id=50');
+    console.log(ajaxCallRes);
+  });
+
+
+  $("#teddddst").click(function() {
+    ajaxCall ('core','id=50');
+    console.log(ajaxCallRes);
+  });
+
 });
 
