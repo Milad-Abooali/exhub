@@ -149,12 +149,11 @@ $(document).ready(function() {
   let alertID = 0;
   function ajaxAlert (id, type, text) {
     alertID++;
-    let resAlert = '<div id="'+alertID+'" class="alert alert-'+type+'" role="alert">'+text;
+    let resAlert = '<div id="'+alertID+'" class="alert alert-'+type+'" role="alert">#'+alertID+' '+text;
     resAlert += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
     $('#'+id+' .alerts').append(resAlert);
     $('#'+id+' #'+alertID).hide().fadeIn(300);
   }
-
   // Ajax Call
   function ajaxCall (classAction, data, callback) {
     $.ajax({
@@ -170,16 +169,25 @@ $(document).ready(function() {
       }
     });
   }
-
+  // Ajax reload
+  function ajaxReload () {
+    $('.cb-ajax-u').each(function(i, obj) {
+      $(obj).fadeOut();
+      console.log(i);
+    });
+  }
+  // Ajax form
   $("form").submit(function(event){
     event.preventDefault();
     const id = $(this).attr('id');
     const data = $('#'+id).serialize();
     const classA = $('#'+id).attr('action');
     ajaxCall (classA, data,function(response) {
-      let type = (response.e) ? 'danger' : 'success';
-      let text = (response.e) ? 'Error, User not added!' : 'Success, User Added.';
-      ajaxAlert (id, type, text)
+      let obj = JSON.parse(response);
+      let type = (obj.e) ? 'danger' : 'success';
+      let text = (obj.e) ? 'Error, User not added. '+obj.res : 'Success, User Added.';
+      ajaxAlert (id, type, text);
+      ajaxReload ();
     });
   });
 

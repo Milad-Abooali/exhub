@@ -18,14 +18,22 @@
     class SimpleUser
     {
 
-        public $user_id;
-        private $db,$user=array();
+        public $ERROR;
+        private $db, $user=array();
 
         /**
          * SimpleUser constructor.
          */
         function __construct() {
             $this->db = new MySQL(DB_INFO,'user_list');
+        }
+
+        /**
+         * Get All users
+         * @return array
+         */
+        public function getAll() {
+            return $this->db->select() ?? array();
         }
 
         /**
@@ -85,7 +93,10 @@
          * @return bool|int|\mysqli_result|string
          */
         public function add($data) {
-            if (getUser($data['username'])) return false;
+            if ($this->getUser($data['username'])) {
+                $this->ERROR = 'Username already in use !';
+                return false;
+            }
             $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT, ["cost" => 8]);
             $data['data']     = json_encode($data['data'] ?? array());
             $result = $this->db->insert($data);

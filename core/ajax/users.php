@@ -27,7 +27,8 @@
     function add () {
         global $user;
         $output = new stdClass();
-        $output->e = ($user->add($_POST)) ? false : true;
-        $output->res = null;
+        $res = $user->add($_POST);
+        $output->e = ($res) ? false : true;
+        $output->res = $user->ERROR;
         echo json_encode($output);
     }
