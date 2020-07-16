@@ -11,45 +11,29 @@
 
     <div id="app-body" class="container" data-g="home">
 
-        <!-- Row Map -->
-        <div id="cb-map" class="row cb-oh">
 
-        </div>
+        <!-- Row Form -->
+        <div class="card mt-4 pt-4 cb-oa">
+            <div class="col-md-12 cb-ltr">
+                <form class="form-inline" action="/action_page.php">
+                    <label for="email" class="mr-sm-2">Email address:</label>
+                    <input type="email" class="form-control mb-2 mr-sm-2" placeholder="Enter email" name="email">
 
-        <!-- Row Domain -->
-        <div id="cb-domian" class="card mt-4 pt-4 d-none d-md-block cb-oh">
+                    <label for="email" class="mr-sm-2">Username:</label>
+                    <input type="email" class="form-control mb-2 mr-sm-2" placeholder="Username" name="Username">
 
-        </div>
+                    <label for="pwd" class="mr-sm-2">Password:</label>
+                    <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Enter password" name="password">
 
+                    <div class="form-check mb-2 mr-sm-2">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox"> Remember me
+                        </label>
+                    </div>
 
-        <!-- Row Hosting Tip -->
-        <div id="cb-host-tip" class="cb-blg-0 my-4 pt-2 cb-oh">
-
-        </div>
-
-        <!-- Row CMS -->
-        <div id="cb-cms" class="row mb-5 cb-oh">
-
-        </div>
-
-        <!-- Row Puls -->
-        <div id="cb-dev" class="row mt-5 mb-4 mx-1 py-5 px-3 cb-blg-4 cb-rtl cb-oh" dir="rtl">
-
-        </div>
-
-        <!-- Row VPS Tip -->
-        <div id="cb-vps-tip" class="cb-blg-5 mb-5 pt-2 cb-oh">
-
-        </div>
-
-        <!-- Row Content -->
-        <div id="cb-posts" class="row mb-5 d-md-down-none cb-oh">
-
-        </div>
-
-        <!-- Row Staff -->
-        <div id="cb-staff" class="row my-5 mx-1 pt-5 px-3 cb-blg-0  d-none d-md-flex cb-oh">
-
+                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                </form>
+            </div>
         </div>
 
     </div>

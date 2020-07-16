@@ -86,7 +86,6 @@
          */
         public function add($data) {
             $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT, ["cost" => 8]);
-            $data['group_id'] = $data['group_id'] ?? 0;
             $data['data']     = json_encode($data['data'] ?? array());
             $result = $this->db->insert($data);
             if ($result) {
