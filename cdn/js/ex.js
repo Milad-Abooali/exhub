@@ -163,9 +163,10 @@ $(document).ready(function() {
 
   $("form").submit(function(event){
     event.preventDefault();
-    let id = $(this).attr('id');
-    console.log(id);
-    ajaxCall ('core','id=50');
+    const id = $(this).attr('id');
+    const data = $('#'+id).serialize();
+    const classA = $('#'+id).attr('action');
+    ajaxCall (classA,data);
     console.log(ajaxCallRes);
   });
 
