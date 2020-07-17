@@ -152,7 +152,9 @@ $(document).ready(function() {
     let resAlert = '<div id="'+alertID+'" class="alert alert-'+type+'" role="alert">#'+alertID+' '+text;
     resAlert += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
     $('#'+id+' .alerts').append(resAlert);
-    $('#'+id+' #'+alertID).hide().fadeIn(300);
+    $('#'+id+' #'+alertID).fadeTo(2000, 500).slideUp(600, function() {
+      $('#'+id+' #'+alertID).slideUp(650);
+    });
   }
   // Ajax Call
   function ajaxCall (classAction, data, callback) {
@@ -171,10 +173,10 @@ $(document).ready(function() {
   }
   // Ajax reload
   function ajaxReload () {
-    $('.cb-ajax-u').each(function(i, obj) {
-      $(obj).fadeOut();
-      console.log(i);
+    $('.cb-ajax-u').each(function() {
+      $('#'+this.id).load(' #'+this.id);
     });
+
   }
   // Ajax form
   $("form").submit(function(event){

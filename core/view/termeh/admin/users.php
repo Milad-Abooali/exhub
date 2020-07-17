@@ -25,9 +25,9 @@
         </div>
 
         <!-- Row List -->
-        <div class="card mt-4 py-4 px-1 cb-oa cb-ajax-u" data-ajaxC="table tr">
-            <h2 class="text-center">User List</h2>
-            <table class="table table-striped table-hover">
+        <div class="card mt-4 py-4 px-1 cb-oa">
+            <h2 class="text-center">User List <small id="users-title" class="cb-ajax-u">Count: <?= $this->data['user_count']; ?></small></h2>
+            <table id="users-list" class="table table-striped table-hover cb-ajax-u" >
                 <thead>
                 <tr>
                     <th>Status</th>
@@ -38,7 +38,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($this->data['users'] as $item) { ?>
+                <?php if (!is_array($this->data['users'])) { ?>
+                <tr>
+                    <td colspan="5" class="text-center text-secondary">No Item</td>
+                </tr>
+                <?php } else { foreach ((array) $this->data['users'] as $item) { ?>
                 <tr>
                     <td><?= $item['status']; ?></td>
                     <td><?= $item['email']; ?></td>
@@ -46,7 +50,7 @@
                     <td data-toggle="tooltip" data-placement="left" title="<?= $item['last_login']; ?>"><?= $item['last_ip']; ?></td>
                     <td>x</td>
                 </tr>
-                <?php } ?>
+                <?php } } ?>
                 </tbody>
             </table>
         </div>
