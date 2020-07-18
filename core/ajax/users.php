@@ -45,7 +45,12 @@
         global $user;
         $output = new stdClass();
         $id = ($_POST['rid']) ?? die();
-        $password = substr(md5(microtime()),5,7);
+        $seed = str_split('abdefghjmnqrty'
+                                .'ABDEFGHJLMNQRTY'
+                                .'123456789!@#$%^&*()');
+        shuffle($seed);
+        $password = '';
+        foreach (array_rand($seed, 7) as $k) $password .= $seed[$k];
         $res = $user->updatePass($id, $password);
         $output->e = ($res) ? false : true;
         $output->res = $user->ERROR ?? $password;

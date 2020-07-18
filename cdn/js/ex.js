@@ -216,7 +216,10 @@ $(document).ready(function() {
       let text = (obj.e) ? 'Error, status not change '+obj.res : 'Success, User status updated.';
       ajaxAlert ('app-notify', type, text);
       if (obj.res) {
-        $( "<span>"+obj.res+"</span>" ).insertAfter(thisClick);
+        $( "#modal .modal-dialog" ).addClass('modal-sm');
+        $( "#modal .modal-title" ).html('Reset Password');
+        $( "#modal .modal-body" ).html('<p class="text-center">New Password:</p> <h3 class="text-center text-danger">'+obj.res+'</h3>');
+        $('#modal').modal('show');
       }
     });
   });
