@@ -27,12 +27,14 @@
     /**
      * Add New User
      */
-    function setStatus ($id) {
+    function setStatus () {
         global $user;
         $output = new stdClass();
-        $res = $user->add($_POST);
+        $id = $_POST['rid'] ?? false;
+        $update['status'] = $_POST['status'] ?? false;
+        $res = $user->update($id,$update);
         $output->e = ($res) ? false : true;
-        $output->res = $user->ERROR;
+        $output->res = $user->ERROR ?? true;
         echo json_encode($output);
     }
 

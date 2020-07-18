@@ -103,5 +103,15 @@
             return ($result) ? $result : false;
         }
 
+        /**
+         * Upate User.
+         * @param int $id
+         * @param array $array
+         * @return bool|int|\mysqli_result|string|null
+         */
+        public function update($id,$array) {
+            return $this->db->updateId($id,$array);
+        }
+
     }
 
