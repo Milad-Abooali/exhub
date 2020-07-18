@@ -106,6 +106,17 @@
         /**
          * Upate User.
          * @param int $id
+         * @param string $password
+         * @return bool|int|\mysqli_result|string|null
+         */
+        public function updatePass($id, $password) {
+            $data['password'] = password_hash($password, PASSWORD_BCRYPT, ["cost" => 8]);
+            return $this->db->updateId($id, $data);
+        }
+
+        /**
+         * Upate User.
+         * @param int $id
          * @param array $data
          * @return bool|int|\mysqli_result|string|null
          */

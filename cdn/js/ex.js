@@ -152,8 +152,8 @@ $(document).ready(function() {
     let resAlert = '<div id="'+alertID+'" class="alert alert-'+type+'" role="alert">#'+alertID+' '+text;
     resAlert += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
     $('#'+id+' .alerts').append(resAlert);
-    $('#'+id+' #'+alertID).fadeTo(2000, 500).slideUp(1800, function() {
-      $('#'+id+' #'+alertID).slideUp(1800);
+    $('#'+id+' #'+alertID).fadeTo(2000, 500).slideUp(3800, function() {
+      $('#'+id+' #'+alertID).slideUp(3800);
     });
   }
   // Ajax Call
