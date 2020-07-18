@@ -279,7 +279,7 @@
          * @param array $data
          * @return string
          */
-        private function _updateSQL($table, $data)
+        private function _updateSQL($table=null, $data)
         {
             (!$table) ?: $this->setTable($table);
             $sql = "UPDATE `$this->TABLE` SET";
@@ -302,7 +302,6 @@
          */
         public function updateId($id, $data, $table = null)
         {
-            (!$table) ?: $this->setTable($table);
             $id = intval($this->escape($id));
             $sql = $this->_updateSQL($table, $data);
             $sql .= " WHERE id=$id";
@@ -320,7 +319,6 @@
          */
         public function updateAny($data, $table = null, $where = null, $end = null, $start = '0000-00-00')
         {
-            (!$table) ?: $this->setTable($table);
             $end = $this->escape($end);
             $start = $this->escape($start);
             $sql = $this->_updateSQL($table, $data) . ' WHERE ';

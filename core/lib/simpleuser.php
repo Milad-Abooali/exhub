@@ -106,11 +106,11 @@
         /**
          * Upate User.
          * @param int $id
-         * @param array $array
+         * @param array $data
          * @return bool|int|\mysqli_result|string|null
          */
-        public function update($id,$array) {
-            return $this->db->updateId($id,$array);
+        public function update($id, $data) {
+            return $this->db->updateId($id, $data);
         }
 
     }

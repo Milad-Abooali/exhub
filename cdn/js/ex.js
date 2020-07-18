@@ -196,7 +196,7 @@ $(document).ready(function() {
   $('body').on('click','.cb-ajax-a', function(){
     let rid = $(this).data('rid');
     let status = $(this).is(":checked")  ? 1 : 0;
-    data = "id="+rid+"&status="+status;
+    data = "rid="+rid+"&status="+status;
     console.log(data);
     ajaxCall ('users/update', data,function(response) {
       let obj = JSON.parse(response);

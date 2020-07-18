@@ -30,9 +30,9 @@
     function update() {
         global $user;
         $output = new stdClass();
-        $id = $_POST['rid'] ?? false;
+        $id = ($_POST['rid']) ?? die();
         $update['status'] = ($_POST['status']) ? 1 : 0;
-        $res = $user->update($id,$update);
+        $res = $user->update($id, $update);
         $output->e = ($res) ? false : true;
         $output->res = $user->ERROR ?? true;
         echo json_encode($output);
