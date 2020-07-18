@@ -152,8 +152,8 @@ $(document).ready(function() {
     let resAlert = '<div id="'+alertID+'" class="alert alert-'+type+'" role="alert">#'+alertID+' '+text;
     resAlert += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
     $('#'+id+' .alerts').append(resAlert);
-    $('#'+id+' #'+alertID).fadeTo(2000, 500).slideUp(600, function() {
-      $('#'+id+' #'+alertID).slideUp(650);
+    $('#'+id+' #'+alertID).fadeTo(2000, 500).slideUp(1800, function() {
+      $('#'+id+' #'+alertID).slideUp(1800);
     });
   }
   // Ajax Call
@@ -197,7 +197,6 @@ $(document).ready(function() {
     let rid = $(this).data('rid');
     let status = $(this).is(":checked")  ? 1 : 0;
     data = "rid="+rid+"&status="+status;
-    console.log(data);
     ajaxCall ('users/update', data,function(response) {
       let obj = JSON.parse(response);
       let type = (obj.e) ? 'danger' : 'success';
