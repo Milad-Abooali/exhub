@@ -176,8 +176,9 @@ $(document).ready(function() {
     $('.cb-ajax-u').each(function() {
       $('#'+this.id).load(' #'+this.id);
     });
-
   }
+  // Ajax Clike
+
   // Ajax form
   $("form").submit(function(event){
     event.preventDefault();

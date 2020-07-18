@@ -24,9 +24,9 @@
   <!--- CSS -->
     <link href="<?= CSS ?>style.css" rel="stylesheet" />
   <!--- Script -->
-    <script defer src="<?= JS ?>jquery.3.2.1.min.js"></script>
+    <script defer src="<?= JS ?>jquery.3.3.1.min.js"></script>
     <script defer src="<?= JS ?>popper.min.js"></script>
-    <script defer src="<?= JS ?>bootstrap.4.min.js"></script>
+    <script defer src="<?= JS ?>bootstrap.4.2.1.min.js"></script>
     <script defer src="<?= JS ?>pace.min.js"></script>
     <script defer src="<?= JS ?>ex.js"></script>
   <!--- Head -->

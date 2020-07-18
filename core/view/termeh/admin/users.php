@@ -33,6 +33,7 @@
                     <th>Status</th>
                     <th>Email</th>
                     <th>Username</th>
+                    <th>Registerd</th>
                     <th>Last Login</th>
                     <th>Manage</th>
                 </tr>
@@ -44,11 +45,19 @@
                 </tr>
                 <?php } else { foreach ((array) $this->data['users'] as $item) { ?>
                 <tr>
-                    <td><?= $item['status']; ?></td>
+                    <td>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="status-<?= $item['email']; ?>" <?= $item['status'] ? 'checked' : null; ?>>
+                            <label class="custom-control-label" for="status-<?= $item['email']; ?>"><?= $item['status'] ? 'Active' : 'Disable'; ?></label>
+                        </div>
+                    </td>
                     <td><?= $item['email']; ?></td>
                     <td><?= $item['username']; ?></td>
+                    <td><?= $item['timestamp']; ?></td>
                     <td data-toggle="tooltip" data-placement="left" title="<?= $item['last_login']; ?>"><?= $item['last_ip']; ?></td>
-                    <td>x</td>
+                    <td>
+                        <button id="test" type="submit" class="btn btn-secondary btn-sm">Rest Password</button>
+                    </td>
                 </tr>
                 <?php } } ?>
                 </tbody>
