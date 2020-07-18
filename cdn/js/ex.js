@@ -239,7 +239,13 @@ $(document).ready(function() {
       let text = (obj.e) ? 'Error, status not change '+obj.res : 'Success, User status updated.';
       ajaxAlert ('app-notify', type, text);
       if (obj.res) {
-        makeModal('Reset Password','<p class="text-center">New Password:</p> <h3 class="text-center text-danger">'+obj.res+'</h3>','sm');
+        console.log(obj.res);
+        let body = '<form id="user-groups" action="users/setGroups" class="form">';
+        body += '<label class="col checkbox-inline"><input name="admin" type="checkbox" value="1"> Admin </label>';
+        body += '<label class="col checkbox-inline"><input name="staff" type="checkbox" value="1"> Staff </label>';
+        body += '<label class="col checkbox-inline"><input name="ipt" type="checkbox" value="1"> IPT </label>';
+        body += '<label class="col checkbox-inline"><input name="fis" type="checkbox" value="1"> FIS </label>';
+        makeModal('Reset Password',body);
       }
     });
   });

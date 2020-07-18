@@ -33,7 +33,7 @@
         $id = ($_POST['rid']) ?? die();
         $res = $user->getGroups($id);
         $output->e = ($res) ? false : true;
-        $output->res = $user->ERROR ?? $res;
+        $output->res = $user->ERROR ?? $res[0];
         echo json_encode($output);
     }
 
