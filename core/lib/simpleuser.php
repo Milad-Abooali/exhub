@@ -111,6 +111,7 @@
             $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT, ["cost" => 8]);
             $data['data']     = json_encode($data['data'] ?? array());
             $result = $this->db->insert($data);
+            (!$result) ?: $this->db->insert(array('user_id'=>$result),'user_groups');
             return ($result) ? $result : false;
         }
 

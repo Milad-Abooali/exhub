@@ -19,15 +19,15 @@
  * Debug
  */
     error_reporting(E_ALL);
-    define("LOGGER", false);  // Active Logger
+    define("LOGGER", true);  // Active Logger
     define("LOG", [
-      "core"          => true,
-      "loader"        => true,
+      "core"          => false,
+      "loader"        => false,
       "database"      => true,
       "language"      => false,
-      "view"          => true
+      "view"          => false
     ]);
-    define("LOG_FORCE", true);  // 1 Force to Show Log - 0: Need add '&mLog' to URL
+    define("LOG_FORCE", false);  // 1 Force to Show Log - 0: Need add '&mLog' to URL
 
 /**
  * App Settings
