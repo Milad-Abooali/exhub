@@ -111,8 +111,6 @@
                     echo "</td></tr>";
                 }
                 echo '</table></div>';
-            } else {
-                M::console('Add "&log=1" to show the logs.');
             }
         }
 
