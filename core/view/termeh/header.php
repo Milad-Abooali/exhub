@@ -20,6 +20,11 @@
   </div>
 </div>
 
+<!--- Notify -->
+<div id="app-notify">
+    <div class="cb-ltr w-100 d-block alerts"><br></div>
+</div>
+
 <!--- Footer Navbar -->
 <div class="f-nav-m animated slideInUp d-block d-md-none text-center pt-2">
   <div class="f-nav-open">

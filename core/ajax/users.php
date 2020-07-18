@@ -25,13 +25,13 @@
     }
 
     /**
-     * Add New User
+     * Update User
      */
-    function setStatus () {
+    function update() {
         global $user;
         $output = new stdClass();
         $id = $_POST['rid'] ?? false;
-        $update['status'] = $_POST['status'] ?? false;
+        $update['status'] = ($_POST['status']) ? 1 : 0;
         $res = $user->update($id,$update);
         $output->e = ($res) ? false : true;
         $output->res = $user->ERROR ?? true;

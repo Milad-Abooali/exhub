@@ -302,6 +302,7 @@
          */
         public function updateId($id, $data, $table = null)
         {
+            (!$table) ?: $this->setTable($table);
             $id = intval($this->escape($id));
             $sql = $this->_updateSQL($table, $data);
             $sql .= " WHERE id=$id";

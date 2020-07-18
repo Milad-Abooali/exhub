@@ -624,6 +624,16 @@ ul.ul-tips li {
 
 }
 
+/* Notify */
+#app-notify {
+    width: 330px;
+    position: absolute;
+    left: 1%;
+    top: 90px;
+    opacity: 0.9;
+}
+
+
 /* Responsive */
 
 @media (min-width : 576px) {
@@ -717,3 +727,4 @@ ul.ul-tips li {
     margin: 1.5rem 1.8rem!important;
   }
 }
+
