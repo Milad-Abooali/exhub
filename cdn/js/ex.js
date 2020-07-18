@@ -177,6 +177,16 @@ $(document).ready(function() {
       $('#'+this.id).load(' #'+this.id);
     });
   }
+  // Modal Maker
+  function makeModal (title,body,size='md') {
+
+
+
+    $( "#modal .modal-dialog" ).addClass('modal-'+size);
+    $( "#modal .modal-title" ).html(title);
+    $( "#modal .modal-body" ).html(body);
+    $('#modal').modal('show');
+  }
   // Ajax form
   $("form").submit(function(event){
     event.preventDefault();
