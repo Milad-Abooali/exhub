@@ -143,7 +143,7 @@ $(document).ready(function() {
     }
   }
 
-  /* Form Actions */
+  /* Ajax Actions */
 
   // Ajax Alert
   let alertID = 0;
@@ -177,8 +177,6 @@ $(document).ready(function() {
       $('#'+this.id).load(' #'+this.id);
     });
   }
-  // Ajax Clike
-
   // Ajax form
   $("form").submit(function(event){
     event.preventDefault();
@@ -193,11 +191,15 @@ $(document).ready(function() {
       ajaxReload ();
     });
   });
+  // Ajax Change status
+  $('body').on('click','#formname', function(){
+
+  });
 
 
-  $("#teddddst").click(function() {
-    ajaxCall ('core','id=50');
-    console.log(ajaxCallRes);
+  // Ajax Change status
+  $('body').on('click','#formname', function(){
+
   });
 
 });
