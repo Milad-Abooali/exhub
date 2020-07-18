@@ -25,6 +25,23 @@
     }
 
     /**
+     * set User Groups
+     */
+    function setGroups() {
+        global $user;
+        $output = new stdClass();
+        $id = $_POST['rid'];
+        $groups['admin']= ($_POST['admin'] ?? 0) ? 1 : 0;
+        $groups['staff']= ($_POST['staff'] ?? 0) ? 1 : 0;
+        $groups['ipt']  = ($_POST['ipt'] ?? 0) ? 1 : 0;
+        $groups['fis']  = ($_POST['fis'] ?? 0) ? 1 : 0;
+        $res = $user->setGroups($id,$groups);
+        $output->e = ($res) ? false : true;
+        $output->res = $user->ERROR;
+        echo json_encode($output);
+    }
+
+    /**
      * get User Groups
      */
     function getGroups() {

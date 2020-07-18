@@ -48,6 +48,17 @@
 
 
         /**
+         * Set User Groups
+         * @param array $id
+         * @param array $data
+         * @return array|bool
+         */
+        public function setGroups($id,$data) {
+            $id = intval($id);
+            return $this->db->updateAny($data,"user_groups","user_id=$id") ?? false;
+        }
+
+        /**
          * Check username
          * @param string $username
          * @return bool

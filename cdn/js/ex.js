@@ -185,9 +185,10 @@ $(document).ready(function() {
     $("#modal").modal('show');
   }
   // Ajax form
-  $("form").submit(function(event){
+  $('body').on('submit','form', function(event){
     event.preventDefault();
     const id = $(this).attr('id');
+    const reload = $(this).data('reload');
     const data = $('#'+id).serialize();
     const classA = $('#'+id).attr('action');
     ajaxCall (classA, data,function(response) {
@@ -195,7 +196,7 @@ $(document).ready(function() {
       let type = (obj.e) ? 'danger' : 'success';
       let text = (obj.e) ? 'Error, User not added. '+obj.res : 'Success, User Added.';
       ajaxAlert (id, type, text);
-      ajaxReload ();
+      (reload) && ajaxReload ();
     });
   });
 
@@ -240,12 +241,15 @@ $(document).ready(function() {
       ajaxAlert ('app-notify', type, text);
       if (obj.res) {
         console.log(obj.res);
-        let body = '<form id="user-groups" action="users/setGroups" class="form">';
-        body += '<label class="col checkbox-inline"><input name="admin" type="checkbox" value="1"> Admin </label>';
-        body += '<label class="col checkbox-inline"><input name="staff" type="checkbox" value="1"> Staff </label>';
-        body += '<label class="col checkbox-inline"><input name="ipt" type="checkbox" value="1"> IPT </label>';
-        body += '<label class="col checkbox-inline"><input name="fis" type="checkbox" value="1"> FIS </label>';
-        makeModal('Reset Password',body);
+        let body = '<form id="user-groups" action="users/setGroups" data-reload="false" class="form">';
+        body += '<input name="rid" type="hidden" value="'+obj.res.user_id+'" />';
+        body += '<label class="col checkbox-inline"><input name="admin" type="checkbox" '+((obj.res.admin==1) && 'checked')+'> Admin </label>';
+        body += '<label class="col checkbox-inline"><input name="staff" type="checkbox" '+((obj.res.staff==1) && 'checked')+'> Staff </label>';
+        body += '<label class="col checkbox-inline"><input name="ipt" type="checkbox" '+((obj.res.ipt==1) && 'checked')+'> IPT </label>';
+        body += '<label class="col checkbox-inline"><input name="fis" type="checkbox" '+((obj.res.fis==1) && 'checked')+'> FIS </label>';
+        body += '<button type="submit" class="btn btn-primary btn-block">Save Groups</button>';
+        body += '<div class="cb-ltr w-100 d-block alerts"><br></div></form>';
+        makeModal('Set User Groups',body);
       }
     });
   });
