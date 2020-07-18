@@ -27,7 +27,7 @@
     /**
      * Add New User
      */
-    function setStatus () {
+    function setStatus ($id) {
         global $user;
         $output = new stdClass();
         $res = $user->add($_POST);

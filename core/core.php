@@ -65,7 +65,6 @@
 
         $class  = array_shift($page['data']) ?? 'core';
         $act  = "App\Core\\". (array_shift($page['data']) ?? 'def');
-        $id  = array_shift($page['data']) ?? false;
         $class_path = 'core/ajax/'.$class.'.php';
         M::aLog('core',"Class <b style='color:green'>$class</b> is called.",null,'ajax');
         if (file_exists($class_path)) {
@@ -78,7 +77,7 @@
         M::aLog('core',"Action <b style='color:green'>$act</b> is called.",null,'ajax');
         if (function_exists($act)) {
             M::aLog('core',"Run Function <b style='color:green'>$act</b>",null,'ajax');
-            $act($id);
+            $act();
         } else {
             M::aLog('core',"Run Function <b style='color:green'>$act</b>",1,'ajax');
             http_response_code(404);
