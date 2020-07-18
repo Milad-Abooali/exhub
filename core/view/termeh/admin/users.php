@@ -47,8 +47,8 @@
                 <tr>
                     <td>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="status-<?= $item['email']; ?>" <?= $item['status'] ? 'checked' : null; ?>>
-                            <label class="custom-control-label" for="status-<?= $item['email']; ?>"><?= $item['status'] ? 'Active' : 'Disable'; ?></label>
+                            <input type="checkbox" class="custom-control-input cb-ajax-a" data-rid="<?= $item['id']; ?>" id="status-<?= $item['id']; ?>" <?= $item['status'] ? 'checked' : null; ?>>
+                            <label class="custom-control-label" for="status-<?= $item['id']; ?>"> </label>
                         </div>
                     </td>
                     <td><?= $item['email']; ?></td>

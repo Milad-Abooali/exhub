@@ -24,6 +24,21 @@
         echo json_encode($output);
     }
 
+    /**
+     * Add New User
+     */
+    function setStatus () {
+        global $user;
+        $output = new stdClass();
+        $res = $user->add($_POST);
+        $output->e = ($res) ? false : true;
+        $output->res = $user->ERROR;
+        echo json_encode($output);
+    }
+
+    /**
+     * Add New User
+     */
     function add () {
         global $user;
         $output = new stdClass();

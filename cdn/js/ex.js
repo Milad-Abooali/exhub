@@ -191,15 +191,17 @@ $(document).ready(function() {
       ajaxReload ();
     });
   });
-  // Ajax Change status
-  $('body').on('click','#formname', function(){
-
-  });
-
 
   // Ajax Change status
-  $('body').on('click','#formname', function(){
-
+  $('body').on('click','.cb-ajax-a', function(){
+    let rid = $(this).data('rid');
+    data = "id="+rid;
+    ajaxCall ('users/setStatus', data,function(response) {
+      let obj = JSON.parse(response);
+      let type = (obj.e) ? 'danger' : 'success';
+      let text = (obj.e) ? 'Error, status not change '+obj.res : 'Success, User status updated.';
+      ajaxAlert (id, type, text);
+    });
   });
 
 });
