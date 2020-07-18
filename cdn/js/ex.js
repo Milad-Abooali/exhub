@@ -178,14 +178,11 @@ $(document).ready(function() {
     });
   }
   // Modal Maker
-  function makeModal (title,body,size='md') {
-
-
-
-    $( "#modal .modal-dialog" ).addClass('modal-'+size);
-    $( "#modal .modal-title" ).html(title);
-    $( "#modal .modal-body" ).html(body);
-    $('#modal').modal('show');
+  function makeModal(title,body,size='md') {
+    $("#modal .modal-dialog").removeClass().addClass('modal-dialog modal-'+size);
+    $("#modal .modal-title").html(title);
+    $("#modal .modal-body").html(body);
+    $("#modal").modal('show');
   }
   // Ajax form
   $("form").submit(function(event){
@@ -226,10 +223,7 @@ $(document).ready(function() {
       let text = (obj.e) ? 'Error, status not change '+obj.res : 'Success, User status updated.';
       ajaxAlert ('app-notify', type, text);
       if (obj.res) {
-        $( "#modal .modal-dialog" ).addClass('modal-sm');
-        $( "#modal .modal-title" ).html('Reset Password');
-        $( "#modal .modal-body" ).html('<p class="text-center">New Password:</p> <h3 class="text-center text-danger">'+obj.res+'</h3>');
-        $('#modal').modal('show');
+        makeModal('Reset Password','<p class="text-center">New Password:</p> <h3 class="text-center text-danger">'+obj.res+'</h3>','sm');
       }
     });
   });
