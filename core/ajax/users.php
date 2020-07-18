@@ -27,7 +27,7 @@
     /**
      * Update User
      */
-    function update() {
+    function updateStatus() {
         global $user;
         $output = new stdClass();
         $id = ($_POST['rid']) ?? die();
@@ -35,6 +35,20 @@
         $res = $user->update($id, $update);
         $output->e = ($res) ? false : true;
         $output->res = $user->ERROR ?? true;
+        echo json_encode($output);
+    }
+
+    /**
+     * Update User Password
+     */
+    function resetPass() {
+        global $user;
+        $output = new stdClass();
+        $id = ($_POST['rid']) ?? die();
+        $password = substr(md5(microtime()),5,7);
+        $res = $user->updatePass($id, $password);
+        $output->e = ($res) ? false : true;
+        $output->res = $user->ERROR ?? $password;
         echo json_encode($output);
     }
 

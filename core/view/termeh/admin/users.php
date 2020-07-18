@@ -47,7 +47,7 @@
                 <tr>
                     <td>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input cb-ajax-a" data-rid="<?= $item['id']; ?>" id="status-<?= $item['id']; ?>" <?= $item['status'] ? 'checked' : null; ?>>
+                            <input type="checkbox" class="custom-control-input doA-updatestatus" data-rid="<?= $item['id']; ?>" id="status-<?= $item['id']; ?>" <?= $item['status'] ? 'checked' : null; ?>>
                             <label class="custom-control-label" for="status-<?= $item['id']; ?>"> </label>
                         </div>
                     </td>
@@ -56,7 +56,7 @@
                     <td><?= $item['timestamp']; ?></td>
                     <td data-toggle="tooltip" data-placement="left" title="<?= $item['last_login']; ?>"><?= $item['last_ip']; ?></td>
                     <td>
-                        <button id="test" type="submit" class="btn btn-secondary btn-sm">Rest Password</button>
+                        <button id="test" data-rid="<?= $item['id']; ?>" type="submit" class="btn btn-secondary btn-sm doA-resetPass">Rest Password</button>
                     </td>
                 </tr>
                 <?php } } ?>

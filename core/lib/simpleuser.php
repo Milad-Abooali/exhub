@@ -104,7 +104,7 @@
         }
 
         /**
-         * Upate User.
+         * Upate User Password.
          * @param int $id
          * @param string $password
          * @return bool|int|\mysqli_result|string|null

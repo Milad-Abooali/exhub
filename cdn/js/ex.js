@@ -152,8 +152,8 @@ $(document).ready(function() {
     let resAlert = '<div id="'+alertID+'" class="alert alert-'+type+'" role="alert">#'+alertID+' '+text;
     resAlert += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
     $('#'+id+' .alerts').append(resAlert);
-    $('#'+id+' #'+alertID).fadeTo(2000, 500).slideUp(3800, function() {
-      $('#'+id+' #'+alertID).slideUp(3800);
+    $('#'+id+' #'+alertID).fadeTo(2000, 500).slideUp(2800, function() {
+      $('#'+id+' #'+alertID).slideUp(2800);
     });
   }
   // Ajax Call
@@ -193,15 +193,31 @@ $(document).ready(function() {
   });
 
   // Ajax Change status
-  $('body').on('click','.cb-ajax-a', function(){
+  $('body').on('click','.doA-updatestatus', function(){
     let rid = $(this).data('rid');
     let status = $(this).is(":checked")  ? 1 : 0;
     data = "rid="+rid+"&status="+status;
-    ajaxCall ('users/update', data,function(response) {
+    ajaxCall ('users/updateStatus', data,function(response) {
       let obj = JSON.parse(response);
       let type = (obj.e) ? 'danger' : 'success';
       let text = (obj.e) ? 'Error, status not change '+obj.res : 'Success, User status updated.';
       ajaxAlert ('app-notify', type, text);
+    });
+  });
+
+  // Ajax Rest Pass
+  $('body').on('click','.doA-resetPass', function(){
+    let thisClick = $(this);
+    let rid = thisClick.data('rid');
+    data = "rid="+rid;
+    ajaxCall ('users/resetPass', data,function(response) {
+      let obj = JSON.parse(response);
+      let type = (obj.e) ? 'danger' : 'success';
+      let text = (obj.e) ? 'Error, status not change '+obj.res : 'Success, User status updated.';
+      ajaxAlert ('app-notify', type, text);
+      if (obj.res) {
+        $( "<span>"+obj.res+"</span>" ).insertAfter(thisClick);
+      }
     });
   });
 
