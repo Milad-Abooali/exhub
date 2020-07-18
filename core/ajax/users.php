@@ -25,6 +25,19 @@
     }
 
     /**
+     * get User Groups
+     */
+    function getGroups() {
+        global $user;
+        $output = new stdClass();
+        $id = ($_POST['rid']) ?? die();
+        $res = $user->getGroups($id);
+        $output->e = ($res) ? false : true;
+        $output->res = $user->ERROR ?? $res;
+        echo json_encode($output);
+    }
+
+    /**
      * Update User
      */
     function updateStatus() {

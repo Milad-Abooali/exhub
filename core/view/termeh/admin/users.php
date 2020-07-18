@@ -56,7 +56,8 @@
                     <td><?= $item['timestamp']; ?></td>
                     <td data-toggle="tooltip" data-placement="left" title="<?= $item['last_login']; ?>"><?= $item['last_ip']; ?></td>
                     <td>
-                        <button id="test" data-rid="<?= $item['id']; ?>" type="submit" class="btn btn-secondary btn-sm doA-resetPass">Rest Password</button>
+                        <button data-rid="<?= $item['id']; ?>" class="btn btn-secondary btn-sm doA-resetPass">Rest Password</button>
+                        <button data-rid="<?= $item['id']; ?>" class="btn btn-primary btn-sm doA-groups">Group</button>
                     </td>
                 </tr>
                 <?php } } ?>

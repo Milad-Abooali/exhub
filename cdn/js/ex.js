@@ -228,5 +228,21 @@ $(document).ready(function() {
     });
   });
 
+  // Ajax Groups
+  $('body').on('click','.doA-groups', function(){
+    let thisClick = $(this);
+    let rid = thisClick.data('rid');
+    data = "rid="+rid;
+    ajaxCall ('users/getGroups', data,function(response) {
+      let obj = JSON.parse(response);
+      let type = (obj.e) ? 'danger' : 'success';
+      let text = (obj.e) ? 'Error, status not change '+obj.res : 'Success, User status updated.';
+      ajaxAlert ('app-notify', type, text);
+      if (obj.res) {
+        makeModal('Reset Password','<p class="text-center">New Password:</p> <h3 class="text-center text-danger">'+obj.res+'</h3>','sm');
+      }
+    });
+  });
+
 });
 

@@ -37,6 +37,17 @@
         }
 
         /**
+         * Get user Groups
+         * @param int $id
+         * @return array|bool
+         */
+        public function getGroups($id) {
+            $id = intval($id);
+            return $this->db->select('user_groups',"user_id=$id") ?? array();
+        }
+
+
+        /**
          * Check username
          * @param string $username
          * @return bool
