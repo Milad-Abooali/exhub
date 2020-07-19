@@ -57,12 +57,14 @@
 
     $page = array();
     $page['data'] = explode("/", $_GET["rout"]??null) ;
-    $actlog = new Actlog($page['data']);
     $page['vid']  = array_shift($page['data']);
     M::aLog('core','Call "<b style="color: blue">'.($_GET["rout"]??'index').'</b>"');
     if ($page['vid']=='ajax') {
         $token = ($_POST['token'] ?? $_GET['token']) ?? false;
         if ($_SESSION['M']['TOKEN']!=$token) exit('T0');
+
+        $call_path = str_replace(APP_URL,'',$_SERVER['HTTP_REFERER']);
+        $actlog = new Actlog($call_path,implode('/',$page['data']));
 
         $class  = array_shift($page['data']) ?? 'core';
         $act  = "App\Core\\". (array_shift($page['data']) ?? 'def');

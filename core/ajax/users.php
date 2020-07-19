@@ -38,6 +38,8 @@
         $res = $user->setGroups($id,$groups);
         $output->e = ($res) ? false : true;
         $output->res = $user->ERROR;
+        global $actlog;
+        $actlog->add("Set groups [".json_encode($groups)."] for user ($id)", $id,($res)?1:0);
         echo json_encode($output);
     }
 
@@ -59,15 +61,14 @@
      */
     function updateStatus() {
         global $user;
-        global $actlog;
-        $actlog->add('Update user status','','');
-        global $user;
         $output = new stdClass();
         $id = ($_POST['rid']) ?? die();
         $update['status'] = ($_POST['status']) ? 1 : 0;
         $res = $user->update($id, $update);
         $output->e = ($res) ? false : true;
         $output->res = $user->ERROR ?? true;
+        global $actlog;
+        $actlog->add("Set status [".$update['status']."] for user ($id)", $id,($res)?1:0);
         echo json_encode($output);
     }
 
@@ -87,6 +88,8 @@
         $res = $user->updatePass($id, $password);
         $output->e = ($res) ? false : true;
         $output->res = $user->ERROR ?? $password;
+        global $actlog;
+        $actlog->add("Reset password for user ($id)", $id, ($res)?1:0);
         echo json_encode($output);
     }
 
@@ -99,5 +102,7 @@
         $res = $user->add($_POST);
         $output->e = ($res) ? false : true;
         $output->res = $user->ERROR;
+        global $actlog;
+        $actlog->add("Add new user ($res)", $res, ($res)?1:0);
         echo json_encode($output);
     }

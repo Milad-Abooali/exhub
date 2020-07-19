@@ -18,15 +18,17 @@
     class Actlog
     {
 
-        private $db, $path;
+        private $db, $path, $class_act;
 
         /**
          * Actlog constructor.
          * @param null $path
+         * @param null $class_act
          */
-        function __construct($path=null)
+        function __construct($path=null,$class_act=null)
         {
-            $this->path = $path ?? '/';
+            $this->path = $path ?? '';
+            $this->class_act = $class_act ?? 'core/def';
             $this->db   = new MySQL(DB_INFO,'act_log');
         }
 
@@ -39,7 +41,8 @@
          */
         public function add($act,$rel=null,$status=null)
         {
-            $data['path'] = $this->path;
+            $data['call_path'] = $this->path;
+            $data['class_act'] = $this->class_act;
             $data['user'] = $_SESSION['M']['user']['id'] ?? '0';
             $data['act'] = $act;
             $data['rel'] = $rel;
