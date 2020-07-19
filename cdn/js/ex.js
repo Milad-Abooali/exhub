@@ -200,6 +200,10 @@ $(document).ready(function() {
     });
   });
 
+  /**
+   * Admin User
+   */
+
   // Ajax Change status
   $('body').on('click','.doA-updatestatus', function(){
     let rid = $(this).data('rid');

@@ -22,6 +22,10 @@
             $page['vid']  = 'admin/'.array_shift($page['data']);
             $page['upon']   = 'admin';
             switch ($page['vid']) {
+                case "admin/logs":
+                    $page['inc']    = 'admin/logs';
+                    $page['view']   = "admin/logs";
+                    break;
                 case "admin/users":
                     $page['inc']    = 'admin/users';
                     $page['view']   = "admin/users";
