@@ -51,4 +51,16 @@
             return ($result) ? true : false;
         }
 
+        /**
+         * Show Action logs for path
+         * @param $call_path
+         * @param null $count
+         * @return array|bool
+         */
+        public function show($call_path, $count=15)
+        {
+            $call_path = $this->db->escape($call_path);
+            $result = $this->db->select(null,"call_path='$call_path'",'*',25);
+            return ($result) ? $result : array();
+        }
     }

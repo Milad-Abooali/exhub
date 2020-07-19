@@ -64,6 +64,47 @@
                 </tbody>
             </table>
         </div>
+        <!-- Row List -->
+        <div class="card mt-4 py-4 px-1 cb-oa">
+            <h4 class="text-center">Users Management Logs</h4>
+<?php \App\Core\M::print($this->data['actlog']) ?>
+            <table id="users-list" class="table table-striped table-hover cb-ajax-u" >
+                <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>Registerd</th>
+                    <th>Last Login</th>
+                    <th>Manage</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php if (!is_array($this->data['users'])) { ?>
+                    <tr>
+                        <td colspan="5" class="text-center text-secondary">No Item</td>
+                    </tr>
+                <?php } else { foreach ((array) $this->data['users'] as $item) { ?>
+                    <tr>
+                        <td>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input doA-updatestatus" data-rid="<?= $item['id']; ?>" id="status-<?= $item['id']; ?>" <?= $item['status'] ? 'checked' : null; ?>>
+                                <label class="custom-control-label" for="status-<?= $item['id']; ?>"> </label>
+                            </div>
+                        </td>
+                        <td><?= $item['email']; ?></td>
+                        <td><?= $item['username']; ?></td>
+                        <td><?= $item['timestamp']; ?></td>
+                        <td data-toggle="tooltip" data-placement="left" title="<?= $item['last_login']; ?>"><?= $item['last_ip']; ?></td>
+                        <td>
+                            <button data-rid="<?= $item['id']; ?>" class="btn btn-secondary btn-sm doA-resetPass">Rest Password</button>
+                            <button data-rid="<?= $item['id']; ?>" class="btn btn-primary btn-sm doA-groups">Group</button>
+                        </td>
+                    </tr>
+                <?php } } ?>
+                </tbody>
+            </table>
+        </div>
 
     </div>
 

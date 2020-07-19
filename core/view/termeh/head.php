@@ -28,6 +28,8 @@
     <script defer src="<?= JS ?>popper.min.js"></script>
     <script defer src="<?= JS ?>bootstrap.4.2.1.min.js"></script>
     <script defer src="<?= JS ?>pace.min.js"></script>
+    <script defer src="<?= JS ?>jquery.dataTables.min.js"></script>
+    <script defer src="<?= JS ?>dataTables.bootstrap4.min.js"></script>
     <script defer src="<?= JS ?>ex.js"></script>
   <!--- Head -->
     <?= $this->data['PAGE']['head'] ?>

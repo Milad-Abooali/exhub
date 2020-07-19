@@ -17,6 +17,9 @@
 /* Icone */
 @import "cb-ico.css";
 
+/* Datatables */
+@import "dataTables.bootstrap4.min.css";
+
 /* Persian Font */
 @font-face{
 	font-family:'codeboxFA';
