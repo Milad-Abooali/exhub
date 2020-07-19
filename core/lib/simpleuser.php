@@ -64,6 +64,7 @@
          * @return bool
          */
         public function getUser($username) {
+            $username = $this->db->escape($username);
             $this->user = $this->db->selectRow("username='$username'");
             return ($this->user) ? true : false;
         }

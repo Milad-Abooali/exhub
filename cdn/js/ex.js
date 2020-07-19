@@ -43,10 +43,12 @@ function randRange( minNum, maxNum) {return (Math.floor(Math.random() * (maxNum 
 $(document).ready(function() {
 
   $('.dTable-min').DataTable({
-    "pageLength": 5
+    "pageLength": 5,
+    "order": [[ 0, "desc" ]]
   });
 
   $('.dTable-full').DataTable({
+    "order": [[ 0, "desc" ]],
     "pageLength": 25
   });
 
@@ -193,8 +195,48 @@ $(document).ready(function() {
     $("#modal .modal-body").html(body);
     $("#modal").modal('show');
   }
-  // Ajax form
-  $('body').on('submit','form', function(event){
+
+  /**
+   * User
+   */
+  // Ajax Login
+  $('body').on('submit','form#login', function(event){
+    event.preventDefault();
+    const id = $(this).attr('id');
+    const reload = $(this).data('reload');
+    const data = $('#'+id).serialize();
+    const classA = $('#'+id).attr('action');
+    ajaxCall (classA, data,function(response) {
+      let obj = JSON.parse(response);
+      let type = (obj.e) ? 'danger' : 'success';
+      let text = (obj.e) ? 'Data is wrong !' : 'Success, Loged In';
+      ajaxAlert (id, type, text);
+      (reload) && ajaxReload ();
+    });
+  });
+
+  // Ajax Logout
+  $('body').on('click','.doA-logout', function(){
+    let thisClick = $(this);
+    let rid = thisClick.data('rid');
+    data = "rid="+rid;
+    ajaxCall ('users/logout', data,function(response) {
+      let obj = JSON.parse(response);
+      let type = (obj.e) ? 'danger' : 'success';
+      let text = (obj.e) ? 'Error !' : 'Success, User Loged out.';
+      ajaxAlert ('app-notify', type, text);
+      if (obj.res) {
+        location.reload();
+      }
+    });
+  });
+
+  /**
+   * Admin User
+   */
+
+  // Ajax Add New User
+  $('body').on('submit','form#add-user', function(event){
     event.preventDefault();
     const id = $(this).attr('id');
     const reload = $(this).data('reload');
@@ -208,10 +250,6 @@ $(document).ready(function() {
       (reload) && ajaxReload ();
     });
   });
-
-  /**
-   * Admin User
-   */
 
   // Ajax Change status
   $('body').on('click','.doA-updatestatus', function(){

@@ -18,6 +18,9 @@
     /** @var array $page */
     switch ($page['vid']) {
 
+        case "login":
+            $page['view']   = "login";
+            break;
         case "admin":
             $page['vid']  = 'admin/'.array_shift($page['data']);
             $page['upon']   = 'admin';

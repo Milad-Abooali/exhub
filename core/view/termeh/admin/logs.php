@@ -11,21 +11,7 @@
 
     <div id="app-body" class="container" data-g="admin" data-token="<uponE>$_SESSION['M']['TOKEN']</uponE>">
 
-        <!-- Row Form -->
-        <div class="card mt-4 pt-4 cb-oa">
-            <div class="col-md-12 cb-ltr">
-                <form id="add-user" action="users/add" data-reload="true" class="form-inline">
-                    <input type="email" class="form-control mb-2 mr-sm-2 col-md-3" placeholder="Enter Email" name="email" autocomplete="new-email" required>
-                    <input type="text" class="form-control mb-2 mr-sm-2 col-md-3" placeholder="Enter Username" name="username" autocomplete="new-username" required>
-                    <input type="password" class="form-control mb-2 mr-sm-2 col-md-3" placeholder="Enter Password" name="password" autocomplete="new-password" required>
-                    <button type="submit" class="btn btn-primary mb-2 ">Add User</button>
-                    <div class="cb-ltr w-100 d-block alerts"><br></div>
-                </form>
-            </div>
-        </div>
-
-
-        <!-- Row Logs -->
+          <!-- Row Logs -->
         <div class="card mt-4 py-4 px-1 cb-oa">
             <h2 class="text-center">Action Logs</h2>
             <table id="actlog" class="dTable-full table table-striped table-hover table-sm" >

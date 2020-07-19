@@ -4,7 +4,7 @@
 <div class="h-nav">
   <div>
     <a href="<?= APP_URL ?>" title="صفحه نخست"><img id="cb-logo" class="animated slideInLeft" alt="CODEBOX" src="<?= IMG ?>codebox.png" /></a>
-    <sup class="text-secondary">v6 Beta</sup>
+    <sup class="text-secondary">v6 eX 1.0</sup>
   </div>
   <div class="showMobMenu cb-rtl animated slideInDown d-block d-md-none" onclick="showMobMenu()">
     <span class="text-muted mx-1 btn btn-sm" href="#000"><i class="ico menu mx-1"></i> خدمات </span>
@@ -14,9 +14,9 @@
   </div>
   <div class="cb-rtl h-nav-menu animated slideInDown d-none d-md-block">
     <span class="cb-rtl border border-light mx-2 px-3 rounded text-muted" href="./"><strong>کدباکس</strong> میزبان شماست ...</span>
-    <a class="btn btn-sm btn-outline-success rounded " href="<?= APP_URL ?>register.php" title="ایجاد حساب کاربری"><i class="fa fa-user ml-1"></i> عضویت </a>
-    <a class="btn btn-sm btn-outline-primary rounded" href="<?= APP_URL ?>clientarea.php" title="ورود به حساب کاربری"><i class="fa fa-user ml-1"></i> ورود کاربران </a>
-    <span class="text-muted mx-1 btn btn-sm" href="#" onclick="scrollToBottom()" title="فهرست خدمات کدباکس"><i class="ico menu mx-1"></i> خدمات </span>
+    <a class="btn btn-sm btn-outline-danger rounded doA-logout" href="#">
+        <i class="fa fa-user ml-1"></i> Logout
+    </a>
   </div>
 </div>
 

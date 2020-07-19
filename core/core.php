@@ -90,6 +90,7 @@
             echo json_encode($output);
         }
     } else {
+        (isset($_SESSION['M']['user'])) ?: $page['vid']='login';
         include_once ('routing.php');
         $VIEW = new View($page);
         $VIEW->loadPage();

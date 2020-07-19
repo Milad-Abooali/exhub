@@ -70,7 +70,7 @@
         <!-- Row Logs -->
         <div class="card mt-4 py-4 px-1 cb-blg-0">
             <h4 class="text-center">Users Management Logs</h4>
-            <table id="actlog" class="dTable-min table table-striped table-hover table-sm cb-ajax-u" >
+            <table id="actlog" class="dTable-min table table-striped table-hover table-sm" >
                 <thead>
                 <tr>
                     <th>#</th>

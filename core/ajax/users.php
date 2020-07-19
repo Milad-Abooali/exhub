@@ -106,3 +106,32 @@
         $actlog->add("Add new user ($res)", $res, ($res)?1:0);
         echo json_encode($output);
     }
+
+
+    /**
+     * Login User
+     */
+    function login () {
+        global $user;
+        $output = new stdClass();
+        $res = $user->login($_POST['username'],$_POST['password']);
+        $output->e = ($res) ? false : true;
+        $output->res = false;
+        global $actlog;
+        $actlog->add("Login [".json_encode($_POST)."]", $_SESSION['M']['user']['id'] ?? null, ($res)?1:0);
+        echo json_encode($output);
+    }
+
+    /**
+    * Logout User
+    */
+    function logout () {
+        global $user
+        global $actlog;
+        $actlog->add("Logout user (".$_SESSION['M']['user']['id'].")", $_SESSION['M']['user']['id'], ($res)?1:0);
+        $output = new stdClass();
+        $res = $user->logout();
+        $output->e = ($res) ? false : true;
+        $output->res = false;
+        echo json_encode($output);
+    }

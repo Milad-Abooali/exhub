@@ -61,7 +61,7 @@
         {
             $call_path = $this->db->escape($call_path);
             $where = ($call_path) ? "call_path='$call_path'" : null;
-            $result = $this->db->select(null, $where,'*',$count);
+            $result = $this->db->select(null, $where,'*',$count,'id DESC');
             return ($result) ? $result : array();
         }
     }
