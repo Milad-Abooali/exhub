@@ -18,22 +18,27 @@
     class Actlog
     {
 
-        public $ERROR;
         private $db, $path;
 
         /**
          * Actlog constructor.
          * @param null $path
          */
-        function __construct($path=null) {
+        function __construct($path=null)
+        {
             $this->path = $path ?? '/';
             $this->db   = new MySQL(DB_INFO,'act_log');
         }
 
-        public function add ($act,$rel) {
+        public function add ($act,$rel=null,$status=null)
+        {
 
             $data['path'] = $this->path;
             $data['user'] = $_SESSION['M']['user']['id'] ?? '0';
+            $data['act'] = $act;
+            $data['rel'] = $rel;
+            $data['status'] = $status;
+
             $result = $this->db->insert($data);
 
             return ($result) ? $result : false;
