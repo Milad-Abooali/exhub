@@ -42,7 +42,13 @@ function randRange( minNum, maxNum) {return (Math.floor(Math.random() * (maxNum 
 
 $(document).ready(function() {
 
-  $('.dTable').DataTable();
+  $('.dTable-min').DataTable({
+    "pageLength": 5
+  });
+
+  $('.dTable-full').DataTable({
+    "pageLength": 25
+  });
 
 /* CB AM - C.js */
 	$("#cb-menu .collapse").on('shown.bs.collapse', function(e) {

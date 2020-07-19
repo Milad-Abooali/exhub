@@ -2,7 +2,7 @@
 
     $this->data['PAGE']['demo']=0;
 
-    $this->data['PAGE']['title'] = 'A > Users';
+    $this->data['PAGE']['title'] = 'A > Logs';
     $this->data['PAGE']['head'] = ' ';
 
     include('core/view/termeh/head.php');
@@ -24,41 +24,38 @@
             </div>
         </div>
 
-        <!-- Row List -->
+
+        <!-- Row Logs -->
         <div class="card mt-4 py-4 px-1 cb-oa">
-            <h2 class="text-center">User List <small id="users-title" class="cb-ajax-u">Count: <?= $this->data['user_count']; ?></small></h2>
-            <table id="users-list" class="table table-striped table-hover cb-ajax-u" >
+            <h2 class="text-center">Action Logs</h2>
+            <table id="actlog" class="dTable-full table table-striped table-hover table-sm" >
                 <thead>
                 <tr>
+                    <th>#</th>
+                    <th>Call</th>
+                    <th>Func</th>
+                    <th>By</th>
+                    <th>Action</th>
+                    <th>On</th>
                     <th>Status</th>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Registerd</th>
-                    <th>Last Login</th>
-                    <th>Manage</th>
+                    <th>Time</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php if (!is_array($this->data['users'])) { ?>
+                <?php if (!is_array($this->data['actlog'])) { ?>
                     <tr>
-                        <td colspan="5" class="text-center text-secondary">No Item</td>
+                        <td colspan="8" class="text-center text-secondary">No Item</td>
                     </tr>
-                <?php } else { foreach ((array) $this->data['users'] as $item) { ?>
+                <?php } else { foreach ((array) $this->data['actlog'] as $item) { ?>
                     <tr>
-                        <td>
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input doA-updatestatus" data-rid="<?= $item['id']; ?>" id="status-<?= $item['id']; ?>" <?= $item['status'] ? 'checked' : null; ?>>
-                                <label class="custom-control-label" for="status-<?= $item['id']; ?>"> </label>
-                            </div>
-                        </td>
-                        <td><?= $item['email']; ?></td>
-                        <td><?= $item['username']; ?></td>
+                        <td><?= $item['id']; ?></td>
+                        <td><?= $item['call_path']; ?></td>
+                        <td><?= $item['class_act']; ?></td>
+                        <td><?= $item['user']; ?></td>
+                        <td><?= $item['act']; ?></td>
+                        <td><?= $item['rel']; ?></td>
+                        <td><?= $item['status']; ?></td>
                         <td><?= $item['timestamp']; ?></td>
-                        <td data-toggle="tooltip" data-placement="left" title="<?= $item['last_login']; ?>"><?= $item['last_ip']; ?></td>
-                        <td>
-                            <button data-rid="<?= $item['id']; ?>" class="btn btn-secondary btn-sm doA-resetPass">Rest Password</button>
-                            <button data-rid="<?= $item['id']; ?>" class="btn btn-primary btn-sm doA-groups">Group</button>
-                        </td>
                     </tr>
                 <?php } } ?>
                 </tbody>
