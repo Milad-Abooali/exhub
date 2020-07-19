@@ -6,4 +6,4 @@
     $this->data['user_count'] = is_array($this->data['users']) ? count($this->data['users']) : 0;
 
     $actlog = new actlog();
-    $this->data['actlog'] = $actlog->show('admin/users') ;
+    $this->data['actlog'] = $actlog->show('admin/users');

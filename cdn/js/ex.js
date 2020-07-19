@@ -5,6 +5,7 @@ var cbCDN = $("meta[name=codebox-cdn]").attr('content');
 var cbIMG = $("meta[name=codebox-img]").attr('content');
 var cbJS = $("meta[name=codebox-js]").attr('content');
 
+
 /* Scroll To End & Top - C.js */
 function scrollToBottom() {
   window.scrollTo(0,document.body.scrollHeight);
@@ -40,6 +41,8 @@ function showMobMenu() {
 function randRange( minNum, maxNum) {return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);}
 
 $(document).ready(function() {
+
+  $('.dTable').DataTable();
 
 /* CB AM - C.js */
 	$("#cb-menu .collapse").on('shown.bs.collapse', function(e) {
