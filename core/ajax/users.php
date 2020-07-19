@@ -59,6 +59,9 @@
      */
     function updateStatus() {
         global $user;
+        global $actlog;
+        $actlog->add('Update user status','','');
+        global $user;
         $output = new stdClass();
         $id = ($_POST['rid']) ?? die();
         $update['status'] = ($_POST['status']) ? 1 : 0;

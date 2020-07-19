@@ -57,6 +57,7 @@
 
     $page = array();
     $page['data'] = explode("/", $_GET["rout"]??null) ;
+    $actlog = new Actlog($page['data']);
     $page['vid']  = array_shift($page['data']);
     M::aLog('core','Call "<b style="color: blue">'.($_GET["rout"]??'index').'</b>"');
     if ($page['vid']=='ajax') {
