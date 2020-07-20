@@ -22,6 +22,24 @@
             $page['view']   = "login";
             break;
 
+        case "seo":
+            (USER_ACCESS['seo']) ?: die ('Access Denid !');
+            $page['vid']  = 'seo/'.array_shift($page['data']);
+            switch ($page['vid']) {
+                case "seo/keywords":
+                    (USER_ACCESS['admin']) ?: die ('Access Denid !');
+                    $page['inc']    = 'seo/keywords';
+                    $page['view']   = "seo/keywords";
+                    break;
+                case "seo/fis":
+                    $page['inc']    = 'seo/fis';
+                    $page['view']   = "seo/fis";
+                    break;
+                case "seo/":
+                default:
+                    $page['view']   = "404";
+            }
+            break;
         case "admin":
             (USER_ACCESS['admin']) ?: die ('Access Denid !');
             $page['vid']  = 'admin/'.array_shift($page['data']);

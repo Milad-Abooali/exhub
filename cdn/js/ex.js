@@ -315,7 +315,7 @@ $(document).ready(function() {
         body += '<label class="col checkbox-inline"><input name="admin" type="checkbox" '+((obj.res.admin==1) && 'checked')+'> Admin </label>';
         body += '<label class="col checkbox-inline"><input name="staff" type="checkbox" '+((obj.res.staff==1) && 'checked')+'> Staff </label>';
         body += '<label class="col checkbox-inline"><input name="ipt" type="checkbox" '+((obj.res.ipt==1) && 'checked')+'> IPT </label>';
-        body += '<label class="col checkbox-inline"><input name="fis" type="checkbox" '+((obj.res.fis==1) && 'checked')+'> FIS </label>';
+        body += '<label class="col checkbox-inline"><input name="seo" type="checkbox" '+((obj.res.seo==1) && 'checked')+'> SEO </label>';
         body += '<button type="submit" class="btn btn-primary btn-block">Save Groups</button>';
         body += '<div class="cb-ltr w-100 d-block alerts"><br></div></form>';
         makeModal('Set User Groups',body);

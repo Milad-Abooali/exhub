@@ -34,7 +34,7 @@
         $groups['admin']= ($_POST['admin'] ?? 0) ? 1 : 0;
         $groups['staff']= ($_POST['staff'] ?? 0) ? 1 : 0;
         $groups['ipt']  = ($_POST['ipt'] ?? 0) ? 1 : 0;
-        $groups['fis']  = ($_POST['fis'] ?? 0) ? 1 : 0;
+        $groups['seo']  = ($_POST['seo'] ?? 0) ? 1 : 0;
         $res = $user->setGroups($id,$groups);
         $output->e = ($res) ? false : true;
         $output->res = $user->ERROR;
