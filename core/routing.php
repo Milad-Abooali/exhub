@@ -21,7 +21,9 @@
         case "login":
             $page['view']   = "login";
             break;
+
         case "admin":
+            (USER_ACCESS['admin']) ?: die ('Access Denid !');
             $page['vid']  = 'admin/'.array_shift($page['data']);
             $page['upon']   = 'admin';
             switch ($page['vid']) {

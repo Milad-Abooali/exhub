@@ -91,6 +91,8 @@
         }
     } else {
         (isset($_SESSION['M']['user'])) ?: $page['vid']='login';
+        (!isset($_SESSION['M']['user'])) ?: define('USER_ACCESS', $user->getGroups($_SESSION['M']['user']['id']));
+
         include_once ('routing.php');
         $VIEW = new View($page);
         $VIEW->loadPage();

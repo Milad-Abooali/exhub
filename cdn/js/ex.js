@@ -212,6 +212,7 @@ $(document).ready(function() {
       let text = (obj.e) ? 'Data is wrong !' : 'Success, Loged In';
       ajaxAlert (id, type, text);
       (reload) && ajaxReload ();
+      (obj.e) || location.reload();
     });
   });
 
@@ -246,6 +247,23 @@ $(document).ready(function() {
       let obj = JSON.parse(response);
       let type = (obj.e) ? 'danger' : 'success';
       let text = (obj.e) ? 'Error, User not added. '+obj.res : 'Success, User Added.';
+      ajaxAlert (id, type, text);
+      (reload) && ajaxReload ();
+    });
+  });
+
+
+  // Ajax Set Groups
+  $('body').on('submit','form#user-groups', function(event){
+    event.preventDefault();
+    const id = $(this).attr('id');
+    const reload = $(this).data('reload');
+    const data = $('#'+id).serialize();
+    const classA = $('#'+id).attr('action');
+    ajaxCall (classA, data,function(response) {
+      let obj = JSON.parse(response);
+      let type = (obj.e) ? 'danger' : 'success';
+      let text = (obj.e) ? 'Error, Groups not Change. '+obj.res : 'Success, Groups Saved.';
       ajaxAlert (id, type, text);
       (reload) && ajaxReload ();
     });

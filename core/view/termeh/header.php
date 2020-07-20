@@ -14,9 +14,9 @@
   </div>
   <div class="cb-rtl h-nav-menu animated slideInDown d-none d-md-block">
     <span class="cb-rtl border border-light mx-2 px-3 rounded text-muted" href="./"><strong>کدباکس</strong> میزبان شماست ...</span>
-    <a class="btn btn-sm btn-outline-danger rounded doA-logout" href="#">
-        <i class="fa fa-user ml-1"></i> Logout
-    </a>
+    <?php if (isset($_SESSION['M']['user'])): ?>
+    <button class="btn btn-sm btn-outline-danger rounded doA-logout"><i class="fa fa-user ml-1"></i> Logout</button>
+    <?php endif; ?>
   </div>
 </div>
 

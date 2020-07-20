@@ -33,6 +33,7 @@
          * @return array
          */
         public function getAll() {
+            $this->db->setTable('user_list');
             return $this->db->select() ?? array();
         }
 
@@ -42,8 +43,8 @@
          * @return array|bool
          */
         public function getGroups($id) {
-            $id = intval($id);
-            return $this->db->select('user_groups',"user_id=$id") ?? array();
+            $id = $this->db->escape($id);
+            return $this->db->select('user_groups',"user_id=$id")[0] ?? array();
         }
 
 
@@ -64,6 +65,7 @@
          * @return bool
          */
         public function getUser($username) {
+            $this->db->setTable('user_list');
             $username = $this->db->escape($username);
             $this->user = $this->db->selectRow("username='$username'");
             return ($this->user) ? true : false;
@@ -87,6 +89,9 @@
          */
         public function login($username, $password) {
             if ($this->getUser($username)) {
+                if ($this->user['status']==0) {
+                    return false;
+                }
                 if ($this->checkPass($password)) {
                     $_SESSION['M']['user'] = $this->user;
                     return true;
@@ -116,6 +121,7 @@
          * @return bool|int|\mysqli_result|string
          */
         public function add($data) {
+            $this->db->setTable('user_list');
             if ($this->getUser($data['username'])) {
                 $this->ERROR = 'Username already in use !';
                 return false;
@@ -134,6 +140,7 @@
          * @return bool|int|\mysqli_result|string|null
          */
         public function updatePass($id, $password) {
+            $this->db->setTable('user_list');
             $data['password'] = password_hash($password, PASSWORD_BCRYPT, ["cost" => 8]);
             return $this->db->updateId($id, $data);
         }
@@ -145,6 +152,7 @@
          * @return bool|int|\mysqli_result|string|null
          */
         public function update($id, $data) {
+            $this->db->setTable('user_list');
             return $this->db->updateId($id, $data);
         }
 
