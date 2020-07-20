@@ -14,7 +14,7 @@
         <!-- Row Form -->
         <div class="card mt-4 pt-4 cb-oa">
             <div class="col-md-12 cb-ltr">
-                <form id="add-user" action="users/add" data-reload="true" class="form-inline">
+                <form id="add-keywords" action="users/add" data-reload="true" class="form-inline">
                     <input type="email" class="form-control mb-2 mr-sm-2 col-md-3" placeholder="Enter Email" name="email" autocomplete="new-email" required>
                     <input type="text" class="form-control mb-2 mr-sm-2 col-md-3" placeholder="Enter Username" name="username" autocomplete="new-username" required>
                     <input type="password" class="form-control mb-2 mr-sm-2 col-md-3" placeholder="Enter Password" name="password" autocomplete="new-password" required>

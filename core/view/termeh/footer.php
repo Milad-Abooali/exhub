@@ -5,6 +5,7 @@
                 <div class="col-md col-sm-12 py-3">
                     <h5>SEO</h5>
                     <ul class="list-unstyled">
+                        <li><a href="<?= APP_URL ?>seo/keywords">Keywords</a></li>
                         <li><a href="<?= APP_URL ?>seo/fis">Find In Search (FIS)</a></li>
                        </ul>
                 </div>

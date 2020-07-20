@@ -23,3 +23,16 @@
         $output->res = $_POST;
         echo json_encode($output);
     }
+
+    /**
+     * Insert to database
+     */
+    function dbInsert () {
+        $table = array_shift($_POST);
+        $db = new MySQL(DB_INFO,$table);
+        $result = $db->insert($_POST);
+        $output = new stdClass();
+        $output->e = ($result) ? false : true;
+        $output->res = ($result) ?? false;
+        echo json_encode($output);
+    }

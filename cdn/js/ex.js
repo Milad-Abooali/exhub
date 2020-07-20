@@ -1,4 +1,4 @@
-/* Pass URLs - C.js */
+/* Pass URLs - Core */
 var cbURL = $("meta[name=codebox-url]").attr('content');
 var cbToken = $("#app-body").data('token');
 var cbCDN = $("meta[name=codebox-cdn]").attr('content');
@@ -6,7 +6,7 @@ var cbIMG = $("meta[name=codebox-img]").attr('content');
 var cbJS = $("meta[name=codebox-js]").attr('content');
 
 
-/* Scroll To End & Top - C.js */
+/* Scroll To End & Top - Core */
 function scrollToBottom() {
   window.scrollTo(0,document.body.scrollHeight);
 }
@@ -14,7 +14,7 @@ function scrollToTop() {
   window.scrollTo(0,document.body);
 }
 
-/* Bootstrap Basic - C.js */
+/* Bootstrap Basic - Core */
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
@@ -28,7 +28,7 @@ $("[data-toggle=popover]").each(function(i, obj) {
     });
 });
 
-/* Mobile Header Menu - C.js */
+/* Mobile Header Menu - Core */
 function showMobMenu() { 
   $('#mob-menu').animate({
     height:"toggle",
@@ -37,7 +37,7 @@ function showMobMenu() {
   });
 }
 
-/* Random Range - C.js */
+/* Random Range - Core */
 function randRange( minNum, maxNum) {return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);}
 
 $(document).ready(function() {
@@ -52,17 +52,17 @@ $(document).ready(function() {
     "pageLength": 25
   });
 
-/* CB AM - C.js */
+/* CB AM - Core */
 	$("#cb-menu .collapse").on('shown.bs.collapse', function(e) {
     scrollToBottom();
   });
   
-  /* Mdal OB - C.js */
+  /* Mdal OB - Core */
   $('.cb-ob').on('show.bs.modal || hide.bs.modal', function() {
     $('#app-body>div').toggleClass('cb-ob');
   });
   
-  /* Mobile Footer Menu - C.js */
+  /* Mobile Footer Menu - Core */
   $(".f-nav-open").click(function(){
     $(this).fadeOut();
     $(".f-nav-close").fadeIn();
@@ -84,7 +84,7 @@ $(document).ready(function() {
     });
   });
   
-  /* Mobile Rotate Logo on Footer - C.js */
+  /* Mobile Rotate Logo on Footer - Core */
   $(window).scroll( function(){
     var Top_of_object = $('#cb-menu').position().top;
     var Top_of_endbox = $('.cb-endbox').position().top;
@@ -98,7 +98,7 @@ $(document).ready(function() {
     }
   });
 
-  /* Auto Fading - C.js */
+  /* Auto Fading - Core */
   $(window).scroll( function(){
     var bottom_of_window = $(window).scrollTop() + $(window).height();
     $('.cb-oh').each( function(i){
@@ -115,7 +115,7 @@ $(document).ready(function() {
   });
   $('#app-body>div:first-child,.cb-oa').removeClass('cb-oh cb-oa').addClass('cb-os');;
 
-  /* Action By Scroll - C.js */
+  /* Action By Scroll - Core */
   function actByScroll (obj,target,remove=null,add=null,revers=0) {
     let obj_offset = $(obj).position().top + $(obj).outerHeight();
     let scrolled = $(window).scrollTop() + $(window).height()*0.85;
@@ -126,10 +126,10 @@ $(document).ready(function() {
     }
   }
 
-  /* Page Group - C.js */
+  /* Page Group - Core */
   const pageG = $('#app-body').data('g');
 
-  /* Screen Checker - C.js */
+  /* Screen Checker - Core */
   $(window).on("resize", function (e) {
     checkScreenSize();
   });
@@ -156,7 +156,7 @@ $(document).ready(function() {
 
   /* Ajax Actions */
 
-  // Ajax Alert
+  // Ajax Alert - Core
   let alertID = 0;
   function ajaxAlert (id, type, text) {
     alertID++;
@@ -167,7 +167,7 @@ $(document).ready(function() {
       $('#'+id+' #'+alertID).slideUp(2800);
     });
   }
-  // Ajax Call
+  // Ajax Call- Core
   function ajaxCall (classAction, data, callback) {
     $.ajax({
       type: "POST",
@@ -182,13 +182,13 @@ $(document).ready(function() {
       }
     });
   }
-  // Ajax reload
+  // Ajax reload - Core
   function ajaxReload () {
     $('.cb-ajax-u').each(function() {
       $('#'+this.id).load(' #'+this.id);
     });
   }
-  // Modal Maker
+  // Modal Maker - Core
   function makeModal(title,body,size='md') {
     $("#modal .modal-dialog").removeClass().addClass('modal-dialog modal-'+size);
     $("#modal .modal-title").html(title);
@@ -199,7 +199,7 @@ $(document).ready(function() {
   /**
    * User
    */
-  // Ajax Login
+  // Ajax Login - Core
   $('body').on('submit','form#login', function(event){
     event.preventDefault();
     const id = $(this).attr('id');
@@ -216,7 +216,7 @@ $(document).ready(function() {
     });
   });
 
-  // Ajax Logout
+  // Ajax Logout - Core
   $('body').on('click','.doA-logout', function(){
     let thisClick = $(this);
     let rid = thisClick.data('rid');
@@ -232,11 +232,32 @@ $(document).ready(function() {
     });
   });
 
+
   /**
-   * Admin User
+   * SEO Keywords
    */
 
-  // Ajax Add New User
+  // Ajax Add New User  - seu/keywords
+  $('body').on('submit','form#add-user', function(event){
+    event.preventDefault();
+    const id = $(this).attr('id');
+    const reload = $(this).data('reload');
+    const data = $('#'+id).serialize();
+    const classA = $('#'+id).attr('action');
+    ajaxCall (classA, data,function(response) {
+      let obj = JSON.parse(response);
+      let type = (obj.e) ? 'danger' : 'success';
+      let text = (obj.e) ? 'Error, User not added. '+obj.res : 'Success, User Added.';
+      ajaxAlert (id, type, text);
+      (reload) && ajaxReload ();
+    });
+  });
+
+  /**
+   * Admin Users
+   */
+
+  // Ajax Add New User  - admin/users
   $('body').on('submit','form#add-user', function(event){
     event.preventDefault();
     const id = $(this).attr('id');
@@ -253,7 +274,7 @@ $(document).ready(function() {
   });
 
 
-  // Ajax Set Groups
+  // Ajax Set Groups - admin/users
   $('body').on('submit','form#user-groups', function(event){
     event.preventDefault();
     const id = $(this).attr('id');
@@ -269,7 +290,7 @@ $(document).ready(function() {
     });
   });
 
-  // Ajax Change status
+  // Ajax Change status - admin/users
   $('body').on('click','.doA-updatestatus', function(){
     let rid = $(this).data('rid');
     let status = $(this).is(":checked")  ? 1 : 0;
@@ -282,7 +303,7 @@ $(document).ready(function() {
     });
   });
 
-  // Ajax Rest Pass
+  // Ajax Rest Pass - admin/users
   $('body').on('click','.doA-resetPass', function(){
     let thisClick = $(this);
     let rid = thisClick.data('rid');
@@ -298,7 +319,7 @@ $(document).ready(function() {
     });
   });
 
-  // Ajax Groups
+  // Ajax Get Groups - admin/users
   $('body').on('click','.doA-groups', function(){
     let thisClick = $(this);
     let rid = thisClick.data('rid');
