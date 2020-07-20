@@ -34,5 +34,7 @@
         $output = new stdClass();
         $output->e = ($result) ? false : true;
         $output->res = ($result) ?? false;
+        global $actlog;
+        $actlog->add("Add Item [".json_encode($_POST)."] to ($table)", ($result) ?? null,(isset($res))?1:0);
         echo json_encode($output);
     }

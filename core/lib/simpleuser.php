@@ -60,6 +60,18 @@
         }
 
         /**
+         * Get username by ID
+         * @param int $id
+         * @return bool
+         */
+        public function getUserbyID($id) {
+            $this->db->setTable('user_list');
+            $username = $this->db->escape($id);
+            $result = $this->db->selectId($id);
+            return ($result) ? $result[0] : array();
+        }
+
+        /**
          * Check username
          * @param string $username
          * @return bool

@@ -630,7 +630,7 @@ ul.ul-tips li {
 /* Notify */
 #app-notify {
     width: 330px;
-    position: absolute;
+    position: fixed;
     left: 1%;
     top: 90px;
 }

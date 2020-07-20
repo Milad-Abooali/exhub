@@ -43,7 +43,7 @@ function randRange( minNum, maxNum) {return (Math.floor(Math.random() * (maxNum 
 $(document).ready(function() {
 
   $('.dTable-min').DataTable({
-    "pageLength": 5,
+    "pageLength": 7,
     "order": [[ 0, "desc" ]]
   });
 
@@ -233,12 +233,18 @@ $(document).ready(function() {
   });
 
 
+  // Ajax Change fis - seo/keywords
+  $('body').on('click','.doM-logdata', function(){
+    let logdata = $(this).data('logdata');
+    makeModal('Log Data',logdata,'lg');
+  });
+
   /**
    * SEO Keywords
    */
 
-  // Ajax Add New User  - seu/keywords
-  $('body').on('submit','form#add-user', function(event){
+  // Ajax Add New User  - seo/keywords
+  $('body').on('submit','form#add-keyword', function(event){
     event.preventDefault();
     const id = $(this).attr('id');
     const reload = $(this).data('reload');
@@ -250,6 +256,19 @@ $(document).ready(function() {
       let text = (obj.e) ? 'Error, User not added. '+obj.res : 'Success, User Added.';
       ajaxAlert (id, type, text);
       (reload) && ajaxReload ();
+    });
+  });
+
+  // Ajax Change fis - seo/keywords
+  $('body').on('change','input.doA-setfis', function(){
+    let rid = $(this).data('rid');
+    let fis = $(this).val();
+    data = "rid="+rid+"&fis="+fis;
+    ajaxCall ('seo/setFis', data,function(response) {
+      let obj = JSON.parse(response);
+      let type = (obj.e) ? 'danger' : 'success';
+      let text = (obj.e) ? 'Error, status not change '+obj.res : 'Success, User status updated.';
+      ajaxAlert ('app-notify', type, text);
     });
   });
 

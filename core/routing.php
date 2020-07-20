@@ -15,6 +15,7 @@
 
     if (!defined('START')) die('__ You just find me! 😹 . . . <a href="javascript:history.back()">Go Back</a>');
 
+    $page['upon']   = 'core';
     /** @var array $page */
     switch ($page['vid']) {
 
@@ -43,7 +44,6 @@
         case "admin":
             (USER_ACCESS['admin']) ?: die ('Access Denid !');
             $page['vid']  = 'admin/'.array_shift($page['data']);
-            $page['upon']   = 'admin';
             switch ($page['vid']) {
                 case "admin/logs":
                     $page['inc']    = 'admin/logs';
