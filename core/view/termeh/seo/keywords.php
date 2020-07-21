@@ -1,5 +1,7 @@
 <?php
 
+    use function App\Core\getUsernameByID;
+
     $this->data['PAGE']['demo']=0;
 
     $this->data['PAGE']['title'] = 'A > Users';
@@ -88,10 +90,10 @@
                 <?php } else { foreach ((array) $this->data['actlog'] as $item) { ?>
                     <tr>
                         <td><?= $item['id']; ?></td>
-                        <td><?= $item['user']; ?></td>
+                        <td><?= getUsernameByID($item['user']); ?></td>
                         <td><?= $item['act']; ?>
                             <?php if ($item['data']): ?>
-                            <button data-logdata="<?= $item['data']; ?>" class="btn btn-outline-info btn-xs doM-logdata float-right">Show Data</button>
+                                <button data-logdata='<?= $item['data']; ?>' class="btn btn-outline-info btn-xs doM-logdata float-right">Console</button>
                             <?php endif; ?>
                         </td>
                         <td><?= $item['rel']; ?></td>

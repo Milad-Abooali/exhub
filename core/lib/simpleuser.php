@@ -68,7 +68,7 @@
             $this->db->setTable('user_list');
             $username = $this->db->escape($id);
             $result = $this->db->selectId($id);
-            return ($result) ? $result[0] : array();
+            return ($result) ? $result : array();
         }
 
         /**

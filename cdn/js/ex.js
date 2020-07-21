@@ -235,8 +235,7 @@ $(document).ready(function() {
 
   // Ajax Change fis - seo/keywords
   $('body').on('click','.doM-logdata', function(){
-    let logdata = $(this).data('logdata');
-    makeModal('Log Data',logdata,'lg');
+    console.log($(this).data('logdata'));
   });
 
   /**
