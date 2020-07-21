@@ -30,11 +30,11 @@
     function dbInsert () {
         $table = array_shift($_POST);
         $db = new MySQL(DB_INFO,$table);
-        $result = $db->insert($_POST);
+        $res = $db->insert($_POST);
         $output = new stdClass();
-        $output->e = ($result) ? false : true;
-        $output->res = ($result) ?? false;
+        $output->e = ($res) ? false : true;
+        $output->res = ($res) ?? false;
         global $actlog;
-        $actlog->add("Add Item to ($table)",$_POST,($result) ?? null,(isset($res))?1:0);
+        $actlog->add("Add Item to ($table)",$_POST,($res) ?? null,(isset($res))?1:0);
         echo json_encode($output);
     }

@@ -68,37 +68,7 @@
         </div>
 
         <!-- Row Logs -->
-        <div class="card mt-4 py-4 px-1 cb-blg-0">
-            <h4 class="text-center">Users Management Logs</h4>
-            <table id="actlog" class="dTable-min table table-striped table-hover table-sm" >
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>By</th>
-                    <th>Action</th>
-                    <th>On</th>
-                    <th>Status</th>
-                    <th>Time</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php if (!is_array($this->data['actlog'])) { ?>
-                    <tr>
-                        <td colspan="5" class="text-center text-secondary">No Item</td>
-                    </tr>
-                <?php } else { foreach ((array) $this->data['actlog'] as $item) { ?>
-                    <tr>
-                        <td><?= $item['id']; ?></td>
-                        <td><?= $item['user']; ?></td>
-                        <td><?= $item['act']; ?></td>
-                        <td><?= $item['rel']; ?></td>
-                        <td><?= $item['status']; ?></td>
-                        <td><?= $item['timestamp']; ?></td>
-                    </tr>
-                <?php } } ?>
-                </tbody>
-            </table>
-        </div>
+        <?php include('core/view/termeh/logsrow.php'); ?>
 
     </div>
 

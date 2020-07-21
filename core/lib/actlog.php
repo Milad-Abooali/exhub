@@ -59,7 +59,7 @@
          * @param null $count
          * @return array|bool
          */
-        public function show($call_path=null, $count=25)
+        public function show($call_path=null, $count=35)
         {
             $call_path = $this->db->escape($call_path);
             $where = ($call_path) ? "call_path='$call_path'" : null;
