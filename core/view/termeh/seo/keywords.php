@@ -28,7 +28,7 @@
 
         <!-- Row List -->
         <div class="card mt-4 py-4 px-1 cb-oa">
-            <h2 class="text-center">User List <small id="users-title" class="cb-ajax-u">Count: <?= $this->data['keywords_count']; ?></small></h2>
+            <h2 class="text-center">Keyword List <small id="users-title" class="cb-ajax-u">Count: <?= $this->data['keywords_count']; ?></small></h2>
             <table id="users-list" class="table table-striped table-hover cb-ajax-u">
                 <thead>
                 <tr>
@@ -46,7 +46,7 @@
                         <td colspan="4" class="text-center text-secondary">No Item</td>
                     </tr>
                 <?php } else { foreach ((array) $this->data['keywords'] as $item) { ?>
-                    <tr>
+                    <tr id="item-<?= $item['id']; ?>">
                         <td><?= $item['id']; ?></td>
                         <td><?= $item['keyword']; ?></td>
                         <td><a target="_blank" href="<?= $item['url']; ?>"><i class="fa fa-link"></i> Open</a></td>
@@ -58,7 +58,7 @@
                         </td>
                         <td><input data-rid="<?= $item['id']; ?>" type="number" class="mb-2 mr-sm-2 doA-setprio" value="<?= $item['priority']; ?>" name="priority"></td>
                         <td>
-                            <button data-rid="<?= $item['id']; ?>" class="btn btn-outline-danger btn-sm doA-resetPass">Remove</button>
+                            <button data-rid="<?= $item['id']; ?>" data-keyword="<?= $item['keyword']; ?>" class="btn btn-outline-danger btn-sm doA-removeCall">Remove</button>
                         </td>
                     </tr>
                 <?php } } ?>

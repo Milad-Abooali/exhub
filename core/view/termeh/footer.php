@@ -30,7 +30,6 @@
         </div>
     </div>
 
-
 </div>
 
 <div id="modal" class="modal fade mt-5" tabindex="-1" role="dialog">
