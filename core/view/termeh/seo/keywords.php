@@ -56,7 +56,7 @@
                                 <label class="custom-control-label" for="fis-<?= $item['id']; ?>"> </label>
                             </div>
                         </td>
-                        <td><input data-rid="<?= $item['id']; ?>" type="number" class="mb-2 mr-sm-2" value="<?= $item['priority']; ?>" name="priority"></td>
+                        <td><input data-rid="<?= $item['id']; ?>" type="number" class="mb-2 mr-sm-2 doA-setprio" value="<?= $item['priority']; ?>" name="priority"></td>
                         <td>
                             <button data-rid="<?= $item['id']; ?>" class="btn btn-outline-danger btn-sm doA-resetPass">Remove</button>
                         </td>

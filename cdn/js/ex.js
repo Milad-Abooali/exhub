@@ -258,7 +258,21 @@ $(document).ready(function() {
     });
   });
 
-  // Ajax Change fis - seo/keywords
+  // Ajax Change priority - seo/keywords
+  $('body').on('change','input.doA-setprio', function(){
+    let rid = $(this).data('rid');
+    let prio = $(this).val();
+    data = "rid="+rid+"&prio="+prio;
+    ajaxCall ('seo/setPrio', data,function(response) {
+      let obj = JSON.parse(response);
+      let type = (obj.e) ? 'danger' : 'success';
+      let text = (obj.e) ? 'Error, status not change '+obj.res : 'Success, User status updated.';
+      ajaxAlert ('app-notify', type, text);
+    });
+  });
+
+
+    // Ajax Change fis - seo/keywords
   $('body').on('change','input.doA-setfis', function(){
     let rid = $(this).data('rid');
     let fis = $(this).val();

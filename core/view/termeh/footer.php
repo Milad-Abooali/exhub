@@ -16,8 +16,8 @@
                 <div class="col-md col-sm-12 py-3">
                     <h5>Admin</h5>
                     <ul class="list-unstyled">
-                        <li><a href="<?= APP_URL ?>/admin/users">Users</a></li>
-                        <li><a href="<?= APP_URL ?>/admin/logs">Logs</a></li>
+                        <li><a href="<?= APP_URL ?>admin/users">Users</a></li>
+                        <li><a href="<?= APP_URL ?>admin/logs">Logs</a></li>
                         <li>
                             <a class="text-secondary" data-toggle="collapse" href=".cert" role="button" aria-expanded="false" aria-controls="cert">
                                 <i class="fa fa-angle-up"></i><i class="fa fa-angle-down"></i> More...

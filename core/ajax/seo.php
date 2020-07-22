@@ -25,6 +25,22 @@
     }
 
     /**
+     * Set keywords priority
+     */
+    function setPrio () {
+        $db = new MySQL(DB_INFO,'seo_keywords');
+        $output = new stdClass();
+        $id = ($_POST['rid']) ?? die();
+        $update['prio'] = ($_POST['prio']) ? 1 : 0;
+        $res = $db->updateId($id, $update);
+        $output->e = ($res) ? false : true;
+        $output->res = $user->ERROR ?? true;
+        global $actlog;
+        $actlog->add("Set Priority for keyword ($id)",$update['prio'], $id,(isset($res))?1:0);
+        echo json_encode($output);
+    }
+
+    /**
      * Set keywords fis
      */
     function setFis () {
