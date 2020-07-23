@@ -1,15 +1,20 @@
 <?php
-/*================================== Codebox Framework
- * Mahan 3.0.0
- * ssp.php
- * Created on 1/31/2019 6:50 PM by Milad Abooali
- */
-#==================================== PAGE PATH
-$page_id = 'ssp.php';
-$run_pages .= ' > '.$page_id;
-#==================================== DEFINE MYSQL
-if (LIB['SSP']) {
-    $M3_Loader['SSP']=1;
+    /**
+     * Class SSP
+     *
+     * Mahan | DataTable SSP
+     *
+     * @package    App\Core
+     * @author     Milad Abooali <m.abooali@hotmail.com>
+     * @copyright  2012 - 2020 Codebox
+     * @license    http://codebox.ir/license/1_0.txt  Codebox License 1.0
+     * @version    1.0
+     */
+
+    namespace App\Core;
+
+    if (!defined('START')) die('__ You just find me! 😹 . . . <a href="javascript:history.back()">Go Back</a>');
+
 
     class SSP {
 	/**
@@ -516,6 +521,5 @@ if (LIB['SSP']) {
 		return $a;
 	}
 }
-}
-#==================================== ePad
+
 
