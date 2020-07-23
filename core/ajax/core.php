@@ -25,6 +25,17 @@
     }
 
     /**
+     * Get Page Logs
+     */
+    function getLogs () {
+        $call_path = $_GET['p'] ?? null;
+        $count = $_GET['c'] ?? 35;
+        global $actlog;
+        $res['data'] = $actlog->show($call_path,$count);
+        echo json_encode($res);
+    }
+
+    /**
      * Insert to database
      */
     function dbInsert () {

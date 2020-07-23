@@ -42,10 +42,11 @@ function randRange( minNum, maxNum) {return (Math.floor(Math.random() * (maxNum 
 
 $(document).ready(function() {
 
-  $('.dTable-min').DataTable({
+  $('#actlogs').DataTable( {
+    "ajax": cbURL+'ajax/core/getLogs&c=5&token='+cbToken,
     "pageLength": 7,
     "order": [[ 0, "desc" ]]
-  });
+  } );
 
   $('.dTable-full').DataTable({
     "order": [[ 0, "desc" ]],
@@ -178,9 +179,15 @@ $(document).ready(function() {
       async: true,
       success: callback,
       error: function(request, status, error) {
-        alert(status);
+        console.log(status);
       }
     });
+    logsReload();
+  }
+  // Ajax logs reload - Core
+  function logsReload () {
+
+    alert(1);
   }
   // Ajax reload - Core
   function ajaxReload () {

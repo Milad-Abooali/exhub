@@ -54,16 +54,31 @@
         }
 
         /**
-         * Show Action logs for path
+         * Show Action logs
          * @param $call_path
-         * @param null $count
+         * @param int $count
          * @return array|bool
          */
-        public function show($call_path=null, $count=35)
+        public function showAll($call_path=null, $count=35)
         {
             $call_path = $this->db->escape($call_path);
             $where = ($call_path) ? "call_path='$call_path'" : null;
             $result = $this->db->select(null, $where,'*',$count,'id DESC');
             return ($result) ? $result : array();
         }
+
+        /**
+         * Show Action logs for path
+         * @param $call_path
+         * @param int $count
+         * @return array|bool
+         */
+        public function show($call_path=null, $count=35)
+        {
+            $call_path = $this->db->escape($call_path);
+            $where = ($call_path) ? "call_path='$call_path'" : null;
+            $result = $this->db->select(null, $where,'id,user,act,rel,timestamp',$count,'id DESC');
+            return ($result) ? $result : array();
+        }
+
     }
