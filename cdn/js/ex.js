@@ -40,19 +40,55 @@ function showMobMenu() {
 /* Random Range - Core */
 function randRange( minNum, maxNum) {return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);}
 
+/* DT Actions - Core */
+function tableReload(table) {
+  $('#'+table).DataTable().ajax.reload(null, false);
+}
+
 $(document).ready(function() {
 
-  $('.dTable-full').DataTable({
-    "order": [[ 0, "desc" ]],
-    "pageLength": 25
+
+  // Ajax Refresh DataTables - Core
+  $('body').on('click','.doP-refresh', function(){
+    $(this).addClass('fa-spin');
+    const table = $(this).data('table');
+    $.when(
+     tableReload(table)
+    ).then(
+      $(this).removeClass('fa-spin')
+    );
   });
 
-/* CB AM - Core */
+  /* DT Actions - Core */
+  $('#actlogs').DataTable( {
+    "order": [[ 0, "desc" ]],
+    "pageLength": 10,
+    "processing": true,
+    "serverSide": true,
+    "ajax":  {
+      url: cbURL+"ajax/core/getPathLogs&token="+cbToken,
+      type: 'POST'
+    }
+  } );
+
+  /* DT Actions - admin/logs */
+  $('#actlog').DataTable( {
+    "order": [[ 0, "desc" ]],
+    "pageLength": 25,
+    "processing": true,
+    "serverSide": true,
+    "ajax":  {
+      url: cbURL+"ajax/core/getAllLogs&token="+cbToken,
+      type: 'POST'
+    }
+  } );
+
+  /* CB AM - Core */
 	$("#cb-menu .collapse").on('shown.bs.collapse', function(e) {
     scrollToBottom();
   });
   
-  /* Mdal OB - Core */
+  /* Modal OB - Core */
   $('.cb-ob').on('show.bs.modal || hide.bs.modal', function() {
     $('#app-body>div').toggleClass('cb-ob');
   });
@@ -180,8 +216,11 @@ $(document).ready(function() {
   }
   // Ajax logs reload - Core
   function afterAjax () {
-
-    console.log('afterAjax');
+    tableReload('actlogs');
+  }
+  // Ajax reload Id - Core
+  function ajaxReloadId (id) {
+    $('#'+id).load(' #'+id);
   }
   // Ajax reload - Core
   function ajaxReload () {
@@ -297,6 +336,7 @@ $(document).ready(function() {
       let type = (obj.e) ? 'danger' : 'success';
       let text = (obj.e) ? 'Error, status not change '+obj.res : 'Success, User status updated.';
       ajaxAlert ('app-notify', type, text);
+      ajaxReload();
     });
   });
 

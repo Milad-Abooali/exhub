@@ -63,7 +63,9 @@
         $token = ($_POST['token'] ?? $_GET['token']) ?? false;
         if ($_SESSION['M']['TOKEN']!=$token) exit('T0');
 
-        $call_path = str_replace(APP_URL,'',$_SERVER['HTTP_REFERER']);
+        include_once ('upon/core.php');
+
+        $call_path = strtok(str_replace(APP_URL,'',$_SERVER['HTTP_REFERER']),'&');
         $actlog = new Actlog($call_path,implode('/',$page['data']));
 
         $class  = array_shift($page['data']) ?? 'core';

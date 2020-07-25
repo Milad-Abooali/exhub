@@ -24,15 +24,91 @@
         echo json_encode($output);
     }
 
+
     /**
      * Get Page Logs
      */
-    function getLogs () {
-        $call_path = $_GET['p'] ?? null;
-        $count = $_GET['c'] ?? 35;
-        global $actlog;
-        $res['data'] = $actlog->show($call_path,$count);
-        echo json_encode($res);
+    function getAllLogs () {
+        $columns = array(
+          array( 'db' => 'id',      'dt' => 0 ),
+          array( 'db' => 'call_path',      'dt' => 1 ),
+          array( 'db' => 'class_act',      'dt' => 2 ),
+          array(
+            'db'        => 'user',
+            'dt'        => 3,
+            'formatter' => function( $d, $row ) {
+                return getUsernameByID($d);
+            }
+          ),
+          array( 'db' => 'act',     'dt' => 4 ),
+          array(
+            'db'        => 'data',
+            'dt'        => 5,
+            'formatter' => function( $d, $row ) {
+                if ($d) {
+                    $data = "data-logdata='$d'";
+                    return '<button class="btn btn-outline-info btn-xs doM-logdata float-right"'.$data.'>Console</button>';
+                } else {
+                    return null;
+                }
+            }
+          ),
+          array( 'db' => 'rel',     'dt' => 6 ),
+          array(
+            'db'        => 'status',
+            'dt'        => 7,
+            'formatter' => function( $d, $row ) {
+                $status = ($d) ? 'text-success">OK' : 'text-danger">Error';
+                return '<small class="'.$status.'</small>';
+            }
+          ),
+          array( 'db' => 'timestamp',     'dt' => 8 )
+        );
+        $dataTable = new DataTable($columns,null);
+        echo $dataTable->gen();
+    }
+
+    /**
+     * Get Page Logs
+     */
+    function getPathLogs () {
+        global $call_path;
+        $where = "call_path='$call_path'";
+        $columns = array(
+            array( 'db' => 'id',      'dt' => 0 ),
+            array(
+              'db'        => 'user',
+              'dt'        => 1,
+              'formatter' => function( $d, $row ) {
+                  return getUsernameByID($d);
+              }
+            ),
+            array( 'db' => 'act',     'dt' => 2 ),
+            array(
+                'db'        => 'data',
+                'dt'        => 3,
+                'formatter' => function( $d, $row ) {
+                    if ($d) {
+                        $data = "data-logdata='$d'";
+                        return '<button class="btn btn-outline-info btn-xs doM-logdata float-right"'.$data.'>Console</button>';
+                    } else {
+                        return null;
+                    }
+                }
+            ),
+            array( 'db' => 'rel',     'dt' => 4 ),
+            array(
+                'db'        => 'status',
+                'dt'        => 5,
+                'formatter' => function( $d, $row ) {
+                     $status = ($d) ? 'text-success">OK' : 'text-danger">Error';
+                     return '<small class="'.$status.'</small>';
+                }
+            ),
+            array( 'db' => 'timestamp',     'dt' => 6 )
+        );
+        $dataTable = new DataTable($columns,$where);
+        echo $dataTable->gen();
     }
 
     /**

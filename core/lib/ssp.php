@@ -13,6 +13,8 @@
 
     namespace App\Core;
 
+    use PDO;
+
     if (!defined('START')) die('__ You just find me! 😹 . . . <a href="javascript:history.back()">Go Back</a>');
 
 

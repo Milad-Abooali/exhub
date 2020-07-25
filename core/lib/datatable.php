@@ -15,12 +15,10 @@
 
     if (!defined('START')) die('__ You just find me! 😹 . . . <a href="javascript:history.back()">Go Back</a>');
 
-
-
     class DataTable
     {
 
-        private $columns,$table = 'act_log',$primaryKey = 'id';
+        private $where,$columns,$table = 'act_log',$primaryKey = 'id';
         private $sql_details = array(
           'user' => DB_INFO['username'],
           'pass' => DB_INFO['password'],
@@ -30,16 +28,19 @@
 
         /**
          * DataTable constructor.
+         * @param $columns
+         * @param $where
          */
-        function __construct() {
-
+        function __construct($columns,$where=null) {
+            $this->columns = $columns;
+            $this->where = $where;
         }
 
         /**
          * @return false|string
          */
         public function gen () {
-            return json_encode(SSP::simple( $_GET, $this->sql_details, $this->table, $this->primaryKey, $this->columns ));
+            return json_encode(SSP::complex( $_POST, $this->sql_details, $this->table, $this->primaryKey, $this->columns,null, $this->where));
         }
 
     }
