@@ -220,12 +220,13 @@ $(document).ready(function() {
       async: true,
       success: callback,
       error: function(request, status, error) {
-        console.log(request);
+        $('#is-online')
+        .removeClass('text-danger text-success text-warning')
+        .addClass('text-danger');
         console.log(status);
-        console.log(error);
       }
     });
-    if (classAction!='users/login' && classAction!='users/logout') {
+    if (classAction!='users/login' && classAction!='users/logout' && classAction!='core/serverCheck') {
       afterAjax();
     }
   }
@@ -248,11 +249,17 @@ $(document).ready(function() {
   async function serverCheck () {
     ajaxCall ('core/serverCheck', null,function(response) {
       let obj = JSON.parse(response);
-      let serverStatus = (obj.e) ? 'text-danger' : 'text-success';
+      let serverStatus = (obj.res) ? 'text-success' : 'text-warning';
+      $('#is-online').removeClass('text-danger text-success text-warning');
       $('#is-online').addClass(serverStatus);
+      if (obj.res==false) {
+        $('#app-body').addClass('cb-ob');
+      } else {
+        $('#app-body').removeClass('cb-ob');
+      }
     });
   }
-  // setInterval(async function(){serverCheck();}, 15000);
+  setInterval(async function(){serverCheck();}, 30000);
 
   /**
    * User

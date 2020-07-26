@@ -24,6 +24,16 @@
         echo json_encode($output);
     }
 
+    /**
+     * Server Check
+     */
+    function serverCheck()
+    {
+        $output = new stdClass();
+        $output->res = $_SESSION['M']['user'] ?? false;
+        echo json_encode($output);
+    }
+
     if ($_SESSION['M']['user'] ?? false) {
 
         /**

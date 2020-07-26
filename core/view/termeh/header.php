@@ -17,7 +17,7 @@
     <button class="btn btn-sm btn-outline-danger rounded doA-logout"><i class="fa fa-user ml-1"></i> Logout</button>
     <?php endif; ?>
       <button class="btn btn-sm btn-outline-light" type="button" disabled>
-        <span id="is-online" class="spinner-grow spinner-grow-sm text-<?= (isset($_SESSION['M']['user'])) ? 'success' : 'danger'?>" role="status" aria-hidden="true"></span>
+        <span id="is-online" class="spinner-grow spinner-grow-sm text-<?= (isset($_SESSION['M']['user'])) ? 'success' : 'warning'?>" role="status" aria-hidden="true"></span>
       </button>
   </div>
 </div>
