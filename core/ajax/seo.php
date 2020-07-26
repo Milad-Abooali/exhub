@@ -36,7 +36,7 @@
         $output->e = ($res) ? false : true;
         $output->res = $user->ERROR ?? true;
         global $actlog;
-        $actlog->add("Set Priority for keyword ($id)",$update['priority'], $id,(isset($res))?1:0);
+        $actlog->add("Set Priority for keyword ($id)",$update['priority'], $id,($output->res)?1:0);
         echo json_encode($output);
     }
 
@@ -52,6 +52,22 @@
         $output->e = ($res) ? false : true;
         $output->res = $user->ERROR ?? true;
         global $actlog;
-        $actlog->add("Set Fis for keyword ($id)",$update['fis'], $id,(isset($res))?1:0);
+        $actlog->add("Set Fis for keyword ($id)",$update['fis'], $id,($output->res)?1:0);
         echo json_encode($output);
     }
+
+    /**
+     * Set Add fis
+     */
+    function addFis () {
+        $db = new MySQL(DB_INFO,'seo_fis');
+        $_POST['user_id'] = $_SESSION['M']['user']['id'];
+        $res = $db->insert($_POST);
+        $output = new stdClass();
+        $output->e = ($res) ? false : true;
+        $output->res = ($res) ?? false;
+        global $actlog;
+        $actlog->add("Fis on ".$_POST['engin'],null,($_POST['keyword_id']) ?? null,($output->res)?1:0);
+        echo json_encode($output);
+    }
+

@@ -169,7 +169,13 @@ html {scroll-behavior: smooth;}
   -ms-filter: blur(5px);
   filter: blur(5px);
 }
-
+.cb-ob-1 {
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+}
 h1, .h1 {font-size: 2.1875rem; }
 h2, .h2 {font-size: 1.75rem; }
 h3, .h3 {font-size: 1.53125rem; }

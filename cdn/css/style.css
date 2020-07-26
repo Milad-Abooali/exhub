@@ -636,6 +636,41 @@ ul.ul-tips li {
 }
 
 
+/* Progress Circle */
+.p-circles {
+    margin-bottom: -10px;
+}
+.p-circle {
+    width: 100px;
+    margin: 6px 6px 20px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    line-height: 1.2;
+}
+.p-circle canvas {
+    vertical-align: top;
+}
+.p-circle strong {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 30px;
+}
+.p-circle strong i {
+    font-style: normal;
+    font-size: 0.6em;
+    font-weight: normal;
+}
+.p-circle span {
+    display: block;
+    color: #aaa;
+    margin-top: 12px;
+}
+
 /* Responsive */
 
 @media (min-width : 576px) {
