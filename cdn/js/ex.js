@@ -244,6 +244,15 @@ $(document).ready(function() {
     });
   }
 
+  // Ajax Server Checker - Core
+  async function serverCheck () {
+    ajaxCall ('core/serverCheck', null,function(response) {
+      let obj = JSON.parse(response);
+      let serverStatus = (obj.e) ? 'text-danger' : 'text-success';
+      $('#is-online').addClass(serverStatus);
+    });
+  }
+  // setInterval(async function(){serverCheck();}, 15000);
 
   /**
    * User

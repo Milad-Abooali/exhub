@@ -17,7 +17,7 @@
                 <form id="login" action="users/login" data-reload="true" class="form p-3">
                     <fieldset id="login-box" class="cb-ajax-u">
                         <?php if (isset($_SESSION['M']['user'])): ?>
-                            <a onclick="location.reload()" class="btn btn-success btn-block">Opeen Page</a>
+                            <a href="<?= APP_URL ?>" class="btn btn-success btn-block">Opeen Page</a>
                         <?php else: ?>
                             <legend>Login to Codebox eX</legend>
                             <input type="text" class="form-control d-block mb-3" placeholder="Enter Username" name="username" required>

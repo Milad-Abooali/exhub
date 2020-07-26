@@ -121,7 +121,7 @@
          * @return bool
          */
         public function logout() {
-            $_SESSION['M']['user'] = array();
+            $_SESSION['M']['user'] = false;
             session_unset();
             //session_destroy();
             return true;
