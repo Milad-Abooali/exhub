@@ -24,7 +24,7 @@
         echo json_encode($output);
     }
 
-    if ($_SESSION['M']['user']) {
+    if ($_SESSION['M']['user'] ?? false) {
 
         /**
          * Get Page Logs

@@ -21,4 +21,3 @@
             $this->data['keywords'][$k][$engin] = $db->exist($where_p,date('Y-m-d'),date('Y-m-d', strtotime( '-1 days' )) ,'seo_fis');
          }
     }
-    M::console($this->data['keywords']);

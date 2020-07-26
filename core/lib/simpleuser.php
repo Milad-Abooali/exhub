@@ -123,7 +123,7 @@
         public function logout() {
             $_SESSION['M']['user'] = array();
             session_unset();
-            session_destroy();
+            //session_destroy();
             return true;
         }
 

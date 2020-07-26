@@ -185,6 +185,17 @@ $(document).ready(function() {
     }
   }
 
+  /* Modal */
+
+  // Modal Maker - Core
+  function makeModal(title,body,size='md',footer=null) {
+    $("#modal .modal-dialog").removeClass().addClass('modal-dialog modal-'+size);
+    $("#modal .modal-title").html(title);
+    $("#modal .modal-body").html(body);
+    if (footer) $("#modal .modal-footer").html(footer);
+    $("#modal").modal('show');
+  }
+
   /* Ajax Actions */
 
   // Ajax Alert - Core
@@ -209,7 +220,9 @@ $(document).ready(function() {
       async: true,
       success: callback,
       error: function(request, status, error) {
+        console.log(request);
         console.log(status);
+        console.log(error);
       }
     });
     afterAjax();
@@ -228,14 +241,7 @@ $(document).ready(function() {
       $('#'+this.id).load(' #'+this.id);
     });
   }
-  // Modal Maker - Core
-  function makeModal(title,body,size='md',footer=null) {
-    $("#modal .modal-dialog").removeClass().addClass('modal-dialog modal-'+size);
-    $("#modal .modal-title").html(title);
-    $("#modal .modal-body").html(body);
-    if (footer) $("#modal .modal-footer").html(footer);
-    $("#modal").modal('show');
-  }
+
 
   /**
    * User
