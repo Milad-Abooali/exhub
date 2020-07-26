@@ -455,11 +455,9 @@ $(document).ready(function() {
     $(this).circleProgress({
       value: ratio,
       size: 95,
-      fill: {
-        color: 'rgb('+((ratio>0.37)?0:255)+','+(ratio*200)+',0)'
-      }
+      fill: {color: 'rgb('+((ratio>0.37)?0:255)+','+(ratio*200)+',0)'}
     }).on('circle-animation-progress', function(event, progress, stepValue) {
-      $(this).find('strong').text(stepValue.toFixed(2).substr(1));
+      $(this).find('strong').text(stepValue.toFixed(2));
     });
   });
   // Ajax Add Fis - seo/fis
@@ -477,7 +475,9 @@ $(document).ready(function() {
         thisClick.removeClass('doA-fisopen').addClass('cb-ob-1');
         let ratio = $('#circle-'+rid).data('ratio')+0.09;
         $('#circle-'+rid).data('ratio',ratio);
+        $('#ratio-'+rid).text(ratio);
         $('#circle-'+rid).circleProgress({value: ratio});
+        $('#circle-'+rid).circleProgress({fill: {color: 'rgb('+((ratio>0.37)?0:255)+','+(ratio*200)+',0)'}});
       }
     });
   });

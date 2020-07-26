@@ -17,8 +17,8 @@
         <!-- Row List -->
         <div id="fis-list" class="row mt-4 py-4 px-1 cb-oa">
             <?php foreach ((array) $this->data['keywords'] as $item) { ?>
-            <div class="col-md-3">
-                <div class="card ">
+            <div class="col-md-3 mb-4">
+                <div class="card">
                     <div class="card-header text-center">
                         <a data-toggle="collapse" href="#key-<?= $item['id'] ?>">
                            <small> Keyword ID: <?= $item['id'] ?></small>
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="card-footer wa">
-                            Today Ratio: <strong><?= $item['ratio'] ?></strong>
+                            Today Ratio: <strong id="ratio-<?= $item['id'] ?>"><?= $item['ratio'] ?></strong>
                         </div>
                     </div>
                 </div>
