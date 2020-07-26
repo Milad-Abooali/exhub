@@ -34,7 +34,7 @@
         $output->e = ($res) ? false : true;
         $output->res = ($res) ?? false;
         global $actlog;
-        $actlog->add("Login", $_POST,$_SESSION['M']['user']['id'] ?? null, (isset($res))?1:0);
+        $actlog->add("Login", $_POST,$_SESSION['M']['user']['id'] ?? null, (isset($output->res))?1:0);
         echo json_encode($output);
     }
 
@@ -42,13 +42,15 @@
      * Logout User
      */
     function logout () {
+        $username = $_SESSION['M']['user']['username'];
         global $user;
         global $actlog;
-        $actlog->add("Logout user", null, $_SESSION['M']['user']['id'], (isset($res))?1:0);
         $output = new stdClass();
         $res = $user->logout();
         $output->e = ($res) ? false : true;
         $output->res = ($res) ?? false;
+        $actlog->add("Logout user", null, $username, (isset($output->res))?1:0);
+
         echo json_encode($output);
     }
 
@@ -69,7 +71,7 @@
             $output->e = ($res) ? false : true;
             $output->res = $user->ERROR;
             global $actlog;
-            $actlog->add("Set groups for user ($id)", $groups, $id,(isset($res))?1:0);
+            $actlog->add("Set groups for user ($id)", $groups, $id,(isset($output->res))?1:0);
             echo json_encode($output);
         }
 
@@ -98,7 +100,7 @@
             $output->e = ($res) ? false : true;
             $output->res = $user->ERROR ?? true;
             global $actlog;
-            $actlog->add("Set status for user ($id)",$update['status'], $id,(isset($res))?1:0);
+            $actlog->add("Set status for user ($id)",$update['status'], $id,(isset($output->res))?1:0);
             echo json_encode($output);
         }
 
@@ -119,7 +121,7 @@
             $output->e = ($res) ? false : true;
             $output->res = $user->ERROR ?? $password;
             global $actlog;
-            $actlog->add("Reset password for user ($id)", $password, $id, (isset($res))?1:0);
+            $actlog->add("Reset password for user ($id)", $password, $id, (isset($output->res))?1:0);
             echo json_encode($output);
         }
 
@@ -133,7 +135,7 @@
             $output->e = ($res) ? false : true;
             $output->res = $user->ERROR;
             global $actlog;
-            $actlog->add("Add new user ($res)",$_POST, $res, (isset($res))?1:0);
+            $actlog->add("Add new user ($res)",$_POST, $res, (isset($output->res))?1:0);
             echo json_encode($output);
         }
 

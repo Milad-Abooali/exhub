@@ -225,7 +225,9 @@ $(document).ready(function() {
         console.log(error);
       }
     });
-    afterAjax();
+    if (classAction!='users/login' && classAction!='users/logout') {
+      afterAjax();
+    }
   }
   // Ajax logs reload - Core
   function afterAjax () {
