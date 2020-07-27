@@ -42,19 +42,30 @@
                         <div id="key-<?= $item['id'] ?>" data-parent="#server-list" class="panel-collapse collapse">
                             <div class="card-body">
                                 <div class="list-group">
-                                    <span class="list-group-item">IP: <strong class="float-right"><?= $item['main_ip'] ?></strong>
-
+                                    <span class="list-group-item">
+                                        IP:
+                                        <a href="https://<?= $item['main_ip'] ?>" target="_blank"class="float-right ml-2"><i class="fa fa-link"></i></a>
+                                        <strong class="float-right"><?= $item['main_ip'] ?></strong>
                                     </span>
                                     <span class="list-group-item">RAM: <strong class="float-right"><?= $item['ram'] ?> GB</strong></span>
                                     <span class="list-group-item">CPU: <strong class="float-right"><?= $item['cpu_core'] ?> Core - <?= $item['cpu_ghz'] ?> GHz</strong></span>
                                     <span class="list-group-item">HDD: <strong class="float-right"><?= $item['hdd'] ?> GB</strong></span>
                                     <span class="list-group-item">SSD: <strong class="float-right"><?= $item['ssd'] ?> GB</strong></span>
                                     <span class="list-group-item">NVMe: <strong class="float-right"><?= $item['nvme'] ?> GB</strong></span>
-
+                                </div>
+                                <div class="list-group list-group-flush small">
+                                    <span class="list-group-item">id: <strong class="float-right"><?= $item['id'] ?></strong></span>
+                                    <span class="list-group-item">N.ID: <strong class="float-right"><?= $item['nid'] ?></strong></span>
+                                    <span class="list-group-item">WHMCS: <strong class="float-right"><?= $item['whmcs_id'] ?></strong></span>
+                                    <span class="list-group-item">Country: <strong class="float-right"><?= $item['country'] ?></strong></span>
+                                    <span class="list-group-item">Note: <strong class="float-right"><?= $item['note'] ?></strong></span>
                                 </div>
                             </div>
                             <div class="card-footer wa">
-                                Today Ratio:
+                                <button class="btn btn-xs btn-primary mb-2 ">Detail</button>
+                                <button class="btn btn-xs btn-success mb-2 ">Networks</button>
+                                <button class="btn btn-xs btn-danger mb-2 float-right">Remove</button>
+
                             </div>
                         </div>
                     </div>
