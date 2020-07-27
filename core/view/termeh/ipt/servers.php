@@ -2,7 +2,7 @@
 
     $this->data['PAGE']['demo']=0;
 
-    $this->data['PAGE']['title'] = 'A > Users';
+    $this->data['PAGE']['title'] = 'IPT > Servers';
     $this->data['PAGE']['head'] = ' ';
 
     include('core/view/termeh/head.php');
@@ -14,7 +14,7 @@
         <!-- Row List -->
 
         <!-- Row List -->
-        <div id="fis-list" class="row mt-4 py-4 px-1 cb-oa">
+        <div id="server-list" class="row mt-4 py-4 px-1 cb-oa">
             <?php foreach ((array) $this->data['servers'] as $item) { ?>
                 <div class="col-md-3 mb-4">
                     <div class="card">
@@ -26,7 +26,7 @@
                                 <h4 class="panel-title">
                                     <i class="cb-flag-logo cbf-<?= $item['flag'] ?>"></i> <?= $item['nid'] ?>
                                 </h4><hr>
-                                next Payment
+                                next Payment:
                                 <strong class="text-danger">
                                     <?php
                                         $today = date('d');
@@ -39,9 +39,19 @@
                                 </strong> day
                             </a>
                         </div>
-                        <div id="key-<?= $item['id'] ?>"  data-parent="#fis-list" class="panel-collapse collapse">
+                        <div id="key-<?= $item['id'] ?>" data-parent="#server-list" class="panel-collapse collapse">
                             <div class="card-body">
+                                <div class="list-group">
+                                    <span class="list-group-item">IP: <strong class="float-right"><?= $item['main_ip'] ?></strong>
 
+                                    </span>
+                                    <span class="list-group-item">RAM: <strong class="float-right"><?= $item['ram'] ?> GB</strong></span>
+                                    <span class="list-group-item">CPU: <strong class="float-right"><?= $item['cpu_core'] ?> Core - <?= $item['cpu_ghz'] ?> GHz</strong></span>
+                                    <span class="list-group-item">HDD: <strong class="float-right"><?= $item['hdd'] ?> GB</strong></span>
+                                    <span class="list-group-item">SSD: <strong class="float-right"><?= $item['ssd'] ?> GB</strong></span>
+                                    <span class="list-group-item">NVMe: <strong class="float-right"><?= $item['nvme'] ?> GB</strong></span>
+
+                                </div>
                             </div>
                             <div class="card-footer wa">
                                 Today Ratio:

@@ -2,7 +2,7 @@
 
     $this->data['PAGE']['demo']=0;
 
-    $this->data['PAGE']['title'] = 'A > FIS';
+    $this->data['PAGE']['title'] = 'SEO > FIS';
     $this->data['PAGE']['head'] = ' ';
 
     include('core/view/termeh/head.php');
