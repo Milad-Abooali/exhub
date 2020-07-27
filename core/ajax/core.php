@@ -36,6 +36,40 @@
 
     if ($_SESSION['M']['user'] ?? false) {
 
+
+        /**
+         * Insert to database
+         */
+        function dbInsert()
+        {
+            $table = array_shift($_POST);
+            $db = new MySQL(DB_INFO, $table);
+            $res = $db->insert($_POST);
+            $output = new stdClass();
+            $output->e = ($res) ? false : true;
+            $output->res = ($res) ?? false;
+            global $actlog;
+            $actlog->add("Add Item to ($table)", $_POST, ($res) ?? null, (isset($res)) ? 1 : 0);
+            echo json_encode($output);
+        }
+
+        /**
+         * Delete from database
+         */
+        function dbDelete()
+        {
+            $table = array_shift($_POST);
+            $id = array_shift($_POST) ?? false;
+            $db = new MySQL(DB_INFO, $table);
+            $res = $db->deleteId($id);
+            $output = new stdClass();
+            $output->e = ($res) ? false : true;
+            $output->res = ($res) ?? false;
+            global $actlog;
+            $actlog->add("Delete Item from ($table)", null, ($id) ?? null, (isset($res)) ? 1 : 0);
+            echo json_encode($output);
+        }
+
         /**
          * Get Page Logs
          */
@@ -122,39 +156,6 @@
             );
             $dataTable = new DataTable($columns, $where);
             echo $dataTable->gen();
-        }
-
-        /**
-         * Insert to database
-         */
-        function dbInsert()
-        {
-            $table = array_shift($_POST);
-            $db = new MySQL(DB_INFO, $table);
-            $res = $db->insert($_POST);
-            $output = new stdClass();
-            $output->e = ($res) ? false : true;
-            $output->res = ($res) ?? false;
-            global $actlog;
-            $actlog->add("Add Item to ($table)", $_POST, ($res) ?? null, (isset($res)) ? 1 : 0);
-            echo json_encode($output);
-        }
-
-        /**
-         * Delete from database
-         */
-        function dbDelete()
-        {
-            $table = array_shift($_POST);
-            $id = array_shift($_POST) ?? false;
-            $db = new MySQL(DB_INFO, $table);
-            $res = $db->deleteId($id);
-            $output = new stdClass();
-            $output->e = ($res) ? false : true;
-            $output->res = ($res) ?? false;
-            global $actlog;
-            $actlog->add("Delete Item from ($table)", null, ($id) ?? null, (isset($res)) ? 1 : 0);
-            echo json_encode($output);
         }
 
     }
