@@ -5,7 +5,6 @@ var cbCDN = $("meta[name=codebox-cdn]").attr('content');
 var cbIMG = $("meta[name=codebox-img]").attr('content');
 var cbJS = $("meta[name=codebox-js]").attr('content');
 
-
 /* Scroll To End & Top - Core */
 function scrollToBottom() {
   window.scrollTo(0,document.body.scrollHeight);
@@ -46,7 +45,6 @@ function tableReload(table) {
 }
 
 $(document).ready(function() {
-
 
   // Ajax Refresh DataTables - Core
   $('body').on('click','.doP-refresh', function(){
@@ -287,4 +285,3 @@ $(document).ready(function() {
   });
 
 });
-
