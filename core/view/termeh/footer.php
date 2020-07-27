@@ -3,16 +3,20 @@
         <div class="container text-secondary" dir="ltr">
             <div class="row cb-endbox">
                 <div class="col-md col-sm-12 py-3">
-                    <h5>SEO</h5>
+                    <h5>SEO Tools</h5>
                     <ul class="list-unstyled">
                         <li><a href="<?= APP_URL ?>seo/keywords">Keywords</a></li>
                         <li><a href="<?= APP_URL ?>seo/fis">Find In Search (FIS)</a></li>
                        </ul>
                 </div>
                 <div class="col-md col-sm-12 py-3">
-                    <h5>Services</h5>
+                    <h5>IP Table</h5>
                     <ul class="list-unstyled">
-                        <li><a href="<?= APP_URL ?>services/ipt">IP Table (IPT)</a></li>
+                        <li><a href="<?= APP_URL ?>ipt/vps">VPS Panel</a></li>
+                        <li><a href="<?= APP_URL ?>ipt/rVPS">rVPS Panel</a></li>
+                        <li><a href="<?= APP_URL ?>ipt/ips">IP Manager</a></li>
+                        <li><a href="<?= APP_URL ?>ipt/networks">Network Manager</a></li>
+                        <li><a href="<?= APP_URL ?>ipt/servers">Server Manager</a></li>
                      </ul>
                 </div>
                 <div class="col-md col-sm-12 py-3">       3      </div>

@@ -23,6 +23,24 @@
             $page['view']   = "login";
             break;
 
+        case "ipt":
+            (USER_ACCESS['ipt']) ?: die ('Access Denid !');
+            $page['vid']  = 'ipt/'.array_shift($page['data']);
+            switch ($page['vid']) {
+                case "ipt/servers":
+                    (USER_ACCESS['admin']) ?: die ('Access Denid !');
+                    $page['inc']    = 'ipt/servers';
+                    $page['view']   = "ipt/servers";
+                    break;
+                case "seo/fis":
+                    $page['inc']    = 'seo/fis';
+                    $page['view']   = "seo/fis";
+                    break;
+                case "ipt/":
+                default:
+                    $page['view']   = "404";
+            }
+            break;
         case "seo":
             (USER_ACCESS['seo']) ?: die ('Access Denid !');
             $page['vid']  = 'seo/'.array_shift($page['data']);
