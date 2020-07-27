@@ -44,6 +44,67 @@ function tableReload(table) {
   $('#'+table).DataTable().ajax.reload(null, false);
 }
 
+
+/* Modal */
+
+// Modal Maker - Core
+function makeModal(title,body,size='md',footer=null) {
+  $("#modal .modal-dialog").removeClass().addClass('modal-dialog modal-'+size);
+  $("#modal .modal-title").html(title);
+  $("#modal .modal-body").html(body);
+  if (footer) $("#modal .modal-footer").html(footer);
+  $("#modal").modal('show');
+}
+
+/* Ajax Actions */
+
+// Ajax Alert - Core
+let alertID = 0;
+function ajaxAlert (id, type, text) {
+  alertID++;
+  let resAlert = '<div id="'+alertID+'" class="alert alert-'+type+'" role="alert">#'+alertID+' '+text;
+  resAlert += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+  $('#'+id+' .alerts').append(resAlert);
+  $('#'+id+' #'+alertID).fadeTo(2000, 500).slideUp(2800, function() {
+    $('#'+id+' #'+alertID).slideUp(2800);
+  });
+}
+// Ajax Call- Core
+function ajaxCall (classAction, data, callback) {
+  $.ajax({
+    type: "POST",
+    url: cbURL+"ajax/"+classAction+'&token='+cbToken,
+    data: data,
+    cache: false,
+    global: false,
+    async: true,
+    success: callback,
+    error: function(request, status, error) {
+      $('#is-online')
+          .removeClass('text-danger text-success text-warning')
+          .addClass('text-danger');
+      console.log(status);
+    }
+  });
+  if (classAction!='users/login' && classAction!='users/logout' && classAction!='core/serverCheck') {
+    afterAjax();
+  }
+}
+// Ajax logs reload - Core
+function afterAjax () {
+  tableReload('actlogs');
+}
+// Ajax reload Id - Core
+function ajaxReloadId (id) {
+  $('#'+id).load(' #'+id);
+}
+// Ajax reload - Core
+function ajaxReload () {
+  $('.cb-ajax-u').each(function() {
+    $('#'+this.id).load(' #'+this.id);
+  });
+}
+
 $(document).ready(function() {
 
   // Ajax Refresh DataTables - Core
@@ -168,66 +229,6 @@ $(document).ready(function() {
     } else {
 
     }
-  }
-
-  /* Modal */
-
-  // Modal Maker - Core
-  function makeModal(title,body,size='md',footer=null) {
-    $("#modal .modal-dialog").removeClass().addClass('modal-dialog modal-'+size);
-    $("#modal .modal-title").html(title);
-    $("#modal .modal-body").html(body);
-    if (footer) $("#modal .modal-footer").html(footer);
-    $("#modal").modal('show');
-  }
-
-  /* Ajax Actions */
-
-  // Ajax Alert - Core
-  let alertID = 0;
-  function ajaxAlert (id, type, text) {
-    alertID++;
-    let resAlert = '<div id="'+alertID+'" class="alert alert-'+type+'" role="alert">#'+alertID+' '+text;
-    resAlert += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-    $('#'+id+' .alerts').append(resAlert);
-    $('#'+id+' #'+alertID).fadeTo(2000, 500).slideUp(2800, function() {
-      $('#'+id+' #'+alertID).slideUp(2800);
-    });
-  }
-  // Ajax Call- Core
-  function ajaxCall (classAction, data, callback) {
-    $.ajax({
-      type: "POST",
-      url: cbURL+"ajax/"+classAction+'&token='+cbToken,
-      data: data,
-      cache: false,
-      global: false,
-      async: true,
-      success: callback,
-      error: function(request, status, error) {
-        $('#is-online')
-        .removeClass('text-danger text-success text-warning')
-        .addClass('text-danger');
-        console.log(status);
-      }
-    });
-    if (classAction!='users/login' && classAction!='users/logout' && classAction!='core/serverCheck') {
-      afterAjax();
-    }
-  }
-  // Ajax logs reload - Core
-  function afterAjax () {
-    tableReload('actlogs');
-  }
-  // Ajax reload Id - Core
-  function ajaxReloadId (id) {
-    $('#'+id).load(' #'+id);
-  }
-  // Ajax reload - Core
-  function ajaxReload () {
-    $('.cb-ajax-u').each(function() {
-      $('#'+this.id).load(' #'+this.id);
-    });
   }
 
   // Ajax Server Checker - Core

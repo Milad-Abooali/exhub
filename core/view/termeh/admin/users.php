@@ -3,7 +3,7 @@
     $this->data['PAGE']['demo']=0;
 
     $this->data['PAGE']['title'] = 'A > Users';
-    $this->data['PAGE']['head'] = ' ';
+    $this->data['PAGE']['head'] = '<script defer src="'.JS.'admin-users.js"></script>';
 
     include('core/view/termeh/head.php');
     include('core/view/termeh/header.php');

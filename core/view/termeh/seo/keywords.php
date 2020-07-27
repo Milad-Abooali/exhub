@@ -3,7 +3,7 @@
     $this->data['PAGE']['demo']=0;
 
     $this->data['PAGE']['title'] = 'SEO > Users';
-    $this->data['PAGE']['head'] = ' ';
+    $this->data['PAGE']['head'] = '<script defer src="'.JS.'seo-keywords.js"></script>';
 
     include('core/view/termeh/head.php');
     include('core/view/termeh/header.php');
