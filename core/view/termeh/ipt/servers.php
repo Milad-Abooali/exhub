@@ -17,9 +17,7 @@
     <div id="app-body" class="container" data-g="admin" data-token="<uponE>$_SESSION['M']['TOKEN']</uponE>">
 
         <!-- Row List -->
-
-        <!-- Row List -->
-        <div id="server-list" class="row mt-4 py-4 px-1 cb-oa">
+        <div id="server-list" class="row mt-4 py-4 px-1 cb-ajax-u cb-oa" >
             <?php foreach ((array) $this->data['servers'] as $item) { ?>
                 <div class="col-md-3 mb-4">
                     <div class="card">

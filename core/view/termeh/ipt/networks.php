@@ -16,7 +16,7 @@
         <!-- Row List -->
 
         <!-- Row List -->
-        <div id="server-list" class="row mt-4 py-4 px-1 cb-oa">
+        <div id="server-list" class="row mt-4 py-4 px-1 cb-ajax-u cb-oa">
             <?php foreach ((array) $this->data['servers'] as $item) { ?>
                 <div class="col-md-3 mb-4">
                     <div class="card">
@@ -79,7 +79,7 @@
         <div class="card mt-4 pt-4 cb-oa">
             <div class="col-md-12 cb-ltr">
                 <form id="add-server" action="core/dbInsert" data-reload="true" class="form-inline">
-                    <input type="hidden" class="form-control mb-2 mr-sm-2"  name="table" value="ipt_servers" required>
+                    <input type="hidden" class="form-control mb-2 mr-sm-2"  name="table" value="ipt_networks" required>
                     <input type="number" class="form-control mb-2 mr-sm-2" placeholder="New ID" name="nid" autocomplete="new-id" required>
                     <input type="number" class="form-control mb-2 mr-sm-2" placeholder="WHMCS ID" name="whmcs_id" autocomplete="new-id" required>
                     <input type="number" class="form-control mb-2 mr-sm-2" placeholder="Price in EU" name="price" autocomplete="new-price" required>
