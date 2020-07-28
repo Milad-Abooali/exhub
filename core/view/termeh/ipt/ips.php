@@ -2,8 +2,8 @@
 
     $this->data['PAGE']['demo']=0;
 
-    $this->data['PAGE']['title'] = 'IPT > Networks';
-    $this->data['PAGE']['head'] = '<script defer src="'.JS.'ipt-networks.js"></script>';
+    $this->data['PAGE']['title'] = 'IPT > IPs';
+    $this->data['PAGE']['head'] = '<script defer src="'.JS.'ipt-ips.js"></script>';
 
     include('core/view/termeh/head.php');
     include('core/view/termeh/header.php');
