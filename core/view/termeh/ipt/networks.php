@@ -12,13 +12,52 @@
 ?>
 
     <div id="app-body" class="container" data-g="admin" data-token="<uponE>$_SESSION['M']['TOKEN']</uponE>">
-
-        <!-- Row List -->
-        <div id="server-list" class="row mt-4 py-4 px-1 cb-ajax-u cb-oa">
-            <?php foreach ((array) $this->data['servers'] as $item) { ?>
-
+        <div class="card mt-4 py-4 px-1">
+            <h4 class="text-center">
+                Networks List
+            </h4>
+            <!-- Row List -->
+            <table id="lisr-networks" class="table table-striped table-hover table-sm table-DT-m" >
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Loc</th>
+                    <th>Datacenter</th>
+                    <th>Server</th>
+                    <th>Owner</th>
+                    <th>NIC</th>
+                    <th>Net</th>
+                    <th>SubNet</th>
+                    <th>Gateway</th>
+                    <th>DNS</th>
+                    <th>Note</th>
+                </tr>
+                </thead>
+                <tbody>
+            <?php foreach ((array) $this->data['networks'] as $item) { ?>
+                    <tr>
+                        <td><?= $item['id'] ?></td>
+                        <td><i title="<?= $item['country'] ?>" class="cb-flag cbf-<?= $item['flag'] ?>"></i></td>
+                        <td> <?= $item['datacenter'] ?></td>
+                        <td>
+                            <i title="<?= $item['country'] ?>" class="cb-flag cbf-<?= $item['server_flag'] ?>"></i>
+                            <strong class="text-success"><?= $item['server_nid'] ?></strong>
+                        </td>
+                        <td><small class="text-muted"><?= $item['owner'] ?></small></td>
+                        <td><?= $item['nic'] ?></td>
+                        <td><small class="text-muted"><?= $item['network'] ?></small></td>
+                        <td>
+                           <span class="text-muted"><?= $item['subnet'] ?></span>
+                            <br>
+                           <?= $item['netmask'] ?>
+                        </td>
+                        <td><span class="text-primary"><?= $item['gateway'] ?></span></td>
+                        <td><?= $item['dns_1'] ?> <br> <?= $item['dns_2'] ?></td>
+                        <td><?= $item['note'] ?></td>
+                    </tr>
             <?php } ?>
-
+                </tbody>
+            </table>
         </div>
         <!-- Row Form -->
         <div class="card mt-4 pt-4 cb-oa">

@@ -128,6 +128,11 @@ $(document).ready(function() {
       type: 'POST'
     }
   } );
+  /* table DT - Core */
+  $('.table-DT-m').DataTable( {
+    "order": [[ 0, "desc" ]],
+    "pageLength": 10,
+  });
   /* DT Actions - admin/logs */
   $('#actlog').DataTable( {
     "order": [[ 0, "desc" ]],
@@ -139,6 +144,7 @@ $(document).ready(function() {
       type: 'POST'
     }
   });
+
 
   /* CB AM - Core */
 	$("#cb-menu .collapse").on('shown.bs.collapse', function(e) {
