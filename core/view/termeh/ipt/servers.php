@@ -7,6 +7,11 @@
 
     include('core/view/termeh/head.php');
     include('core/view/termeh/header.php');
+
+
+    /**
+     * @todo Footer Buttons
+     */
 ?>
 
     <div id="app-body" class="container" data-g="admin" data-token="<uponE>$_SESSION['M']['TOKEN']</uponE>">
@@ -36,7 +41,7 @@
                                             echo $item['invoice_date'] - $today;
                                         }
                                     ?>
-                                </strong> day
+                                </strong> days
                             </a>
                         </div>
                         <div id="key-<?= $item['id'] ?>" data-parent="#server-list" class="panel-collapse collapse">
