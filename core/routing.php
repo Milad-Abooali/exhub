@@ -28,13 +28,14 @@
             $page['vid']  = 'ipt/'.array_shift($page['data']);
             switch ($page['vid']) {
                 case "ipt/servers":
-                    (USER_ACCESS['admin']) ?: die ('Access Denid !');
+                    (USER_ACCESS['staff']) ?: die ('Access Denid !');
                     $page['inc']    = 'ipt/servers';
                     $page['view']   = "ipt/servers";
                     break;
-                case "seo/fis":
-                    $page['inc']    = 'seo/fis';
-                    $page['view']   = "seo/fis";
+                case "ipt/networks":
+                    (USER_ACCESS['staff']) ?: die ('Access Denid !');
+                    $page['inc']    = 'ipt/networks';
+                    $page['view']   = "ipt/networks";
                     break;
                 case "ipt/":
                 default:
