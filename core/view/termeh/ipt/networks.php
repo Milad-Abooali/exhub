@@ -78,7 +78,7 @@
         <!-- Row Form -->
         <div class="card mt-4 pt-4 cb-oa">
             <div class="col-md-12 cb-ltr">
-                <form id="add-server" action="core/dbInsert" data-reload="true" class="form-inline">
+                <form id="add-network" action="core/dbInsert" data-reload="true" class="form-inline">
                     <input type="hidden" class="form-control mb-2 mr-sm-2"  name="table" value="ipt_networks" required>
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Datacenter" name="datacenter" autocomplete="new-datacenter" required>
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Country" name="country" autocomplete="new-country" required>
