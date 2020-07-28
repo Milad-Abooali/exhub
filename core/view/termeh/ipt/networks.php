@@ -83,13 +83,14 @@
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Datacenter" name="datacenter" autocomplete="new-datacenter" required>
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Country" name="country" autocomplete="new-country" required>
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Flag" name="flag" autocomplete="new-flag" required>
-                    <input type="number" class="form-control mb-2 mr-sm-2" placeholder="Server ID" name="server_id" autocomplete="new-server" required>
+                    <input type="number" class="form-control mb-2 mr-sm-2" placeholder="Server" name="server_nid" autocomplete="new-server" required>
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Owner" name="owner" autocomplete="new-owner" required>
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="NIC" name="nic" autocomplete="new-nic" required>
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Network" name="network" autocomplete="new-network" required>
+                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Subnet" name="subnet" autocomplete="new-subnet" required>
+                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Netmask" name="netmask" autocomplete="new-netmask" required>
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Gateway" name="gateway" autocomplete="new-gateway" required>
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="DNS 1" name="dns_1" autocomplete="new-dns" required>
-                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="DNS 2" name="dns_2" autocomplete="new-dns" required>
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="DNS 2" name="dns_2" autocomplete="new-dns" required>
                     <textarea class="form-control mb-2 mr-sm-2" placeholder="Note" name="note"></textarea>
                     <button type="submit" class="btn btn-primary mb-2 ">Add Network</button>
