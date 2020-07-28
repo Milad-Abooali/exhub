@@ -62,9 +62,9 @@
                                 </div>
                             </div>
                             <div class="card-footer wa">
-                                <button class="btn btn-xs btn-primary mb-2 ">Detail</button>
-                                <button class="btn btn-xs btn-success mb-2 ">Networks</button>
-                                <button class="btn btn-xs btn-danger mb-2 float-right">Remove</button>
+                                <button class="btn btn-xs btn-primary">Detail</button>
+                                <button class="btn btn-xs btn-success">Networks</button>
+                                <button class="btn btn-xs btn-danger float-right">Remove</button>
 
                             </div>
                         </div>
