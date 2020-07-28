@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
     /**
-     * IPT Servers
+     * IPT Networks
      */
 
-    // Ajax Add New Keyword  - seo/keywords
+    // Ajax Add New Network  - ipt/networks
     $('body').on('submit','form#add-network', function(event){
         event.preventDefault();
         const id = $(this).attr('id');
