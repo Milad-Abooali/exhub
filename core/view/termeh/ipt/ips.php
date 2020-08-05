@@ -8,13 +8,13 @@
     include('core/view/termeh/head.php');
     include('core/view/termeh/header.php');
 
-
+    \App\Core\M::print($this->data);
 ?>
 
     <div id="app-body" class="container" data-g="admin" data-token="<uponE>$_SESSION['M']['TOKEN']</uponE>">
         <div class="card mt-4 py-4 px-1">
             <h4 class="text-center">
-                Networks List
+                IP List
             </h4>
             <!-- Row List -->
             <table id="lisr-networks" class="table table-striped table-hover table-sm table-DT-m" >
@@ -22,10 +22,11 @@
                 <tr>
                     <th>#</th>
                     <th>Loc</th>
-                    <th>Datacenter</th>
+                    <th>IP</th>
+                    <th>MAC</th>
+                    <th>Network</th>
                     <th>Server</th>
                     <th>Owner</th>
-                    <th>NIC</th>
                     <th>Net</th>
                     <th>SubNet</th>
                     <th>Gateway</th>
@@ -34,7 +35,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ((array) $this->data['networks'] as $item) { ?>
+                <?php foreach ((array) $this->data['ips'] as $item) { ?>
                     <tr>
                         <td><?= $item['id'] ?></td>
                         <td><i title="<?= $item['country'] ?>" class="cb-flag cbf-<?= $item['flag'] ?>"></i></td>
