@@ -40,7 +40,7 @@
                         <td><i title="<?= $item['country'] ?>" class="cb-flag cbf-<?= $item['flag'] ?>"></i></td>
                         <td> <?= $item['datacenter'] ?></td>
                         <td>
-                            <i title="<?= $item['country'] ?>" class="cb-flag cbf-<?= $item['server_flag'] ?>"></i>
+                            <i class="cb-flag cbf-<?= $item['server_flag'] ?>"></i>
                             <strong class="text-success"><?= $item['server_nid'] ?></strong>
                         </td>
                         <td><small class="text-muted"><?= $item['owner'] ?></small></td>

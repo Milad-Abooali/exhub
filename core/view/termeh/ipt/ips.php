@@ -8,7 +8,6 @@
     include('core/view/termeh/head.php');
     include('core/view/termeh/header.php');
 
-    \App\Core\M::print($this->data);
 ?>
 
     <div id="app-body" class="container" data-g="admin" data-token="<uponE>$_SESSION['M']['TOKEN']</uponE>">
@@ -27,11 +26,11 @@
                     <th>Network</th>
                     <th>Server</th>
                     <th>Owner</th>
-                    <th>Net</th>
-                    <th>SubNet</th>
-                    <th>Gateway</th>
-                    <th>DNS</th>
+                    <th>IR.Only</th>
+                    <th>IR.Block</th>
+                    <th>DC.Abuse</th>
                     <th>Note</th>
+                    <th>status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,7 +38,8 @@
                     <tr>
                         <td><?= $item['id'] ?></td>
                         <td><i title="<?= $item['country'] ?>" class="cb-flag cbf-<?= $item['flag'] ?>"></i></td>
-                        <td> <?= $item['datacenter'] ?></td>
+                        <td> <?= $item['ip'] ?></td>
+                        <td> <?= $item['mac'] ?></td>
                         <td>
                             <i title="<?= $item['country'] ?>" class="cb-flag cbf-<?= $item['server_flag'] ?>"></i>
                             <strong class="text-success"><?= $item['server_nid'] ?></strong>
