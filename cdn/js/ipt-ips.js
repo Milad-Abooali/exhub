@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
     /**
-     * IPT Networks
+     * IPT IPs
      */
 
-    // Ajax Add New Network  - ipt/networks
-    $('body').on('submit','form#add-network', function(event){
+    // Ajax Add New IP  - ipt/ips
+    $('body').on('submit','form#add-ip', function(event){
         event.preventDefault();
         const id = $(this).attr('id');
         const reload = $(this).data('reload');

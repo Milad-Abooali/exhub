@@ -26,9 +26,9 @@
                     <th>Network</th>
                     <th>Server</th>
                     <th>Owner</th>
-                    <th>IR.Only</th>
-                    <th>IR.Block</th>
-                    <th>DC.Abuse</th>
+                    <th>IR.O</th>
+                    <th>IR.B</th>
+                    <th>Abuse</th>
                     <th>Note</th>
                     <th>status</th>
                 </tr>
@@ -41,20 +41,19 @@
                         <td> <?= $item['ip'] ?></td>
                         <td> <?= $item['mac'] ?></td>
                         <td>
-                            <i title="<?= $item['country'] ?>" class="cb-flag cbf-<?= $item['server_flag'] ?>"></i>
-                            <strong class="text-success"><?= $item['server_nid'] ?></strong>
+                            <i title="<?= $item['network']['country'] ?>" class="cb-flag cbf-<?= $item['network']['flag'] ?>"></i>
+                            <strong class="text-success"><?= $item['network']['subnet'] ?></strong>
+                        </td>
+                        <td>
+                            <i title="<?= $item['server']['country'] ?>" class="cb-flag cbf-<?= $item['server']['flag'] ?>"></i>
+                            <strong class="text-success"><?= $item['server']['nid'] ?></strong>
                         </td>
                         <td><small class="text-muted"><?= $item['owner'] ?></small></td>
-                        <td><?= $item['nic'] ?></td>
-                        <td><small class="text-muted"><?= $item['network'] ?></small></td>
-                        <td>
-                            <span class="text-muted"><?= $item['subnet'] ?></span>
-                            <br>
-                            <?= $item['netmask'] ?>
-                        </td>
-                        <td><span class="text-primary"><?= $item['gateway'] ?></span></td>
-                        <td><?= $item['dns_1'] ?> <br> <?= $item['dns_2'] ?></td>
+                        <td><small class="text-muted"><?= $item['ir_access'] ?></small></td>
+                        <td><small class="text-muted"><?= $item['ir_block'] ?></small></td>
+                        <td><small class="text-muted"><?= $item['abuse'] ?></small></td>
                         <td><?= $item['note'] ?></td>
+                        <td><?= $item['status'] ?></td>
                     </tr>
                 <?php } ?>
                 </tbody>
