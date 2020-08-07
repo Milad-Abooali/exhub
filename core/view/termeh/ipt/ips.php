@@ -53,7 +53,7 @@
                         <td><small class="text-muted"><?= $item['ir_block'] ?></small></td>
                         <td><small class="text-muted"><?= $item['abuse'] ?></small></td>
                         <td><?= $item['note'] ?></td>
-                        <td><?= $item['status'] ?></td>
+                        <td class="text-<?= $this->data['status_color'][$item['status']] ?>"><?= $this->data['status_text'][$item['status']] ?></td>
                     </tr>
                 <?php } ?>
                 </tbody>

@@ -13,3 +13,23 @@
             $this->data['ips'][$k]['server'] = $db->selectRow($where,null,'ipt_servers');
         }
     }
+
+    $this->data['status_text'] = [
+      0 =>  'Reserved',
+      1 =>  'Free',
+      2 =>  'rVPS',
+      3 =>  'Main',
+      4 =>  'Extra',
+      5 =>  'CB',
+      6 =>  'Pended'
+    ];
+
+    $this->data['status_color'] = [
+      0 =>  'muted',
+      1 =>  'success',
+      2 =>  'info',
+      3 =>  'primary',
+      4 =>  'primary',
+      5 =>  'warning',
+      6 =>  'danger'
+    ];
