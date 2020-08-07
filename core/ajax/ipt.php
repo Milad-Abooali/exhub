@@ -34,24 +34,32 @@
         {
             $table = 'ipt_ips';
             $db = new MySQL(DB_INFO, $table);
-
             $data['ip'] = $_POST['ip1'].'.'.$_POST['ip2'].'.'.$_POST['ip3'].'.';
             $data['mac'] = $_POST['mac'];
             $data['network_id'] = $_POST['network_id'];
             $data['country'] = $_POST['country'];
             $data['flag'] = $_POST['flag'];
-            $data['ir_access'] = $_POST['ir_access'];
-            $data['ir_block'] = $_POST['ir_block'];
-            $data['abuse'] = $_POST['abuse'];
+            $data['ir_access'] = $_POST['ir_access'] ?? 0;
+            $data['ir_block'] = $_POST['ir_block'] ?? 0;
+            $data['abuse'] = $_POST['abuse'] ?? 0;
             $data['owner'] = $_POST['owner'];
             $data['note'] = $_POST['note'];
             $data['status'] = 1;
-
+            $output = new stdClass();
             if ($_POST['ip5']>$_POST['ip4']) {
-                $i = $_POST['ip5']-$_POST['ip4'];
-                while ($i>0) {
-
+                while ($_POST['ip5']>=$_POST['ip4']) {
+                    $ip = $data['ip'] .= $_POST['ip4'];
+                    if ($db->exist("ip='$ip'")) {
+                        $output->e = true;
+                    } else {
+                        $res[] = $db->insert($data);
+                    }
+                    $_POST['ip4']++;
                 }
+                $output->res = ($res) ?? false;
+                global $actlog;
+                $actlog->add("Add Item to ($table)", $data, ($res) ?? null, !$output->e);
+                echo json_encode($output);
             } else {
                 $ip = $data['ip'] .= $_POST['ip4'];
                 if ($db->exist("ip='$ip'")) {
@@ -59,11 +67,10 @@
                 } else {
                     $res = $db->insert($data);
                 }
-                $output = new stdClass();
                 $output->e = ($res) ? false : true;
                 $output->res = ($res) ?? false;
                 global $actlog;
-                $actlog->add("Add Item to ($table)", $data, ($res) ?? null, (isset($res)) ? 1 : 0);
+                $actlog->add("Add Item to ($table)", $data, ($res) ?? null, $output->res);
                 echo json_encode($output);
             }
         }

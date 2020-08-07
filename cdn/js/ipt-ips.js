@@ -14,7 +14,7 @@ $(document).ready(function() {
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
             let type = (obj.e) ? 'danger' : 'success';
-            let text = (obj.e) ? 'Error, Network not added. '+obj.res : 'Success, Network Added.';
+            let text = (obj.e) ? 'Error, IP not added. '+obj.res : 'Success, IP Added.';
             ajaxAlert (id, type, text);
             (reload) && ajaxReload ();
         });
