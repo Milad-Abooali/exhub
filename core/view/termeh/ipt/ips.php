@@ -42,18 +42,18 @@
                         <td> <?= $item['mac'] ?></td>
                         <td>
                             <i title="<?= $item['network']['country'] ?>" class="cb-flag cbf-<?= $item['network']['flag'] ?>"></i>
-                            <strong class="text-success"><?= $item['network']['subnet'] ?></strong>
+                            <strong class="text-secondary"><?= $item['network']['subnet'] ?></strong>
                         </td>
                         <td>
                             <i title="<?= $item['server']['country'] ?>" class="cb-flag cbf-<?= $item['server']['flag'] ?>"></i>
-                            <strong class="text-success"><?= $item['server']['nid'] ?></strong>
+                            <strong class="text-primary"><?= $item['server']['nid'] ?></strong>
                         </td>
                         <td><small class="text-muted"><?= $item['owner'] ?></small></td>
-                        <td><small class="text-muted"><?= $item['ir_access'] ?></small></td>
-                        <td><small class="text-muted"><?= $item['ir_block'] ?></small></td>
-                        <td><small class="text-muted"><?= $item['abuse'] ?></small></td>
-                        <td><?= $item['note'] ?></td>
-                        <td class="text-<?= $this->data['status_color'][$item['status']] ?>"><?= $this->data['status_text'][$item['status']] ?></td>
+                        <td><small><?= (!$item['ir_access']) ? null : '<i class="fa fa-remove text-danger"></i>' ?></small></td>
+                        <td><small><?= (!$item['ir_block']) ? null : '<i class="fa fa-remove text-danger"></i>' ?></small></td>
+                        <td><small><?= (!$item['abuse']) ? null : '<i class="fa fa-remove text-danger"></i>' ?></small></td>
+                        <td><small class="text-muted"><?= $item['note'] ?></small></td>
+                        <td class="bg-<?= $this->data['status_color'][$item['status']] ?>"><?= $this->data['status_text'][$item['status']] ?></td>
                     </tr>
                 <?php } ?>
                 </tbody>

@@ -25,9 +25,9 @@
     ];
 
     $this->data['status_color'] = [
-      0 =>  'muted',
-      1 =>  'success',
-      2 =>  'info',
+      0 =>  'secondary',
+      1 =>  'muted',
+      2 =>  'success',
       3 =>  'primary',
       4 =>  'primary',
       5 =>  'warning',
