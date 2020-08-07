@@ -62,13 +62,13 @@
         <!-- Row Form -->
         <div class="card mt-4 pt-4 cb-oa">
             <div class="col-md-12 cb-ltr">
-                <form id="add-ip" action="core/dbInsert" data-reload="true" class="form-inline">
+                <form id="add-ip" action="ipt/insertIPs" data-reload="true" class="form-inline">
                     <input type="number" min="0" max="256" class="form-control mb-2 mr-sm-2" placeholder="255" name="ip1" autocomplete="new-ip" required>
                     <input type="number" min="0" max="256" class="form-control mb-2 mr-sm-2" placeholder="255" name="ip2" autocomplete="new-ip" required>
                     <input type="number" min="0" max="256" class="form-control mb-2 mr-sm-2" placeholder="255" name="ip3" autocomplete="new-ip" required>
                     <input type="number" min="0" max="256" class="form-control mb-2 mr-sm-2" placeholder="0" name="ip4" autocomplete="new-ip" required>
                     -
-                    <input type="number" min="0" max="256" class="form-control mb-2 mx-2 " placeholder="255" name="ip4" autocomplete="new-ip" required>
+                    <input type="number" min="0" max="256" class="form-control mb-2 mx-2 " placeholder="255" name="ip5" autocomplete="new-ip" required>
                     <input type="texxt" class="form-control mb-2 mr-sm-2" placeholder="MAC" name="mac" autocomplete="new-mac" required>
                     <input type="number" class="form-control mb-2 mr-sm-2" placeholder="Network ID" name="network_id" autocomplete="new-net" required>
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Country" name="country" autocomplete="new-country" required>
