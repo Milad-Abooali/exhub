@@ -133,6 +133,11 @@ $(document).ready(function() {
     "order": [[ 0, "desc" ]],
     "pageLength": 10,
   });
+  /* table DT - Core */
+  $('.table-DT').DataTable( {
+    "order": [[ 0, "desc" ]],
+    "pageLength": 25,
+  });
   /* DT Actions - admin/logs */
   $('#actlog').DataTable( {
     "order": [[ 0, "desc" ]],
