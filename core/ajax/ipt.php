@@ -34,7 +34,7 @@
         {
             $table = 'ipt_ips';
             $db = new MySQL(DB_INFO, $table);
-            $data['ip'] = $_POST['ip1'].'.'.$_POST['ip2'].'.'.$_POST['ip3'].'.';
+            $base_ip = $_POST['ip1'].'.'.$_POST['ip2'].'.'.$_POST['ip3'].'.';
             $data['mac'] = $_POST['mac'];
             $data['network_id'] = $_POST['network_id'];
             $data['country'] = $_POST['country'];
@@ -46,22 +46,24 @@
             $data['note'] = $_POST['note'];
             $data['status'] = 1;
             $output = new stdClass();
+            global $actlog;
             if ($_POST['ip5']>$_POST['ip4']) {
                 while ($_POST['ip5']>=$_POST['ip4']) {
-                    $ip = $data['ip'] .= $_POST['ip4'];
+                    $ip = $base_ip.$_POST['ip4'];
+                    $data['ip'] = $ip;
                     if ($db->exist("ip='$ip'")) {
                         $output->e = true;
                     } else {
-                        $res[] = $db->insert($data);
+                        $res = $db->insert($data);
+                        $actlog->add("Add IP ($ip)", null, ($res) ?? null, !$output->e);
                     }
+                    $output->res = true;
                     $_POST['ip4']++;
                 }
-                $output->res = ($res) ?? false;
-                global $actlog;
-                $actlog->add("Add Item to ($table)", $data, ($res) ?? null, !$output->e);
                 echo json_encode($output);
             } else {
-                $ip = $data['ip'] .= $_POST['ip4'];
+                $ip = $base_ip.$_POST['ip4'];
+                $data['ip'] = $ip;
                 if ($db->exist("ip='$ip'")) {
                     $res = false;
                 } else {
@@ -69,7 +71,6 @@
                 }
                 $output->e = ($res) ? false : true;
                 $output->res = ($res) ?? false;
-                global $actlog;
                 $actlog->add("Add Item to ($table)", $data, ($res) ?? null, $output->res);
                 echo json_encode($output);
             }

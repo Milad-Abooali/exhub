@@ -16,7 +16,7 @@
                 IP List
             </h4>
             <!-- Row List -->
-            <table id="lisr-networks" class="table table-striped table-hover table-sm table-DT-m" >
+            <table id="lisr-networks" class="table table-striped table-hover table-sm table-DT" >
                 <thead>
                 <tr>
                     <th>#</th>
@@ -68,7 +68,7 @@
                     <input type="number" min="0" max="256" class="form-control mb-2 mr-sm-2" placeholder="255" name="ip3" autocomplete="new-ip" required>
                     <input type="number" min="0" max="256" class="form-control mb-2 mr-sm-2" placeholder="0" name="ip4" autocomplete="new-ip" required>
                     -
-                    <input type="number" min="0" max="256" class="form-control mb-2 mx-2 " placeholder="255" name="ip5" autocomplete="new-ip" required>
+                    <input type="number" min="0" max="256" class="form-control mb-2 mx-2 text-primary" placeholder="0" name="ip5" autocomplete="new-ip" required>
                     <input type="texxt" class="form-control mb-2 mr-sm-2" placeholder="MAC" name="mac" autocomplete="new-mac" required>
                     <input type="number" class="form-control mb-2 mr-sm-2" placeholder="Network ID" name="network_id" autocomplete="new-net" required>
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Country" name="country" autocomplete="new-country" required>
