@@ -28,7 +28,11 @@ $(document).ready(function() {
         const classA = 'ipt/getNetworksLoc'
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
-            console.log(obj);
+            let options;
+            obj.res.each(function( key, value ) {
+                options +='<option value="'+value+'"> '+value+' </option>'
+            });
+            $('#iploc').html(options);
         });
     })
 

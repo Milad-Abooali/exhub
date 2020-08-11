@@ -26,9 +26,7 @@
                 </select>
                 IP.Loc:
                 <select id="iploc" class="custom-select mx-2" required>
-                    <?php foreach ((array) $this->data['ip_loc'] as $loc) { ?>
-                        <option value="<?= $loc['country'] ?>"> <?= $loc['country'] ?> </option>
-                    <?php } ?>
+
                 </select>
                 Plan:
                 <select id="plan" class="custom-select mx-2" required>
