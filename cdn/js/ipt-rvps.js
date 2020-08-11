@@ -22,18 +22,13 @@ $(document).ready(function() {
 
 
     // Ajax IP LOC  - ipt/rvps
-    $('body').on('submit','form#add-ip', function(event){
-        event.preventDefault();
-        const id = $(this).attr('id');
-        const reload = $(this).data('reload');
-        const data = $('#'+id).serialize();
-        const classA = $('#'+id).attr('action');
+    $('body').on('keyup change','#server', function(){
+        const server = $(this).val();
+        const data = 'server='+server
+        const classA = 'ipt/getNetworksLoc'
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
-            let type = (obj.e) ? 'danger' : 'success';
-            let text = (obj.e) ? 'Error, IP not added. '+obj.res : 'Success, IP Added.';
-            ajaxAlert (id, type, text);
-            (reload) && ajaxReload ();
+            console.log(obj);
         });
     })
 

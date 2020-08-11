@@ -30,6 +30,14 @@
         /**
          * Insert IPs
          */
+        function getNetworksLoc()
+        {
+
+        }
+
+        /**
+         * Insert IPs
+         */
         function insertIPs()
         {
             $table = 'ipt_ips';
