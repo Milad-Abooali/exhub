@@ -20,6 +20,8 @@
             <div class="col-md-12 form-inline justify-content-center my-3">
                 Host:
                 <select id="server" class="custom-select mx-2" required>
+                    <option disabled selected> Server ID </option>
+
                     <?php foreach ((array) $this->data['servers'] as $server) { ?>
                         <option value="<?= $server['nid'] ?>"> <?= $server['nid'] ?> </option>
                     <?php } ?>
@@ -35,7 +37,7 @@
                     <?php } ?>
                 </select>
 
-                <button type="submit" class="btn btn-primary mx-3">Add rVPS</button>
+                <button type="submit" class="doA-addRvps btn btn-primary mx-3">Add rVPS</button>
 
             </div>
         </div>

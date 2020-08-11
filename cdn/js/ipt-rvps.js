@@ -5,8 +5,7 @@ $(document).ready(function() {
      */
 
     // Ajax Add New rVPS  - ipt/rvps
-    $('body').on('submit','form#add-rvps', function(event){
-        event.preventDefault();
+    $('body').on('click','#doA-addRvps', function(){
         const id = $(this).attr('id');
         const reload = $(this).data('reload');
         const data = $('#'+id).serialize();
@@ -29,8 +28,8 @@ $(document).ready(function() {
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
             let options;
-            obj.res.each(function( key, value ) {
-                options +='<option value="'+value+'"> '+value+' </option>'
+            $.each(obj.res,function( key, value ) {
+                options +='<option value="'+value['country']+'"> '+value['country']+' </option>'
             });
             $('#iploc').html(options);
         });
