@@ -19,7 +19,13 @@
                         <li><a href="<?= APP_URL ?>ipt/servers">Server Manager</a></li>
                      </ul>
                 </div>
-                <div class="col-md col-sm-12 py-3">       3      </div>
+                <div class="col-md col-sm-12 py-3">
+                    <h5>Financial</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="<?= APP_URL ?>financial/plans">Service Plans</a></li>
+
+                    </ul>
+                </div>
                 <div class="col-md col-sm-12 py-3">
                     <h5>Admin</h5>
                     <ul class="list-unstyled">
