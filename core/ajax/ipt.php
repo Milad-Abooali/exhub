@@ -32,7 +32,14 @@
          */
         function getNetworksLoc()
         {
+            $table = 'ipt_networks';
+            $db = new MySQL(DB_INFO,$table);
 
+            $locs = $db->select('ipt_networks', 'status=1&server_nid='.$_POST['server'],'country',null,null,'country');
+            $output = new stdClass();
+            $output->e = false;
+            $output->res = $locs;
+            echo json_encode($output);0
         }
 
         /**
