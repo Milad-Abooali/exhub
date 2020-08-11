@@ -5,18 +5,19 @@ $(document).ready(function() {
      */
 
     // Ajax Add New rVPS  - ipt/rvps
-    $('body').on('click','#doA-addRvps', function(){
-        const id = $(this).attr('id');
-        const reload = $(this).data('reload');
-        const data = $('#'+id).serialize();
-        const classA = $('#'+id).attr('action');
-        ajaxCall (classA, data,function(response) {
-            let obj = JSON.parse(response);
-            let type = (obj.e) ? 'danger' : 'success';
-            let text = (obj.e) ? 'Error, IP not added. '+obj.res : 'Success, IP Added.';
-            ajaxAlert (id, type, text);
-            (reload) && ajaxReload ();
-        });
+    $('body').on('submit','form#add-rvps', function(event){
+        event.preventDefault();
+        const data = $(this).serialize();
+        alert (data);
+        // const data = 'server='+server
+        // const classA = $('#'+id).attr('action');
+        // ajaxCall (classA, data,function(response) {
+        //     let obj = JSON.parse(response);
+        //     let type = (obj.e) ? 'danger' : 'success';
+        //     let text = (obj.e) ? 'Error, IP not added. '+obj.res : 'Success, IP Added.';
+        //     ajaxAlert (id, type, text);
+        //     (reload) && ajaxReload ();
+        // });
     })
 
 

@@ -263,8 +263,8 @@ $(document).ready(function() {
     event.preventDefault();
     const id = $(this).attr('id');
     const reload = $(this).data('reload');
-    const data = $('#'+id).serialize();
-    const classA = $('#'+id).attr('action');
+    const data = $(this).serialize();
+    const classA = $(this).attr('action');
     ajaxCall (classA, data,function(response) {
       let obj = JSON.parse(response);
       let type = (obj.e) ? 'danger' : 'success';

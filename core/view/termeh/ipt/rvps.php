@@ -17,9 +17,9 @@
             <h4 class="text-center">
                 New rVPS
             </h4>
-            <div class="col-md-12 form-inline justify-content-center my-3">
+            <form id="add-rvps" class="col-md-12 form-inline justify-content-center my-3">
                 Host:
-                <select id="server" class="custom-select mx-2" required>
+                <select id="server" name="server" class="custom-select mx-2" required>
                     <option disabled selected> Server ID </option>
 
                     <?php foreach ((array) $this->data['servers'] as $server) { ?>
@@ -27,19 +27,19 @@
                     <?php } ?>
                 </select>
                 IP.Loc:
-                <select id="iploc" class="custom-select mx-2" required>
+                <select id="iploc" name="iploc" class="custom-select mx-2" required>
 
                 </select>
                 Plan:
-                <select id="plan" class="custom-select mx-2" required>
+                <select id="plan" name="plan" class="custom-select mx-2" required>
                     <?php foreach ((array) $this->data['plans'] as $plan) { ?>
                         <option value="<?= $plan['plan_name'] ?>"> <?= $plan['plan_name'] ?> </option>
                     <?php } ?>
                 </select>
 
-                <button type="submit" class="doA-addRvps btn btn-primary mx-3">Add rVPS</button>
+                <button type="submit" class="btn btn-primary mx-3">Add rVPS</button>
 
-            </div>
+            </form>
         </div>
 
         <!-- Row List -->
