@@ -17,7 +17,7 @@
             <h4 class="text-center">
                 New rVPS
             </h4>
-            <form id="add-rvps" class="col-md-12 form-inline justify-content-center my-3">
+            <form id="add-rvps" action="ipt/addRvps" class="col-md-12 form-inline justify-content-center my-3">
                 Host:
                 <select id="server" name="server" class="custom-select mx-2" required>
                     <option disabled selected> Server ID </option>

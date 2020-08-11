@@ -8,16 +8,12 @@ $(document).ready(function() {
     $('body').on('submit','form#add-rvps', function(event){
         event.preventDefault();
         const data = $(this).serialize();
-        alert (data);
-        // const data = 'server='+server
-        // const classA = $('#'+id).attr('action');
-        // ajaxCall (classA, data,function(response) {
-        //     let obj = JSON.parse(response);
-        //     let type = (obj.e) ? 'danger' : 'success';
-        //     let text = (obj.e) ? 'Error, IP not added. '+obj.res : 'Success, IP Added.';
-        //     ajaxAlert (id, type, text);
-        //     (reload) && ajaxReload ();
-        // });
+        const classA = $(this).attr('action');
+        ajaxCall (classA, data,function(response) {
+            let obj = JSON.parse(response);
+            alert(obj);
+
+        });
     })
 
 

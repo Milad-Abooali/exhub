@@ -26,9 +26,23 @@
 
     if ($_SESSION['M']['user'] ?? false) {
 
+        /**
+         * Add New rVPS Modal
+         */
+        function ipt/addRvps()
+        {
+            $table = 'ipt_networks';
+            $db = new MySQL(DB_INFO,$table);
+
+            $locs = $db->select('ipt_networks', 'status=1 AND server_nid='.$_POST['server'],'country',null,null,'country');
+            $output = new stdClass();
+            $output->e = false;
+            $output->res = $locs;
+            echo json_encode($output);
+        }
 
         /**
-         * Insert IPs
+         * Get Networks Location
          */
         function getNetworksLoc()
         {
