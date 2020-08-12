@@ -31,20 +31,31 @@
          */
         function addRvps()
         {
-            $db = new MySQL(DB_INFO);
+            $output = new stdClass();
 
-            $network = $db->select('ipt_networks', 'status=1 AND server_nid='.$_POST['server']);
+            $db = new MySQL(DB_INFO);
+            $table = 'ipt_networks';
+            $where = 'status=1 AND server_nid='.$_POST['server'];
+            $networks = $db->select($table, $where);
+
+            $table = 'ipt_servers';
+            $where = 'status=1 AND nid='.$_POST['server'];
+            $output->res['server'] = $db->selectRow($where, null,$table);
+
+            $table = 'fin_plans';
+            $output->res['plan'] = $db->selectId($_POST['plan'],'*',$table);
 
             $ip = false;
-            while ($ip) {
-                $ip = $db->select('ipt_ips', 'status=1 AND server_nid='.$_POST['server']);
-
+            foreach ($networks as $network) {
+                $output->res['network'] = $network;
+                $table = 'ipt_ips';
+                $where = 'status=1 AND network_id='.$network['id'];
+                $order = 'network_id';
+                $ip = $db->selectRow($where, $order,$table);
+                if ($ip) break;
             }
-
-
-            $output = new stdClass();
-            $output->e = false;
-            $output->res = $locs;
+            $output->res['ip'] = $ip;
+            $output->e = ($ip) ? false : true;
             echo json_encode($output);
         }
 

@@ -13,14 +13,43 @@ $(document).ready(function() {
             let obj = JSON.parse(response);
 
             if (obj.e) {
-
+                alert(obj.res);
             } else {
                 let server = $('#server').val();
                 let plan = $('#plan').val();
-                $('#server_nid').val(server);
-                $('#plan_id').val(plan);
-                $('#ip_id').html(obj.res.ip['id']);
-                $('#network_id').val(obj.res.ip['network_id']);
+
+                $('#modal-newRvps #server_nid').val(server);
+                $('#modal-newRvps #host-server').html(obj.res.server.nid);
+                $('#modal-newRvps #idc').html(obj.res.server.datacenter);
+                $('#modal-newRvps #host-flag').addClass('cbf-'+obj.res.server.flag);
+                $('#modal-newRvps #host-flag').attr('title', obj.res.server.country);
+
+
+                $('#modal-newRvps #plan_id').val(plan);
+
+                $('#modal-newRvps #ip_id').html(obj.res.ip.id);
+                $('#modal-newRvps #ip').html(obj.res.ip.ip);
+                $('#modal-newRvps #ip-flag').addClass('cbf-'+obj.res.ip.flag);
+                $('#modal-newRvps #ip-flag').attr('title', obj.res.ip.country);
+                $('#modal-newRvps #mac').html(obj.res.ip.mac);
+
+
+                $('#modal-newRvps #network_id').val(obj.res.network.id);
+                $('#modal-newRvps #net').html(obj.res.network.subnet);
+                $('#modal-newRvps #net-flag').addClass('cbf-'+obj.res.network.flag);
+                $('#modal-newRvps #net-flag').attr('title', obj.res.network.country);
+                $('#modal-newRvps #gw').html(obj.res.network.gateway);
+                $('#modal-newRvps #netmask').html(obj.res.network.netmask);
+                $('#modal-newRvps #dns-1').html(obj.res.network.dns_1);
+                $('#modal-newRvps #dns-2').html(obj.res.network.dns_2);
+
+                $('#modal-newRvps #plan-name').html(obj.res.plan.flag+'.'+obj.res.plan.plan_name);
+                $('#modal-newRvps #ram').html(obj.res.plan.ram);
+                $('#modal-newRvps #cpu').html(obj.res.plan.cpu_core);
+                $('#modal-newRvps #hdd').html(obj.res.plan.hdd);
+                $('#modal-newRvps #ssd').html(obj.res.plan.ssd);
+                $('#modal-newRvps #nvme').html(obj.res.plan.nvme);
+
             }
             $("#modal-newRvps").modal('show');
         });

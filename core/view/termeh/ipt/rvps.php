@@ -99,21 +99,74 @@
                     <div class="modal-body">
 
                         <!-- Row Form -->
-                        <div class="card mt-4 pt-4 cb-oa">
-                            <div class="col-md-12 cb-ltr">
+                            <div class="row">
 
-                                <form id="creat-rvps" action="ipt/insertIPs" data-reload="true" class="form-inline">
-                                    <input type="text" id="server_nid" name="server_nid">
-                                    <input type="text" id="network_id" name="network_id">
-                                    <input type="text" id="plan_id" name="plan_id">
+                                <div class="col-md-5 mb-4">
+                                    <div class="card">
+                                        <div class="card-header text-center">
+                                            <span id="idc" class="float-left"> </span>
+                                            <strong class="float-right text-dark">
+                                                <i id="host-flag" class="cb-flag" data-toggle="tooltip"data-placement="left"></i>
+                                                <span id="host-server"></span>
+                                            </strong>
+                                            <hr>
+                                            <h4 id="ip" class="panel-title text-success"> </h4>
+                                            <hr>
+                                            <i id="net-flag" class="cb-flag" data-toggle="tooltip"data-placement="left"></i>
+                                            <span id="net" class="text-muted"></span>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="list-group list-group-flush">
+                                                <span class="list-group-item">IP Country: <i id="ip-flag" class="float-right cb-flag" data-toggle="tooltip"data-placement="left"></i></span>
+                                                <span class="list-group-item">Mac: <strong id="mac" class="float-right"> </strong></span>
+                                                <span class="list-group-item">Gateway: <strong id="gw" class="float-right"> </strong></span>
+                                                <span class="list-group-item">Netmask: <strong id="netmask" class="float-right"> </strong></span>
+                                                <span class="list-group-item">DNS 1: <strong id="dns-1" class="float-right"> </strong></span>
+                                                <span class="list-group-item">DNS 2: <strong id="dns-2" class="float-right"> </strong></span>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer wa">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-7">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h4 id="plan-name" class="panel-title text-primary text-center text-uppercase"> </h4>
+                                                    <div class="list-group list-group">
+                                                        <span class="list-group-item">Ram: <strong id="ram" class="float-right"> </strong></span>
+                                                        <span class="list-group-item">CPU Core: <strong id="cpu" class="float-right"> </strong></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="list-group list-group">
+                                                        <span class="list-group-item">HDD: <strong id="hdd" class="float-right"> </strong></span>
+                                                        <span class="list-group-item">SSD: <strong id="ssd" class="float-right"> </strong></span>
+                                                        <span class="list-group-item">NVMe: <strong id="nvme" class="float-right"> </strong></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <form id="creat-rvps" action="ipt/insertIPs" data-reload="true" class="form-inline">
+                                        <input type="hidden" id="server_nid" name="server_nid">
+                                        <input type="hidden" id="network_id" name="network_id">
+                                        <input type="hidden" id="plan_id" name="plan_id">
+                                        <input type="hidden" id="ip_id" name="ip_id">
 
 
-                                    <textarea class="form-control mb-2 mr-sm-2" placeholder="Note" name="note"></textarea>
-                                    <button type="submit" class="btn btn-primary mb-2 ">Add IP</button>
-                                    <div class="cb-ltr w-100 d-block alerts"><br></div>
-                                </form>
+                                        <textarea class="form-control mb-2 mr-sm-2" placeholder="Note" name="note"></textarea>
+                                        <button type="submit" class="btn btn-primary mb-2 ">Add IP</button>
+                                        <div class="cb-ltr w-100 d-block alerts"><br></div>
+                                    </form>
+                                </div>
+
                             </div>
-                        </div>
 
                     </div>
                     <div class="modal-footer">

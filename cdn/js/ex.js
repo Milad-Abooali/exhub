@@ -15,8 +15,9 @@ function scrollToTop() {
 
 /* Bootstrap Basic - Core */
 $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+  $('body').tooltip({selector: '[data-toggle="tooltip"]'});
 })
+
 $("[data-toggle=popover]").each(function(i, obj) {
     $(this).popover({
       html: true,
