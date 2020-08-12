@@ -11,8 +11,18 @@ $(document).ready(function() {
         const classA = $(this).attr('action');
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
-            alert(obj);
 
+            if (obj.e) {
+
+            } else {
+                let server = $('#server').val();
+                let plan = $('#plan').val();
+                $('#server_nid').val(server);
+                $('#plan_id').val(plan);
+                $('#ip_id').html(obj.res.ip['id']);
+                $('#network_id').val(obj.res.ip['network_id']);
+            }
+            $("#modal-newRvps").modal('show');
         });
     })
 

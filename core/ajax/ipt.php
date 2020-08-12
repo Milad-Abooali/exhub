@@ -29,12 +29,19 @@
         /**
          * Add New rVPS Modal
          */
-        function ipt/addRvps()
+        function addRvps()
         {
-            $table = 'ipt_networks';
-            $db = new MySQL(DB_INFO,$table);
+            $db = new MySQL(DB_INFO);
 
-            $locs = $db->select('ipt_networks', 'status=1 AND server_nid='.$_POST['server'],'country',null,null,'country');
+            $network = $db->select('ipt_networks', 'status=1 AND server_nid='.$_POST['server']);
+
+            $ip = false;
+            while ($ip) {
+                $ip = $db->select('ipt_ips', 'status=1 AND server_nid='.$_POST['server']);
+
+            }
+
+
             $output = new stdClass();
             $output->e = false;
             $output->res = $locs;
@@ -46,9 +53,7 @@
          */
         function getNetworksLoc()
         {
-            $table = 'ipt_networks';
-            $db = new MySQL(DB_INFO,$table);
-
+            $db = new MySQL(DB_INFO);
             $locs = $db->select('ipt_networks', 'status=1 AND server_nid='.$_POST['server'],'country',null,null,'country');
             $output = new stdClass();
             $output->e = false;
