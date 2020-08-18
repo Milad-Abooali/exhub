@@ -149,21 +149,36 @@
                                                         <span class="list-group-item">NVMe: <strong id="nvme" class="float-right"> </strong></span>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-md-12 border border-warning my-2">
+                                                    <div class="row">
+                                                        <span class="col bg-warning">Limits: </span>
+                                                        <span class="col text-center">RAM: <strong id="ram_limit" class="text-danger"> </strong></span>
+                                                        <span class="col text-center">CPU: <strong id="cpu_limit" class="text-danger"> </strong></span>
+                                                        <span class="col text-center">DISK: <strong id="disk_limit" class="text-danger"> </strong></span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="py-3">
+                                        <form id="creat-rvps" action="ipt/insertIPs" data-reload="true" >
+                                            <input type="hidden" id="server_nid" name="server_nid">
+                                            <input type="hidden" id="network_id" name="network_id">
+                                            <input type="hidden" id="plan_id" name="plan_id">
+                                            <input type="hidden" id="ip_id" name="ip_id">
+                                            <input type="text" class="form-control mb-2" id="uuid" name="uuid" placeholder="UUID">
 
-                                    <form id="creat-rvps" action="ipt/insertIPs" data-reload="true" class="form-inline">
-                                        <input type="hidden" id="server_nid" name="server_nid">
-                                        <input type="hidden" id="network_id" name="network_id">
-                                        <input type="hidden" id="plan_id" name="plan_id">
-                                        <input type="hidden" id="ip_id" name="ip_id">
+                                            <select id="os" name="os" class="custom-select mb-2" required>
+                                                <option> OS</option>
 
+                                            </select>
 
-                                        <textarea class="form-control mb-2 mr-sm-2" placeholder="Note" name="note"></textarea>
-                                        <button type="submit" class="btn btn-primary mb-2 ">Add IP</button>
-                                        <div class="cb-ltr w-100 d-block alerts"><br></div>
-                                    </form>
+                                            <textarea class="form-control mb-2" placeholder="Note" name="note"></textarea>
+                                            <button type="submit" class="btn btn-primary mb-2 ">Add IP</button>
+                                            <div class="cb-ltr w-100 d-block alerts"><br></div>
+                                        </form>
+                                    </div>
                                 </div>
 
                             </div>

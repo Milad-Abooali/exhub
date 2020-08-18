@@ -50,11 +50,30 @@ $(document).ready(function() {
                 $('#modal-newRvps #ssd').html(obj.res.plan.ssd);
                 $('#modal-newRvps #nvme').html(obj.res.plan.nvme);
 
+                $('#modal-newRvps #ram_limit').html(obj.res.limits.ram_limit);
+                $('#modal-newRvps #cpu_limit').html(obj.res.limits.cpu_limit);
+                $('#modal-newRvps #disk_limit').html(obj.res.limits.disk_limit);
+
+                let options;
+                $.each(obj.res.os,function( key, value ) {
+                    options +='<option value="'+value['id']+'"> '+value['type']+' '+value['name']+' '+value['version']+' '+' </option>'
+                });
+                $('#modal-newRvps #os').html(options);
+
             }
             $("#modal-newRvps").modal('show');
         });
     })
 
+    $("[data-toggle=popover]").each(function(i, obj) {
+        $(this).popover({
+            html: true,
+            content: function() {
+                var id = $(this).attr('id')
+                return $('#popover-content-' + id).html();
+            }
+        });
+    });
 
     // Ajax IP LOC  - ipt/rvps
     $('body').on('keyup change','#server', function(){

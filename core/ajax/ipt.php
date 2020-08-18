@@ -45,6 +45,16 @@
             $table = 'fin_plans';
             $output->res['plan'] = $db->selectId($_POST['plan'],'*',$table);
 
+            $table = 'fin_plan_limits';
+            $where = "plan_name='".$output->res['plan']['plan_name']."'";
+            $output->res['limits'] = $db->selectRow($where, null,$table);
+
+            $table = 'ipt_os';
+            $plan_cpu = $output->res['plan']['cpu_core'];
+            $plan_ram = $output->res['plan']['ram'];
+            $where = 'min_ram<='.$plan_ram.' AND min_cpu<='.$plan_cpu;
+            $output->res['os'] =  $db->select($table, $where);
+
             $ip = false;
             foreach ($networks as $network) {
                 $output->res['network'] = $network;
