@@ -38,3 +38,5 @@
     $this->data['ip_loc'] = $db->select('ipt_networks', 'status=1','country',null,null,'country');
 
     // EXSi test
+
+    $host = new ESXi('192.1.1.1');
