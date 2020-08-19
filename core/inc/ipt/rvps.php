@@ -39,4 +39,4 @@
 
     // EXSi test
 
-    $host = new ESXi('192.1.1.1');
+    $host = new ESXi('178.216.251.67');

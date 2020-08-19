@@ -16,9 +16,9 @@
     if (!defined('START')) die('__ You just find me! 😹 . . . <a href="javascript:history.back()">Go Back</a>');
     ini_set("soap.wsdl_cache_enabled", 0);
 
+    use Exception;
     use soapclient;
     use SoapFault;
-
 
 
     class ESXi
@@ -33,7 +33,7 @@
          */
         function __construct($host)
         {
-            $this->loadSoap($host);
+            $this->_loadSoap($host);
         }
 
         /**
@@ -41,11 +41,11 @@
          * @param $host
          * @return bool
          */
-        function loadSoap($host)
+        private function _loadSoap($host)
         {
             if ($this->soapLoad == true) return false;
-            $wsdl  = 'https://' . $host . '/sdk/vimService.wsdl';
-            $sdk   = 'https://' . $host . '/sdk';
+            $wsdl = 'https://' . $host . '/sdk/vimService.wsdl';
+            $sdk = 'https://' . $host . '/sdk';
             $noSSL = stream_context_create(array(
               'ssl' => array(
                 'verify_peer' => false,
@@ -62,9 +62,48 @@
             try {
                 $this->soap = new soapclient($wsdl, $options);
                 $this->soapLoad = true;
-                M::aLog('core', "Soap loaded for <b style='color:blueviolet'>$host</b>", 0, 'EXSi');
+                M::aLog('core', "Soap loaded for <b style='color:blue'>$host</b>", 0, 'EXSi');
                 return true;
             } catch (SoapFault $e) {
+                M::aLog('core', $e->getMessage(), 1, 'EXSi');
+                return false;
+            }
+        }
+
+        /**
+         * Initials SOAP
+         * @param $host
+         * @return bool
+         */
+        private function init ($host) {
+            if (!$this->soapLoad == true) return false;
+            try {
+                $response = $this->soap->RetrieveServiceContent(array('_this'=>'ServiceInstance'));
+            } catch (Exception $e) {
+                M::aLog('core', $e->getMessage(), 1, 'EXSi');
+                return false;
+            }
+            $this->returnval=$response->returnval;
+            return true;
+        }
+
+        /**
+         * Login to host
+         * @param $host
+         * @param $user
+         * @param $password
+         * @return bool|int
+         */
+        private function login ($host, $user, $password) {
+            $retval = $this->init($host);
+            if($retval==false) return false;
+            try	 {
+                $session = $this->returnval->sessionManager;
+                $response = $this->soap->Login(array('_this'=>$session,'userName'=>$user,'password'=>$password));
+                return 1;
+            } catch (Exception $e) {
+                if($e->getMessage()=='Cannot complete login due to an incorrect user name or password.')
+                    return 2;
                 M::aLog('core', $e->getMessage(), 1, 'EXSi');
                 return false;
             }
