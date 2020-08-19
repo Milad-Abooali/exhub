@@ -17,6 +17,7 @@
     ini_set("soap.wsdl_cache_enabled", 0);
 
     use soapclient;
+    use SoapFault;
 
 
 
@@ -63,7 +64,7 @@
                 $this->soapLoad = true;
                 M::aLog('core', "Soap loaded for <b style='color:blueviolet'>$host</b>", 0, 'EXSi');
                 return true;
-            } catch (Throwable $e) {
+            } catch (SoapFault $e) {
                 M::aLog('core', $e->getMessage(), 1, 'EXSi');
                 return false;
             }
