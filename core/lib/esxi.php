@@ -30,10 +30,13 @@
         /**
          * ESXi constructor.
          * @param $host
+         * @param $user
+         * @param $password
          */
-        function __construct($host)
+        function __construct($host, $user, $password)
         {
             $this->_loadSoap($host);
+            $this->_login ($host, $user, $password);
         }
 
         /**
@@ -75,7 +78,7 @@
          * @param $host
          * @return bool
          */
-        private function init ($host) {
+        private function _init ($host) {
             if (!$this->soapLoad == true) return false;
             try {
                 $response = $this->soap->RetrieveServiceContent(array('_this'=>'ServiceInstance'));
@@ -94,17 +97,18 @@
          * @param $password
          * @return bool|int
          */
-        private function login ($host, $user, $password) {
-            $retval = $this->init($host);
+        private function _login ($host, $user, $password) {
+            $retval = $this->_init($host);
             if($retval==false) return false;
             try	 {
                 $session = $this->returnval->sessionManager;
                 $response = $this->soap->Login(array('_this'=>$session,'userName'=>$user,'password'=>$password));
+                M::aLog('core', 'Loged in as '.$user, 0, 'EXSi');
                 return 1;
             } catch (Exception $e) {
+                M::aLog('core', $e->getMessage(), 1, 'EXSi');
                 if($e->getMessage()=='Cannot complete login due to an incorrect user name or password.')
                     return 2;
-                M::aLog('core', $e->getMessage(), 1, 'EXSi');
                 return false;
             }
         }
