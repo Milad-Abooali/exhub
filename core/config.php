@@ -21,7 +21,7 @@
     error_reporting(E_ALL);
     define("LOGGER", true);  // Active Logger
     define("LOG", [
-      "core"          => false,
+      "core"          => true,
       "loader"        => false,
       "database"      => true,
       "language"      => false,

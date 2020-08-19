@@ -21,6 +21,7 @@
         public $ERROR;
         private $db, $user=array();
 
+
         /**
          * SimpleUser constructor.
          */

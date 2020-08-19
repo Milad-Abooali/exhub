@@ -36,3 +36,5 @@
     $this->data['plans'] = $db->select('fin_plans', "service_type='VPS'",'id, plan_name',null,null,'plan_name');
     $this->data['servers'] = $db->select('ipt_servers', 'status=1','nid');
     $this->data['ip_loc'] = $db->select('ipt_networks', 'status=1','country',null,null,'country');
+
+    // EXSi test
