@@ -41,4 +41,3 @@
 
     $host = new ESXi('178.216.251.67','root','CB@2019#r28');
 
-    M::console($host->getVMs());

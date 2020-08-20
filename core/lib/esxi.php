@@ -37,7 +37,7 @@
         function __construct($host, $user, $password)
         {
             $this->_loadSoap($host);
-//            $this->_login ($host, $user, $password);
+            $this->_login ($host, $user, $password);
         }
 
         /**
@@ -108,10 +108,11 @@
                 return 1;
             } catch (Exception $e) {
                 M::aLog('core', $e->getMessage(), 1, 'EXSi');
-                if($e->getMessage()=='Cannot complete login due to an incorrect user name or password.')
-                    return 2;
+                if($e->getMessage()=='Cannot complete login due to an incorrect user name or password.') return 2;
                 return false;
             }
+            M::console($response);
+
         }
 
 
