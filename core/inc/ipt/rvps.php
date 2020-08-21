@@ -37,9 +37,3 @@
     $this->data['servers'] = $db->select('ipt_servers', 'status=1','nid');
     $this->data['ip_loc'] = $db->select('ipt_networks', 'status=1','country',null,null,'country');
 
-    // EXSi test
-
-    $host = new ESXi('178.216.251.67','root','CB@2019#r28');
-
-    M::console($host->getVMsByName('178.216.251.69'));
-    M::console($host->getVMsByName('_A'));

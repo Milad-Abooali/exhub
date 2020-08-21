@@ -27,6 +27,31 @@
     if ($_SESSION['M']['user'] ?? false) {
 
         /**
+         * Get VM from host by ip id
+         */
+        function getVM($ip_id)
+        {
+
+            $output = new stdClass();
+
+            $db = new MySQL(DB_INFO);
+            $table = 'ipt_ips';
+            $ip = $db->selectId($ip_id,'*',$table);
+
+            $table = 'ipt_networks';
+            $server_nid = $db->selectId($ip['network'],'server_nid',$table);
+
+            $table = 'ipt_servers';
+            $where = 'nid='.$server_nid;
+            $server = $db->selectRow($where, null,$table);
+
+            $host = new ESXi($server['main_ip'],'exapi','EX@api#'.$server_nid);
+
+            M::console($host->getVMsByName('178.216.251.69'));
+            M::console($host->getVMsByName('_A'));
+        }
+
+        /**
          * Add New rVPS Modal
          */
         function addRvps()
