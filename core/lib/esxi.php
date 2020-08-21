@@ -116,10 +116,10 @@
 
 
         /**
-         * Get VM by IP
+         * Get VM by Name
          * @return array|bool
          */
-        public function getVMsByIP($ip)
+        public function getVMsByName($ip)
         {
             $ss1 = new soapvar(array ('name' => 'FolderTraversalSpec'), SOAP_ENC_OBJECT, null, null, 'selectSet', null);
             $ss2 = new soapvar(array ('name' => 'DataCenterVMTraversalSpec'), SOAP_ENC_OBJECT, null, null, 'selectSet', null);
@@ -134,7 +134,6 @@
                 return false;
             }
             $vmlist=array();
-            M::console($res->returnval);
             foreach($res->returnval as $vm) {
                 if (strpos($vm->propSet[1]->val, $ip) !== false) {
                     $vm_id = $vm->obj->_;
