@@ -28,6 +28,7 @@
 
         /**
          * Get VM from host by ip id
+         * @param $ip_id
          */
         function getVM($ip_id)
         {
@@ -46,9 +47,9 @@
             $server = $db->selectRow($where, null,$table);
 
             $host = new ESXi($server['main_ip'],'exapi','EX@api#'.$server_nid);
+            $output->res = $host->getVMsByName('_A');
 
-            M::console($host->getVMsByName('178.216.251.69'));
-            M::console($host->getVMsByName('_A'));
+            echo json_encode($output);
         }
 
         /**
