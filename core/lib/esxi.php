@@ -111,11 +111,52 @@
                 if($e->getMessage()=='Cannot complete login due to an incorrect user name or password.') return 2;
                 return false;
             }
-            M::console($response);
 
         }
 
 
+        /**
+         * Get VM by IP
+         * @return array|bool
+         */
+        public function getVMsByIP($ip)
+        {
+            $ss1 = new soapvar(array ('name' => 'FolderTraversalSpec'), SOAP_ENC_OBJECT, null, null, 'selectSet', null);
+            $ss2 = new soapvar(array ('name' => 'DataCenterVMTraversalSpec'), SOAP_ENC_OBJECT, null, null, 'selectSet', null);
+            $a = array ('name' => 'FolderTraversalSpec', 'type' => 'Folder', 'path' => 'childEntity', 'skip' => false, $ss1, $ss2);
+            $ss = new soapvar(array ('name' => 'FolderTraversalSpec'), SOAP_ENC_OBJECT, null, null, 'selectSet', null);
+            $b = array ('name' => 'DataCenterVMTraversalSpec', 'type' => 'Datacenter', 'path' => 'vmFolder', 'skip' => false, $ss);
+            $res = null;
+            try {
+                $res = $this->soap->RetrieveProperties(array('_this'=>$this->returnval->propertyCollector, 'specSet'=>array('propSet'=>array ('type' => 'VirtualMachine', 'all' => false, 'pathSet' => array ('name','config.uuid','runtime.powerState')), 'objectSet'=>array('obj'=>$this->returnval->rootFolder, 'skip'=>false, 'selectSet'=>array(new soapvar($a, SOAP_ENC_OBJECT, 'TraversalSpec'), new soapvar($b, SOAP_ENC_OBJECT, 'TraversalSpec'))))));
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                return false;
+            }
+            $vmlist=array();
+            M::console($res->returnval);
+            foreach($res->returnval as $vm) {
+                if (strpos($vm->propSet[1]->val, $ip) !== false) {
+                    $vm_id = $vm->obj->_;
+                    $name = $status=$uuid='';
+                    foreach($vm->propSet as $prop) {
+                        if($prop->name=='name')
+                            $vmlist[$vm_id]['name']=$prop->val;
+                        if($prop->name=='runtime.powerState')
+                            $vmlist[$vm_id]['state']=$prop->val;
+                        if($prop->name=='config.uuid')
+                            $vmlist[$vm_id]['uuid']=$prop->val;
+                    }
+                }
+
+            }
+            return $vmlist;
+        }
+
+        /**
+         * Get All VMs
+         * @return array|bool
+         */
         public function getVMs()
         {
             $ss1 = new soapvar(array ('name' => 'FolderTraversalSpec'), SOAP_ENC_OBJECT, null, null, 'selectSet', null);
@@ -131,20 +172,17 @@
                 return false;
             }
             $vmlist=array();
-            foreach($res->returnval as $v) {
-                $v=$v->propSet;
-                $name='';
-                $uuid='';
-                foreach($v as $v2) {
-                    if($v2->name=='name')
-                        $name=$v2->val;
-                    if($v2->name=='runtime.powerState')
-                        //$name = (($v2->val=='poweredOn') ? 'ON ••• ' : (($v2->val=='poweredOff') ? 'OF °°° ' : 'SU °°° '))."  ".strstr($name, '_', true)." → → → ".strstr($name, '_', false);
-                        $name = (($v2->val=='poweredOn') ? 'ON ••• ' : (($v2->val=='poweredOff') ? 'OF °°° ' : 'SU °°° '))."  ".str_replace('_', " → ", $name);
-                    if($v2->name=='config.uuid')
-                        $uuid=$v2->val;
+            foreach($res->returnval as $vm) {
+                $vm_id = $vm->obj->_;
+                $name = $status=$uuid='';
+                foreach($vm->propSet as $prop) {
+                    if($prop->name=='name')
+                        $vmlist[$vm_id]['name']=$prop->val;
+                    if($prop->name=='runtime.powerState')
+                        $vmlist[$vm_id]['state']=$prop->val;
+                    if($prop->name=='config.uuid')
+                        $vmlist[$vm_id]['uuid']=$prop->val;
                 }
-                $vmlist[$name]=$uuid;
             }
             return $vmlist;
         }
