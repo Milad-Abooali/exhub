@@ -4,6 +4,11 @@ $(document).ready(function() {
      * IPT rVps
      */
 
+    // Ajax Get VM Data  - ipt/rvps
+    $('body').on('click','#get-vm-data', function(event){
+
+    })
+
     // Ajax Add New rVPS  - ipt/rvps
     $('body').on('submit','form#add-rvps', function(event){
         event.preventDefault();
@@ -64,16 +69,6 @@ $(document).ready(function() {
             $("#modal-newRvps").modal('show');
         });
     })
-
-    $("[data-toggle=popover]").each(function(i, obj) {
-        $(this).popover({
-            html: true,
-            content: function() {
-                var id = $(this).attr('id')
-                return $('#popover-content-' + id).html();
-            }
-        });
-    });
 
     // Ajax IP LOC  - ipt/rvps
     $('body').on('keyup change','#server', function(){

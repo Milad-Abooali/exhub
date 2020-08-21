@@ -162,7 +162,11 @@
                                         </div>
                                     </div>
                                     <div class="py-3">
-                                        <form id="creat-rvps" action="ipt/insertIPs" data-reload="true" >
+                                        <div class="text-center pv-3 text-muted">
+                                            Get virtual machine data from host server after created:
+                                         <button id="get-vm-data" class="btn btn-success my-3">Get VM Data</button>
+                                        </div>
+                                        <form id="creat-rvps" action="ipt/insertIPs" data-reload="true" class="d-none">
                                             <input type="hidden" id="server_nid" name="server_nid">
                                             <input type="hidden" id="network_id" name="network_id">
                                             <input type="hidden" id="plan_id" name="plan_id">
