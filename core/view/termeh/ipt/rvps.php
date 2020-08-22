@@ -169,6 +169,7 @@
                                          <div id="get-vm-data-error" class="w-100 d-block alerts alert-warning"><br></div>
                                         </div>
                                         <form id="creat-rvps" action="ipt/insertIPs" data-reload="true" class="d-none">
+                                            <input type="hidden" id="vm_name" name="vm_name">
                                             <input type="hidden" id="server_nid" name="server_nid">
                                             <input type="hidden" id="network_id" name="network_id">
                                             <input type="hidden" id="plan_id" name="plan_id">
@@ -177,7 +178,6 @@
 
                                             <select id="os" name="os" class="custom-select mb-2" required>
                                                 <option> OS</option>
-
                                             </select>
 
                                             <textarea class="form-control mb-2" placeholder="Note" name="note"></textarea>

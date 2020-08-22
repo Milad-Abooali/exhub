@@ -17,9 +17,11 @@ $(document).ready(function() {
                 $('#get-vm-data-error').html(obj.res);
                 $('#get-vm-data').html('Get VM Data');
             } else {
-                if (obj.res) {
-                    $('#get-vm-data-error').fadeOut();
-                    $('#creat-rvps').fadeIn();
+                if (obj.res.length==1) {
+                    $('#get-vm-data-error').html('Data loaded, VM is '+obj.res.state);
+                    $('#modal-newRvps #creat-rvps').removeClass('d-none')
+                    $('#modal-newRvps #uuid').val(obj.res.uuid);
+                    $('#modal-newRvps #vm_name').val(obj.res.name);
                 } else {
                     $('#get-vm-data-error').html('No result, Is VM created?');
                 }
