@@ -45,6 +45,17 @@ function tableReload(table) {
   $('#'+table).DataTable().ajax.reload(null, false);
 }
 
+/* Copy Text */
+$('.cb-copy').hover(function () {
+  // will not work, no user action
+  $('input').select();
+  document.execCommand('copy');
+});
+
+$('.cb-copy').mousedown(function () {
+  //works
+  document.execCommand('copy');
+});
 
 /* Modal */
 

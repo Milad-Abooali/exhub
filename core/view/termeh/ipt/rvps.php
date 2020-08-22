@@ -161,10 +161,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="py-3">
-                                        <div class="text-center pv-3 text-muted">
-                                            Get virtual machine data from host server after created:
+                                    <div class=" ">
+                                        <div class="text-center text-muted">
+                                            Creat VM <input class="bg-warning px-2 rounded" value="ddd" disabled> than get data:
                                          <button id="get-vm-data" class="btn btn-success my-3">Get VM Data</button>
+                                         <div id="get-vm-data-error" class="cb-copy w-100 d-block alerts alert-warning"><br></div>
                                         </div>
                                         <form id="creat-rvps" action="ipt/insertIPs" data-reload="true" class="d-none">
                                             <input type="hidden" id="server_nid" name="server_nid">

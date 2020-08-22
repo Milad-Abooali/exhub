@@ -6,12 +6,32 @@ $(document).ready(function() {
 
     // Ajax Get VM Data  - ipt/rvps
     $('body').on('click','#get-vm-data', function(event){
-
+        $('#get-vm-data').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...');
+        const ip = $('#ip').html();
+        const server_nid = $('#server_nid').val();
+        const data = 'server_nid='+server_nid+'&ip='+ip;
+        const classA = 'ipt/getVM'
+        ajaxCall (classA, data,function(response) {
+            let obj = JSON.parse(response);
+            if (obj.e) {
+                $('#get-vm-data-error').html(obj.res);
+                $('#get-vm-data').html('Get VM Data');
+            } else {
+                console.log(obj.res);
+                if (obj.res.length>0) {
+                    $('#get-vm-data-error').html('Data Loaded.');
+                } else {
+                    $('#get-vm-data-error').html('No result, Is VM created?');
+                }
+                $('#get-vm-data').html('Update VM Data');
+            }
+        });
     })
 
     // Ajax Add New rVPS  - ipt/rvps
     $('body').on('submit','form#add-rvps', function(event){
         event.preventDefault();
+        $('#get-vm-data').html('Get VM Data');
         const data = $(this).serialize();
         const classA = $(this).attr('action');
         ajaxCall (classA, data,function(response) {
@@ -32,7 +52,7 @@ $(document).ready(function() {
 
                 $('#modal-newRvps #plan_id').val(plan);
 
-                $('#modal-newRvps #ip_id').html(obj.res.ip.id);
+                $('#modal-newRvps #ip_id').val(obj.res.ip.id);
                 $('#modal-newRvps #ip').html(obj.res.ip.ip);
                 $('#modal-newRvps #ip-flag').addClass('cbf-'+obj.res.ip.flag);
                 $('#modal-newRvps #ip-flag').attr('title', obj.res.ip.country);

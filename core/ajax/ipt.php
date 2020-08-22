@@ -30,24 +30,21 @@
          * Get VM from host by ip id
          * @param $ip_id
          */
-        function getVM($ip_id)
+        function getVM()
         {
 
             $output = new stdClass();
 
+            $ip = $_POST['ip'] ?? null;
+            $server_nid = $_POST['server_nid'] ?? 0;
+
             $db = new MySQL(DB_INFO);
-            $table = 'ipt_ips';
-            $ip = $db->selectId($ip_id,'*',$table);
-
-            $table = 'ipt_networks';
-            $server_nid = $db->selectId($ip['network'],'server_nid',$table);
-
             $table = 'ipt_servers';
             $where = 'nid='.$server_nid;
             $server = $db->selectRow($where, null,$table);
 
             $host = new ESXi($server['main_ip'],'exapi','EX@api#'.$server_nid);
-            $output->res = $host->getVMsByName('_A');
+            $output->res = $host->getVMsByName($ip);
 
             echo json_encode($output);
         }
