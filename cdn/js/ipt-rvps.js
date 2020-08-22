@@ -43,6 +43,8 @@ $(document).ready(function() {
                 let server = $('#server').val();
                 let plan = $('#plan').val();
 
+                $('#modal-newRvps #vm_name').html(obj.res.ip.ip+'_'+obj.res.plan.plan_name+'__r');
+
                 $('#modal-newRvps #server_nid').val(server);
                 $('#modal-newRvps #host-server').html(obj.res.server.nid);
                 $('#modal-newRvps #idc').html(obj.res.server.datacenter);

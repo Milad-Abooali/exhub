@@ -43,8 +43,8 @@
     </div>
     <hr>
     <div class="cb-rtl row">
-        menu
-     <!-- <a class="btn col-6" href="<?= APP_URL ?>کنسرسیوم" title="طرح تجمیع کدباکس"> کنسرسیوم </a> -->
+        menu d
+        <!-- <a class="btn col-6" href="<?= APP_URL ?>کنسرسیوم" title="طرح تجمیع کدباکس"> کنسرسیوم </a> -->
     </div>
   </div>
 </div>

@@ -45,6 +45,29 @@ function tableReload(table) {
   $('#'+table).DataTable().ajax.reload(null, false);
 }
 
+/* Copy Text */
+function copyText(text) {
+  $("#cb-copy").val(text).select();
+  document.execCommand("copy");
+  $('#cb-copy').remove();
+}
+
+$('body').on('click','.cb-copy-data', function(){
+  $('<input id="cb-copy" value="test">').insertAfter($(this));
+  copyText($(this).data('cb-copy'));
+});
+$('body').on('click','.cb-copy-html', function(){
+  $('<input id="cb-copy" value="test">').insertAfter($(this));
+  copyText($(this).html());
+});
+$('body').on('click','.cb-copy-val', function(){
+  $('<input id="cb-copy" value="test">').insertAfter($(this));
+  copyText($(this).val());
+});
+
+
+
+
 /* Modal */
 
 // Modal Maker - Core
@@ -55,6 +78,7 @@ function makeModal(title,body,size='md',footer=null) {
   if (footer) $("#modal .modal-footer").html(footer);
   $("#modal").modal('show');
 }
+
 
 /* Ajax Actions */
 
