@@ -135,17 +135,19 @@
             }
             $vmlist=array();
             foreach($res->returnval as $vm) {
+                $i=0;
                 if (strpos($vm->propSet[1]->val, $ip) !== false) {
-                    $vm_id = $vm->obj->_;
+                    $vmlist[$i]['object_id'] = $vm->obj->_;
                     $name = $status=$uuid='';
                     foreach($vm->propSet as $prop) {
                         if($prop->name=='name')
-                            $vmlist[$vm_id]['name']=$prop->val;
+                            $vmlist[$i]['name']=$prop->val;
                         if($prop->name=='runtime.powerState')
-                            $vmlist[$vm_id]['state']=$prop->val;
+                            $vmlist[$i]['state']=$prop->val;
                         if($prop->name=='config.uuid')
-                            $vmlist[$vm_id]['uuid']=$prop->val;
+                            $vmlist[$i]['uuid']=$prop->val;
                     }
+                    $i++;
                 }
 
             }
