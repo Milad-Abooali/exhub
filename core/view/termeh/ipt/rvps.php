@@ -104,25 +104,25 @@
                                 <div class="col-md-5 mb-4">
                                     <div class="card">
                                         <div class="card-header text-center">
-                                            <span id="idc" class="float-left"> </span>
+                                            <span id="idc" class="float-left cb-copy-html"> </span>
                                             <strong class="float-right text-dark">
                                                 <i id="host-flag" class="cb-flag" data-toggle="tooltip"data-placement="left"></i>
-                                                <span id="host-server"></span>
+                                                <span id="host-server" class="cb-copy-html"></span>
                                             </strong>
                                             <hr>
-                                            <h4 id="ip" class="panel-title text-success"> </h4>
+                                            <h4 id="ip" class="panel-title text-success cb-copy-html"> </h4>
                                             <hr>
                                             <i id="net-flag" class="cb-flag" data-toggle="tooltip"data-placement="left"></i>
-                                            <span id="net" class="text-muted"></span>
+                                            <span id="net" class="text-muted cb-copy-html"></span>
                                         </div>
                                         <div class="card-body">
                                             <div class="list-group list-group-flush">
-                                                <span class="list-group-item">IP Country: <i id="ip-flag" class="float-right cb-flag" data-toggle="tooltip"data-placement="left"></i></span>
-                                                <span class="list-group-item">Mac: <strong id="mac" class="float-right"> </strong></span>
-                                                <span class="list-group-item">Gateway: <strong id="gw" class="float-right"> </strong></span>
-                                                <span class="list-group-item">Netmask: <strong id="netmask" class="float-right"> </strong></span>
-                                                <span class="list-group-item">DNS 1: <strong id="dns-1" class="float-right"> </strong></span>
-                                                <span class="list-group-item">DNS 2: <strong id="dns-2" class="float-right"> </strong></span>
+                                                <span class="list-group-item">IP Country: <i id="ip-flag" class="float-right cb-flag cb-copy-html" data-toggle="tooltip"data-placement="left"></i></span>
+                                                <span class="list-group-item">Mac: <strong id="mac" class="float-right cb-copy-html"> </strong></span>
+                                                <span class="list-group-item">Gateway: <strong id="gw" class="float-right cb-copy-html"> </strong></span>
+                                                <span class="list-group-item">Netmask: <strong id="netmask" class="float-right cb-copy-html"> </strong></span>
+                                                <span class="list-group-item">DNS 1: <strong id="dns-1" class="float-right cb-copy-html"> </strong></span>
+                                                <span class="list-group-item">DNS 2: <strong id="dns-2" class="float-right cb-copy-html"> </strong></span>
                                             </div>
                                         </div>
                                         <div class="card-footer wa">
@@ -136,26 +136,26 @@
                                         <div class="card-header">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <h4 id="plan-name" class="panel-title text-primary text-center text-uppercase"> </h4>
+                                                    <h4 id="plan-name" class="panel-title text-primary text-center text-uppercase cb-copy-html"> </h4>
                                                     <div class="list-group list-group">
-                                                        <span class="list-group-item">Ram: <strong id="ram" class="float-right"> </strong></span>
-                                                        <span class="list-group-item">CPU Core: <strong id="cpu" class="float-right"> </strong></span>
+                                                        <span class="list-group-item">Ram: <strong id="ram" class="float-right cb-copy-html"> </strong></span>
+                                                        <span class="list-group-item">CPU Core: <strong id="cpu" class="float-right cb-copy-html"> </strong></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="list-group list-group">
-                                                        <span class="list-group-item">HDD: <strong id="hdd" class="float-right"> </strong></span>
-                                                        <span class="list-group-item">SSD: <strong id="ssd" class="float-right"> </strong></span>
-                                                        <span class="list-group-item">NVMe: <strong id="nvme" class="float-right"> </strong></span>
+                                                        <span class="list-group-item">HDD: <strong id="hdd" class="float-right cb-copy-html"> </strong></span>
+                                                        <span class="list-group-item">SSD: <strong id="ssd" class="float-right cb-copy-html"> </strong></span>
+                                                        <span class="list-group-item">NVMe: <strong id="nvme" class="float-right cb-copy-html"> </strong></span>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-12 border border-warning my-2">
                                                     <div class="row">
                                                         <span class="col bg-warning">Limits: </span>
-                                                        <span class="col text-center">RAM: <strong id="ram_limit" class="text-danger"> </strong></span>
-                                                        <span class="col text-center">CPU: <strong id="cpu_limit" class="text-danger"> </strong></span>
-                                                        <span class="col text-center">DISK: <strong id="disk_limit" class="text-danger"> </strong></span>
+                                                        <span class="col text-center">RAM: <strong id="ram_limit" class="text-danger cb-copy-html"> </strong></span>
+                                                        <span class="col text-center">CPU: <strong id="cpu_limit" class="text-danger cb-copy-html"> </strong></span>
+                                                        <span class="col text-center">DISK: <strong id="disk_limit" class="text-danger cb-copy-html"> </strong></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -163,7 +163,7 @@
                                     </div>
                                     <div class="pt-4">
                                         <div class="text-center text-muted">
-                                         Creat VM <button id="vm_name" class="cb-copy-html btn-warning rounded">178.216.251.65</button> than get data:
+                                         Creat VM named <button id="vm_name" class="cb-copy-html btn-outline-dark rounded"> </button> than get data:
                                          <br>
                                          <button id="get-vm-data" class="btn btn-success my-3">Get VM Data</button>
                                          <div id="get-vm-data-error" class="w-100 d-block alerts alert-warning"><br></div>
@@ -190,7 +190,8 @@
                             </div>
 
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer d-flex justify-content-between">
+                        <div class="small text-muted">* Copy items to clipboard by click on them.</div>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>

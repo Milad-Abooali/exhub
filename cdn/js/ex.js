@@ -55,14 +55,39 @@ function copyText(text) {
 $('body').on('click','.cb-copy-data', function(){
   $('<input id="cb-copy" value="test">').insertAfter($(this));
   copyText($(this).data('cb-copy'));
+  console.log('Copy Done ...');
 });
 $('body').on('click','.cb-copy-html', function(){
-  $('<input id="cb-copy" value="test">').insertAfter($(this));
-  copyText($(this).html());
+  let _this = $(this);
+  if (!_this.data('copy')) {
+    _this.data('copy',1);
+    $('<input id="cb-copy" value="test">').insertAfter($(this));
+    let text = _this.html();
+    copyText(text);
+    _this.html('<small>Copy Done ...<small>');
+    setTimeout(function(){
+      _this.html(text);
+    }, 300);
+    setTimeout(function(){
+      _this.data('copy',0);
+    }, 300);
+  }
+
 });
 $('body').on('click','.cb-copy-val', function(){
-  $('<input id="cb-copy" value="test">').insertAfter($(this));
-  copyText($(this).val());
+  let _this = $(this);
+  if (!_this.data('copy')) {
+    $('<input id="cb-copy" value="test">').insertAfter($(this));
+    let text = _this.val();
+    copyText(text);
+    _this.val('Copy Done ...');
+    setTimeout(function(){
+      _this.val(text);
+    }, 300);
+    setTimeout(function(){
+      _this.data('copy',0);
+    }, 300);
+  }
 });
 
 

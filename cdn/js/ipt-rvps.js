@@ -6,10 +6,10 @@ $(document).ready(function() {
 
     // Ajax Get VM Data  - ipt/rvps
     $('body').on('click','#get-vm-data', function(event){
-        $('#get-vm-data').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...');
-        const ip = $('#ip').html();
+        $('#get-vm-data').html(' <span class="spinner-border " role="status" aria-hidden="true"></span> Looking for VM... ');
+        const name = $('#vm_name').html();
         const server_nid = $('#server_nid').val();
-        const data = 'server_nid='+server_nid+'&ip='+ip;
+        const data = 'server_nid='+server_nid+'&name='+name;
         const classA = 'ipt/getVM'
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
@@ -17,9 +17,9 @@ $(document).ready(function() {
                 $('#get-vm-data-error').html(obj.res);
                 $('#get-vm-data').html('Get VM Data');
             } else {
-                console.log(obj.res);
-                if (obj.res.length>0) {
-                    $('#get-vm-data-error').html('Data Loaded.');
+                if (obj.res) {
+                    $('#get-vm-data-error').fadeOut();
+                    $('#creat-rvps').fadeIn();
                 } else {
                     $('#get-vm-data-error').html('No result, Is VM created?');
                 }

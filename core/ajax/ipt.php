@@ -35,7 +35,7 @@
 
             $output = new stdClass();
 
-            $ip = $_POST['ip'] ?? null;
+            $name = $_POST['name'] ?? null;
             $server_nid = $_POST['server_nid'] ?? 0;
 
             $db = new MySQL(DB_INFO);
@@ -44,7 +44,7 @@
             $server = $db->selectRow($where, null,$table);
 
             $host = new ESXi($server['main_ip'],'exapi','EX@api#'.$server_nid);
-            $output->res = $host->getVMsByName($ip);
+            $output->res = $host->getVMsByName($name)[0];
 
             echo json_encode($output);
         }
