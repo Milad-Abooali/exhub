@@ -28,6 +28,34 @@
 
 
         /**
+         * Update rVPS Status
+         */
+        function rvpsStatus () {
+            global $actlog;
+            $output = new stdClass();
+
+            $rid = $_POST['rid'];
+            $status['status'] = $_POST['status'];
+
+            $table = 'ipt_rvps';
+            $db = new MySQL(DB_INFO, $table);
+            $res = $db->updateId($rid,$status);
+
+            $text = [
+              0 =>  'VM Created',
+              1 =>  'OS Installed',
+              2 =>  'Network Connected',
+              3 =>  'Ezzz Done',
+              4 =>  'Ready VPS'
+            ];
+
+            $output->res = $text[$status['status']];
+
+            $actlog->add("Update item (ipt_rvps) to ".$output->res, $status, $rid, $res);
+            echo json_encode($output);
+        }
+
+        /**
          * Delet rVPS
          */
         function rvpsDelete () {
@@ -50,6 +78,7 @@
             $actlog->add("Delete item ($table)", $data, null, $output->res);
             echo json_encode($output);
         }
+
         /**
          * Save rVPS Modal
          */

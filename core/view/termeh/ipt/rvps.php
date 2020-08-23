@@ -52,20 +52,21 @@
                 <thead>
                 <tr>
                     <th>#</th>
+                    <th>status</th>
                     <th>OS</th>
                     <th>Loc</th>
                     <th>IP</th>
                     <th>Server</th>
                     <th>Plan</th>
                     <th>Note</th>
-                    <th>status</th>
-                    <th>Manage</th>
+                    <th>Manage Status</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ((array) $this->data['rvps'] as $item) { ?>
                     <tr id="item-<?= $item['id']; ?>">
                         <td><?= $item['id'] ?></td>
+                        <td id="status-<?= $item['id']; ?>" class="bg-<?= $this->data['status_color'][$item['status']] ?>"><?= $this->data['status_text'][$item['status']] ?></td>
                         <td><?= $item['os']['type'].' | '.$item['os']['name'].' '.$item['os']['version'] ?></td>
                         <td><i title="<?= $item['ip']['country'] ?>" class="cb-flag cbf-<?= $item['ip']['flag'] ?>"></i></td>
                         <td> <?= $item['ip']['ip'] ?></td>
@@ -77,10 +78,19 @@
                         <td>
                             <small class="text-muted"><?= $item['note'] ?></small>
                         </td>
-                        <td class="bg-<?= $this->data['status_color'][$item['status']] ?>"><?= $this->data['status_text'][$item['status']] ?></td>
                         <td>
-                            <button data-rid="<?= $item['id']; ?>" data-ip="<?= $item['ip']['ip'] ?>" data-ipid="<?= $item['ip']['id'] ?>"class="btn btn-danger btn-xs float-right doA-removeCall"> Delete</button>
+                            <select id="new-status-<?= $item['id']; ?>" class="custom-select custom-select-sm col-md-7 float-left d-inline-block" required>
+                                <?php
+                                    for ($i=0;$i < count($this->data['status_text']);$i++) {
+                                ?>
+                                    <option value="<?= $i ?>" class="text-dark bg-<?= $this->data['status_color'][$i] ?>" <?= ($i==$item['status']) ? 'selected' : null ?>><?= $this->data['status_text'][$i] ?></option>
+                                <?php
+                                        }
+                                ?>
+                            </select>
+                            <button data-rid="<?= $item['id']; ?>" class="btn btn-outline-dark btn-sm float-left doA-setStatus"> Set</button>
 
+                            <button data-rid="<?= $item['id']; ?>" data-ip="<?= $item['ip']['ip'] ?>" data-ipid="<?= $item['ip']['id'] ?>"class="btn btn-danger btn-sm float-right doA-removeCall"> Delete</button>
                         </td>
                     </tr>
                 <?php } ?>

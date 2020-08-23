@@ -161,4 +161,22 @@ $(document).ready(function() {
         });
     });
 
+
+    // Ajax set status rVPS - ipt/rvps
+    $('body').on('click','.doA-setStatus', function(){
+        let thisClick = $(this);
+        let rid = thisClick.data('rid');
+        let status = $('#new-status-'+rid).val();
+        data = "rid="+rid+"&status="+status;
+        ajaxCall ('ipt/rvpsStatus', data,function(response) {
+            let obj = JSON.parse(response);
+            let type = (obj.e) ? 'danger' : 'success';
+            let text = (obj.e) ? 'Error, status not change '+obj.res : 'Success, status updated.';
+            ajaxAlert ('app-notify', type, text);
+            if (obj.res) {
+                $('#status-'+rid).removeClass().addClass('bg-dark text-light').html(obj.res);
+            }
+        });
+    });
+
 })

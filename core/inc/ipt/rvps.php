@@ -27,11 +27,11 @@
     ];
 
     $this->data['status_color'] = [
-      0 =>  'muted',
-      1 =>  'light',
-      2 =>  'primary',
-      3 =>  'info',
-      4 =>  'success'
+      0 =>  'light text-dark',
+      1 =>  'warning text-dark',
+      2 =>  'info text-light',
+      3 =>  'primary text-light',
+      4 =>  'success text-light'
     ];
 
     // New rVPS
