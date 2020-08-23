@@ -185,9 +185,9 @@
                                             <select id="os" name="os" class="custom-select col-md-8 d-inline-block" required>
                                                 <option> OS</option>
                                             </select>
-                                            <input type="number" class="form-control col-md-3 d-inline-block" id="port" name="port" placeholder="Port">
-                                            <textarea class="form-control mt-3" placeholder="Note" name="note"></textarea>
-                                            <button type="submit" class="btn btn-primary mb-2 ">Save rVPS</button>
+                                            <input type="number" class="form-control col-md-3 d-inline-block" id="port" name="port" placeholder="Port" autocomplete="off">
+                                            <textarea class="form-control my-3" placeholder="Note" name="note"></textarea>
+                                            <button type="submit" class="btn btn-primary col-md-4">Save rVPS</button>
                                             <div class="cb-ltr w-100 d-block alerts"><br></div>
                                         </form>
                                     </div>
