@@ -44,7 +44,7 @@
             $server = $db->selectRow($where, null,$table);
 
             $host = new ESXi($server['main_ip'],'exapi','EX@api#'.$server_nid);
-            $output->res = $host->getVMsByName($name);
+            $output->res = $host->getVMsByName($name)[0];
 
             echo json_encode($output);
         }

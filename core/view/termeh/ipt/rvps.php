@@ -138,15 +138,15 @@
                                                 <div class="col-md-6">
                                                     <h4 id="plan-name" class="panel-title text-primary text-center text-uppercase cb-copy-html"> </h4>
                                                     <div class="list-group list-group">
-                                                        <span class="list-group-item">Ram: <strong id="ram" class="float-right cb-copy-html"> </strong></span>
-                                                        <span class="list-group-item">CPU Core: <strong id="cpu" class="float-right cb-copy-html"> </strong></span>
+                                                        <span class="list-group-item">Ram: <strong class="ram float-right cb-copy-html"> </strong></span>
+                                                        <span class="list-group-item">CPU Core: <strong class="cpu float-right cb-copy-html"> </strong></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="list-group list-group">
-                                                        <span class="list-group-item">HDD: <strong id="hdd" class="float-right cb-copy-html"> </strong></span>
-                                                        <span class="list-group-item">SSD: <strong id="ssd" class="float-right cb-copy-html"> </strong></span>
-                                                        <span class="list-group-item">NVMe: <strong id="nvme" class="float-right cb-copy-html"> </strong></span>
+                                                        <span class="list-group-item">HDD: <strong class="hdd float-right cb-copy-html"> </strong></span>
+                                                        <span class="list-group-item">SSD: <strong class="ssd float-right cb-copy-html"> </strong></span>
+                                                        <span class="list-group-item">NVMe: <strong class="nvme float-right cb-copy-html"> </strong></span>
                                                     </div>
                                                 </div>
 
@@ -163,7 +163,8 @@
                                     </div>
                                     <div class="pt-4">
                                         <div class="text-center text-muted">
-                                         Creat VM named <button id="vm_name" class="cb-copy-html btn-outline-dark rounded"> </button> than get data:
+                                         Creat VM Named <button id="vm_name" class="cb-copy-html btn-outline-info rounded"> </button>
+                                         Set Password: <button id="vm_pass" class="cb-copy-html btn-outline-info rounded">r@VPS#12</button>
                                          <br>
                                          <button id="get-vm-data" class="btn btn-success my-3">Get VM Data</button>
                                          <div id="get-vm-data-error" class="w-100 d-block alerts alert-warning"><br></div>
@@ -174,14 +175,19 @@
                                             <input type="hidden" id="network_id" name="network_id">
                                             <input type="hidden" id="plan_id" name="plan_id">
                                             <input type="hidden" id="ip_id" name="ip_id">
-                                            <input type="text" class="form-control mb-2" id="uuid" name="uuid" placeholder="UUID">
-
+                                            <input type="hidden" class="ram" name="ram">
+                                            <input type="hidden" class="cpu" name="cpu_core">
+                                            <input type="hidden" class="hdd" name="hdd">
+                                            <input type="hidden" class="ssd" name="ssd">
+                                            <input type="hidden" class="nvme" name="nvme">
+                                            <input type="hidden" name="pass" value="r@VPS#12">
+                                            <input type="text" class="form-control col-md-9 mb-2" id="uuid" name="uuid" placeholder="UUID" readonly>
                                             <select id="os" name="os" class="custom-select mb-2" required>
                                                 <option> OS</option>
                                             </select>
-
+                                            <input type="text" class="form-control col-md-3 mb-2" id="port" name="port" placeholder="Port" readonly>
                                             <textarea class="form-control mb-2" placeholder="Note" name="note"></textarea>
-                                            <button type="submit" class="btn btn-primary mb-2 ">Add IP</button>
+                                            <button type="submit" class="btn btn-primary mb-2 ">Save rVPS</button>
                                             <div class="cb-ltr w-100 d-block alerts"><br></div>
                                         </form>
                                     </div>

@@ -19,8 +19,7 @@ $(document).ready(function() {
             } else {
                 if (obj.res) {
                     let vm = obj.res;
-console.log(vm);
-                    $('#get-vm-data-error').html('Data loaded, VM is '+vm.state);
+                    $('#get-vm-data-error').html('Object '+vm.object_id+' loaded, VM is '+vm.state);
                     $('#modal-newRvps #creat-rvps').removeClass('d-none')
                     $('#modal-newRvps #uuid').val(vm.uuid);
                     $('#modal-newRvps #vm_name').val(vm.name);
@@ -75,11 +74,11 @@ console.log(vm);
                 $('#modal-newRvps #dns-2').html(obj.res.network.dns_2);
 
                 $('#modal-newRvps #plan-name').html(obj.res.plan.flag+'.'+obj.res.plan.plan_name);
-                $('#modal-newRvps #ram').html(obj.res.plan.ram);
-                $('#modal-newRvps #cpu').html(obj.res.plan.cpu_core);
-                $('#modal-newRvps #hdd').html(obj.res.plan.hdd);
-                $('#modal-newRvps #ssd').html(obj.res.plan.ssd);
-                $('#modal-newRvps #nvme').html(obj.res.plan.nvme);
+                $('#modal-newRvps .ram').html(obj.res.plan.ram);
+                $('#modal-newRvps .cpu').html(obj.res.plan.cpu_core);
+                $('#modal-newRvps .hdd').html(obj.res.plan.hdd);
+                $('#modal-newRvps .ssd').html(obj.res.plan.ssd);
+                $('#modal-newRvps .nvme').html(obj.res.plan.nvme);
 
                 $('#modal-newRvps #ram_limit').html(obj.res.limits.ram_limit);
                 $('#modal-newRvps #cpu_limit').html(obj.res.limits.cpu_limit);
