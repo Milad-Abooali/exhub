@@ -181,12 +181,12 @@
                                             <input type="hidden" class="ssd" name="ssd">
                                             <input type="hidden" class="nvme" name="nvme">
                                             <input type="hidden" name="pass" value="r@VPS#12">
-                                            <input type="text" class="form-control col-md-9 mb-2" id="uuid" name="uuid" placeholder="UUID" readonly>
-                                            <select id="os" name="os" class="custom-select mb-2" required>
+                                            <input type="text" class="form-control mb-3" id="uuid" name="uuid" placeholder="UUID" readonly>
+                                            <select id="os" name="os" class="custom-select col-md-8 d-inline-block" required>
                                                 <option> OS</option>
                                             </select>
-                                            <input type="text" class="form-control col-md-3 mb-2" id="port" name="port" placeholder="Port" readonly>
-                                            <textarea class="form-control mb-2" placeholder="Note" name="note"></textarea>
+                                            <input type="number" class="form-control col-md-3 d-inline-block" id="port" name="port" placeholder="Port">
+                                            <textarea class="form-control mt-3" placeholder="Note" name="note"></textarea>
                                             <button type="submit" class="btn btn-primary mb-2 ">Save rVPS</button>
                                             <div class="cb-ltr w-100 d-block alerts"><br></div>
                                         </form>
