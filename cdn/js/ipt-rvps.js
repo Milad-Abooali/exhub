@@ -17,8 +17,8 @@ $(document).ready(function() {
             let text = (obj.e) ? 'Error, rVPS not added. '+obj.e : 'Success, rVPS Added.';
             ajaxAlert (id, type, text);
             // (reload) && ajaxReload ();
-            $("#modal-newRvps").modal('hide');
             if (!obj.e) {
+                $("#modal-newRvps").modal('hide');
                 setTimeout(function () {
                     location.reload(false);
                 }, 633);
@@ -64,7 +64,7 @@ $(document).ready(function() {
             let obj = JSON.parse(response);
 
             if (obj.e) {
-                alert(obj.res);
+                alert('No Free IP !');
             } else {
                 let server = $('#server').val();
                 let plan = $('#plan').val();
@@ -112,9 +112,8 @@ $(document).ready(function() {
                     options +='<option value="'+value['id']+'"> '+value['type']+' '+value['name']+' '+value['version']+' '+' </option>'
                 });
                 $('#modal-newRvps #os').html(options);
-
+                $("#modal-newRvps").modal('show');
             }
-            $("#modal-newRvps").modal('show');
         });
     })
 
@@ -134,5 +133,32 @@ $(document).ready(function() {
     })
 
 
+    // Ajax remove rVPS Call - ipt/rvps
+    $('body').on('click','.doA-removeCall', function(){
+        let ipid = $(this).data('ipid');
+        let ip = $(this).data('ip');
+        let rid = $(this).data('rid');
+        let body ='Remove Item <b>'+rid+'</b> ?<br><div class="text-danger text-center">'+ip+'</div>';
+        let footer ='<button data-rid="'+rid+'" data-ipid="'+ipid+'" type="button" class="btn btn-success doA-remove" data-dismiss="modal">Yes</button>';
+        footer +='<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>';
+        makeModal('Delete Item',body,'sm',footer);
+    });
+
+    // Ajax remove rVPS - ipt/rvps
+    $('body').on('click','.doA-remove', function(){
+        let thisClick = $(this);
+        let rid = thisClick.data('rid');
+        let ipid = thisClick.data('ipid');
+        data = "rid="+rid+"&ipiid="+ipid;
+        ajaxCall ('ipt/rvpsDelete', data,function(response) {
+            let obj = JSON.parse(response);
+            let type = (obj.e) ? 'danger' : 'success';
+            let text = (obj.e) ? 'Error, status not change '+obj.res : 'Success, status updated.';
+            ajaxAlert ('app-notify', type, text);
+            if (obj.res) {
+                $('#item-'+rid).remove();
+            }
+        });
+    });
 
 })

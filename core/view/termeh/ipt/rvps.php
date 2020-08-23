@@ -47,6 +47,7 @@
             <h4 class="text-center">
                 Reserved VPS List
             </h4>
+            <?php if ($this->data['rvps']) : ?>
             <table id="lisr-networks" class="table table-striped table-hover table-sm table-DT" >
                 <thead>
                 <tr>
@@ -54,7 +55,6 @@
                     <th>OS</th>
                     <th>Loc</th>
                     <th>IP</th>
-                    <th>Network</th>
                     <th>Server</th>
                     <th>Plan</th>
                     <th>Note</th>
@@ -64,15 +64,11 @@
                 </thead>
                 <tbody>
                 <?php foreach ((array) $this->data['rvps'] as $item) { ?>
-                    <tr>
+                    <tr id="item-<?= $item['id']; ?>">
                         <td><?= $item['id'] ?></td>
                         <td><?= $item['os']['type'].' | '.$item['os']['name'].' '.$item['os']['version'] ?></td>
                         <td><i title="<?= $item['ip']['country'] ?>" class="cb-flag cbf-<?= $item['ip']['flag'] ?>"></i></td>
                         <td> <?= $item['ip']['ip'] ?></td>
-                        <td>
-                            <i title="<?= $item['network']['country'] ?>" class="cb-flag cbf-<?= $item['network']['flag'] ?>"></i>
-                            <strong class="text-secondary"><?= $item['network']['subnet'] ?></strong>
-                        </td>
                         <td>
                             <i title="<?= $item['server']['country'] ?>" class="cb-flag cbf-<?= $item['server']['flag'] ?>"></i>
                             <strong class="text-primary"><?= $item['server']['nid'] ?></strong>
@@ -82,11 +78,15 @@
                             <small class="text-muted"><?= $item['note'] ?></small>
                         </td>
                         <td class="bg-<?= $this->data['status_color'][$item['status']] ?>"><?= $this->data['status_text'][$item['status']] ?></td>
-                        <td>m</td>
+                        <td>
+                            <button data-rid="<?= $item['id']; ?>" data-ip="<?= $item['ip']['ip'] ?>" data-ipid="<?= $item['ip']['id'] ?>"class="btn btn-danger btn-xs float-right doA-removeCall"> Delete</button>
+
+                        </td>
                     </tr>
                 <?php } ?>
                 </tbody>
             </table>
+            <?php endif; ?>
         </div>
 
         <div id="modal-newRvps" class="modal fade mt-5" tabindex="-1" role="dialog">

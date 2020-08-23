@@ -28,8 +28,30 @@
 
 
         /**
+         * Delet rVPS
+         */
+        function rvpsDelete () {
+            global $actlog;
+            $output = new stdClass();
+
+            $table = 'ipt_rvps';
+            $db = new MySQL(DB_INFO, $table);
+
+            $rid = $_POST['rid'];
+            $ipid = $_POST['ipid'];
+
+            $data = $db->selectId($rid);
+            $db->deleteId($rid);
+
+            $table = 'ipt_ips';
+            $status['status'] = 1;
+            $output->res = $db->updateId($ipid,$status,$table);
+
+            $actlog->add("Delete item ($table)", $data, null, $output->res);
+            echo json_encode($output);
+        }
+        /**
          * Save rVPS Modal
-         * @param $ip_id
          */
         function saveRvps()
         {
@@ -59,6 +81,9 @@
             if(!$exist) {
                 $res = $db->insert($data);
                 $output->e = ($res) ? false : true;
+                $table = 'ipt_ips';
+                $status['status'] = 2;
+                $db->updateId($data['ip_id'],$status,$table);
             } else {
                 $output->e = 'rVPS for this IP is exist !';
             }
@@ -69,7 +94,6 @@
 
         /**
          * Get VM from host by ip id
-         * @param $ip_id
          */
         function getVM()
         {
