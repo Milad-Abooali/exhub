@@ -47,6 +47,11 @@
                     $page['inc']    = 'ipt/rvps';
                     $page['view']   = "ipt/rvps";
                     break;
+                case "ipt/vps":
+                    (USER_ACCESS['staff']) ?: die ('Access Denid !');
+                    $page['inc']    = 'ipt/vps';
+                    $page['view']   = "ipt/vps";
+                    break;
                 case "ipt/":
                 default:
                     $page['view']   = "404";
