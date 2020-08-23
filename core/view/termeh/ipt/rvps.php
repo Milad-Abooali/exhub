@@ -173,6 +173,7 @@
                                         </div>
                                         <form id="save-rvps" action="ipt/saveRvps" data-reload="true" class="d-none">
                                             <input type="hidden" id="vm_name" name="vm_name">
+                                            <input type="hidden" id="obj_id" name="obj_id">
                                             <input type="hidden" id="server_nid" name="server_nid">
                                             <input type="hidden" id="network_id" name="network_id">
                                             <input type="hidden" id="plan_id" name="plan_id">

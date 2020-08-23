@@ -14,13 +14,15 @@ $(document).ready(function() {
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
             let type = (obj.e) ? 'danger' : 'success';
-            let text = (obj.e) ? 'Error, rVPS not added. '+obj.res : 'Success, rVPS Added.';
+            let text = (obj.e) ? 'Error, rVPS not added. '+obj.e : 'Success, rVPS Added.';
             ajaxAlert (id, type, text);
             // (reload) && ajaxReload ();
             $("#modal-newRvps").modal('hide');
-            setTimeout(function(){
-                location.reload(false);
-            }, 333);
+            if (!obj.e) {
+                setTimeout(function () {
+                    location.reload(false);
+                }, 633);
+            }
         });
     })
 
@@ -41,6 +43,7 @@ $(document).ready(function() {
                     let vm = obj.res;
                     $('#get-vm-data-error').html('Object '+vm.object_id+' loaded, VM is '+vm.state);
                     $('#modal-newRvps #save-rvps').removeClass('d-none')
+                    $('#modal-newRvps #obj_id').val(vm.object_id);
                     $('#modal-newRvps #uuid').val(vm.uuid);
                     $('#modal-newRvps #vm_name').val(vm.name);
                 } else {

@@ -39,7 +39,9 @@
             $table = 'ipt_rvps';
             $db = new MySQL(DB_INFO, $table);
 
+
             $data['ip_id'] = $_POST['ip_id'];
+            $data['object_id'] = $_POST['obj_id'];
             $data['network_id'] = $_POST['network_id'];
             $data['server_nid'] = $_POST['server_nid'];
             $data['plan_id'] = $_POST['plan_id'];
@@ -52,10 +54,14 @@
             $data['ssd'] = $_POST['ssd'];
             $data['nvme'] = $_POST['nvme'];
             $data['status'] = $_POST['status'];
-            $data['notes'] = $_POST['notes'];
-
-            $res = $db->insert($data);
-            $output->e = ($res) ? false : true;
+            $data['note'] = $_POST['note'];
+            $exist = $db->exist('ip_id="'.$data['ip_id'].'"');
+            if(!$exist) {
+                $res = $db->insert($data);
+                $output->e = ($res) ? false : true;
+            } else {
+                $output->e = 'rVPS for this IP is exist !';
+            }
             $output->res = ($res) ?? false;
             $actlog->add("Add Item to ($table)", $data, ($res) ?? null, $output->res);
             echo json_encode($output);
