@@ -149,7 +149,7 @@ $(document).ready(function() {
         let thisClick = $(this);
         let rid = thisClick.data('rid');
         let ipid = thisClick.data('ipid');
-        data = "rid="+rid+"&ipiid="+ipid;
+        data = "rid="+rid+"&ipid="+ipid;
         ajaxCall ('ipt/rvpsDelete', data,function(response) {
             let obj = JSON.parse(response);
             let type = (obj.e) ? 'danger' : 'success';
