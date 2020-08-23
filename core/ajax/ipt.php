@@ -26,6 +26,41 @@
 
     if ($_SESSION['M']['user'] ?? false) {
 
+
+        /**
+         * Save rVPS Modal
+         * @param $ip_id
+         */
+        function saveRvps()
+        {
+            global $actlog;
+            $output = new stdClass();
+
+            $table = 'ipt_rvps';
+            $db = new MySQL(DB_INFO, $table);
+
+            $data['ip_id'] = $_POST['ip_id'];
+            $data['network_id'] = $_POST['network_id'];
+            $data['server_nid'] = $_POST['server_nid'];
+            $data['plan_id'] = $_POST['plan_id'];
+            $data['uuid'] = $_POST['uuid'];
+            $data['os_id'] = $_POST['os'];
+            $data['port'] = $_POST['port'];
+            $data['ram'] = $_POST['ram'];
+            $data['cpu_core'] = $_POST['cpu_core'];
+            $data['hdd'] = $_POST['hdd'];
+            $data['ssd'] = $_POST['ssd'];
+            $data['nvme'] = $_POST['nvme'];
+            $data['status'] = $_POST['status'];
+            $data['notes'] = $_POST['notes'];
+
+            $res = $db->insert($data);
+            $output->e = ($res) ? false : true;
+            $output->res = ($res) ?? false;
+            $actlog->add("Add Item to ($table)", $data, ($res) ?? null, $output->res);
+            echo json_encode($output);
+        }
+
         /**
          * Get VM from host by ip id
          * @param $ip_id

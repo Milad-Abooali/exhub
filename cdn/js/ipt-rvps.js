@@ -4,6 +4,26 @@ $(document).ready(function() {
      * IPT rVps
      */
 
+    // Ajax Save rVPS  - ipt/rvps
+    $('body').on('submit','form#save-rvps', function(event){
+        event.preventDefault();
+        const id = $(this).attr('id');
+        const reload = $(this).data('reload');
+        const data = $(this).serialize();
+        const classA = $(this).attr('action');
+        ajaxCall (classA, data,function(response) {
+            let obj = JSON.parse(response);
+            let type = (obj.e) ? 'danger' : 'success';
+            let text = (obj.e) ? 'Error, rVPS not added. '+obj.res : 'Success, rVPS Added.';
+            ajaxAlert (id, type, text);
+            // (reload) && ajaxReload ();
+            $("#modal-newRvps").modal('hide');
+            setTimeout(function(){
+                location.reload(false);
+            }, 333);
+        });
+    })
+
     // Ajax Get VM Data  - ipt/rvps
     $('body').on('click','#get-vm-data', function(event){
         $('#get-vm-data').html(' <span class="spinner-border " role="status" aria-hidden="true"></span> Looking for VM... ');
@@ -20,7 +40,7 @@ $(document).ready(function() {
                 if (obj.res) {
                     let vm = obj.res;
                     $('#get-vm-data-error').html('Object '+vm.object_id+' loaded, VM is '+vm.state);
-                    $('#modal-newRvps #creat-rvps').removeClass('d-none')
+                    $('#modal-newRvps #save-rvps').removeClass('d-none')
                     $('#modal-newRvps #uuid').val(vm.uuid);
                     $('#modal-newRvps #vm_name').val(vm.name);
                 } else {

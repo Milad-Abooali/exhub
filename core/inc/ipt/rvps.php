@@ -12,6 +12,7 @@
             $this->data['rvps'][$k]['ip'] = $db->selectId($rvps['ip_id'],'*','ipt_ips');
             $this->data['rvps'][$k]['network'] = $db->selectId($rvps['network_id'],'*','ipt_networks');
             $this->data['rvps'][$k]['plan'] = $db->selectId($rvps['plan_id'],'*','fin_plans');
+            $this->data['rvps'][$k]['os'] = $db->selectId($rvps['os_id'],'*','ipt_os');
             $where = 'nid='.$this->data['rvps'][$k]['server_nid'];
             $this->data['rvps'][$k]['server'] = $db->selectRow($where,null,'ipt_servers');
         }
@@ -21,14 +22,16 @@
       0 =>  'VM Created',
       1 =>  'OS Installed',
       2 =>  'Network Connected',
-      3 =>  'Ready VPS'
+      3 =>  'Ezzz Done',
+      4 =>  'Ready VPS'
     ];
 
     $this->data['status_color'] = [
       0 =>  'muted',
       1 =>  'light',
       2 =>  'primary',
-      3 =>  'success'
+      3 =>  'info',
+      4 =>  'success'
     ];
 
     // New rVPS

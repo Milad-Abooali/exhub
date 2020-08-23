@@ -51,25 +51,24 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>UUID</th>
+                    <th>OS</th>
                     <th>Loc</th>
                     <th>IP</th>
-                    <th>MAC</th>
                     <th>Network</th>
                     <th>Server</th>
                     <th>Plan</th>
                     <th>Note</th>
                     <th>status</th>
+                    <th>Manage</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ((array) $this->data['rvps'] as $item) { ?>
                     <tr>
                         <td><?= $item['id'] ?></td>
-                        <td><?= $item['uuid'] ?></td>
+                        <td><?= $item['os']['type'].' | '.$item['os']['name'].' '.$item['os']['version'] ?></td>
                         <td><i title="<?= $item['ip']['country'] ?>" class="cb-flag cbf-<?= $item['ip']['flag'] ?>"></i></td>
                         <td> <?= $item['ip']['ip'] ?></td>
-                        <td> <?= $item['ip']['mac'] ?></td>
                         <td>
                             <i title="<?= $item['network']['country'] ?>" class="cb-flag cbf-<?= $item['network']['flag'] ?>"></i>
                             <strong class="text-secondary"><?= $item['network']['subnet'] ?></strong>
@@ -79,8 +78,11 @@
                             <strong class="text-primary"><?= $item['server']['nid'] ?></strong>
                         </td>
                         <td><small class="text-muted"><?= $item['plan']['plan_name'] ?></small></td>
-                        <td><small class="text-muted"><?= $item['note'] ?></small></td>
+                        <td>
+                            <small class="text-muted"><?= $item['note'] ?></small>
+                        </td>
                         <td class="bg-<?= $this->data['status_color'][$item['status']] ?>"><?= $this->data['status_text'][$item['status']] ?></td>
+                        <td>m</td>
                     </tr>
                 <?php } ?>
                 </tbody>
@@ -169,7 +171,7 @@
                                          <button id="get-vm-data" class="btn btn-success my-3">Get VM Data</button>
                                          <div id="get-vm-data-error" class="w-100 d-block alerts alert-warning"><br></div>
                                         </div>
-                                        <form id="creat-rvps" action="ipt/insertIPs" data-reload="true" class="d-none">
+                                        <form id="save-rvps" action="ipt/saveRvps" data-reload="true" class="d-none">
                                             <input type="hidden" id="vm_name" name="vm_name">
                                             <input type="hidden" id="server_nid" name="server_nid">
                                             <input type="hidden" id="network_id" name="network_id">
@@ -180,14 +182,20 @@
                                             <input type="hidden" class="hdd" name="hdd">
                                             <input type="hidden" class="ssd" name="ssd">
                                             <input type="hidden" class="nvme" name="nvme">
-                                            <input type="hidden" name="pass" value="r@VPS#12">
-                                            <input type="text" class="form-control mb-3" id="uuid" name="uuid" placeholder="UUID" readonly>
+                                            <input type="text" class="cb-copy-val form-control mb-3" id="uuid" name="uuid" placeholder="UUID" readonly>
                                             <select id="os" name="os" class="custom-select col-md-8 d-inline-block" required>
                                                 <option> OS</option>
                                             </select>
                                             <input type="number" class="form-control col-md-3 d-inline-block" id="port" name="port" placeholder="Port" autocomplete="off">
                                             <textarea class="form-control my-3" placeholder="Note" name="note"></textarea>
-                                            <button type="submit" class="btn btn-primary col-md-4">Save rVPS</button>
+                                            <select id="status" name="status" class="custom-select col-md-6 d-inline-block" required>
+                                                <option value="0" selected>VM Created</option>
+                                                <option value="1">OS Installed</option>
+                                                <option value="2">Network Connected</option>
+                                                <option value="3">Ezzz Done</option>
+                                                <option value="4">Ready VPS</option>
+                                            </select>
+                                            <button type="submit" class="btn btn-primary col-md-4 float-right">Save rVPS</button>
                                             <div class="cb-ltr w-100 d-block alerts"><br></div>
                                         </form>
                                     </div>
