@@ -117,21 +117,6 @@ $(document).ready(function() {
         });
     })
 
-    // Ajax IP LOC  - ipt/vps
-    $('body').on('keyup change','#server', function(){
-        const server = $(this).val();
-        const data = 'server='+server
-        const classA = 'ipt/getNetworksLoc'
-        ajaxCall (classA, data,function(response) {
-            let obj = JSON.parse(response);
-            let options;
-            $.each(obj.res,function( key, value ) {
-                options +='<option value="'+value['country']+'"> '+value['country']+' </option>'
-            });
-            $('#iploc').html(options);
-        });
-    })
-
 
     // Ajax remove rVPS Call - ipt/vps
     $('body').on('click','.doA-removeCall', function(){

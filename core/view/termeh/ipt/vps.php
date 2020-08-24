@@ -17,7 +17,7 @@
             <h4 class="text-center">
                 Add New VPS
             </h4>
-            <form id="add-vps" action="ipt/addvps" class="col-md-12 form-inline justify-content-center my-3">
+            <form id="add-vps" action="ipt/getrvps" class="col-md-12 form-inline justify-content-center my-3">
                 IP.Loc:
                 <select id="iploc" name="iploc" class="custom-select mx-2" required>
                     <?php foreach ((array) $this->data['ip_loc'] as $loc) { ?>
@@ -31,7 +31,7 @@
                     <?php } ?>
                 </select>
 
-                <button type="submit" class="btn btn-primary mx-3">Add rVPS</button>
+                <button type="submit" class="btn btn-primary mx-3">Get rVPS</button>
 
             </form>
         </div>
