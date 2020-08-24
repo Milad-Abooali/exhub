@@ -2,8 +2,8 @@
 
     $this->data['PAGE']['demo']=0;
 
-    $this->data['PAGE']['title'] = 'IPT > rVPS';
-    $this->data['PAGE']['head'] = '<script defer src="'.JS.'ipt-rvps.js"></script>';
+    $this->data['PAGE']['title'] = 'IPT > VPS';
+    $this->data['PAGE']['head'] = '<script defer src="'.JS.'ipt-vps.js"></script>';
 
     include('core/view/termeh/head.php');
     include('core/view/termeh/header.php');
@@ -15,20 +15,14 @@
         <!-- Row Form -->
         <div class="card mt-4 pt-4 cb-oa">
             <h4 class="text-center">
-                New rVPS
+                Add New VPS
             </h4>
-            <form id="add-rvps" action="ipt/addRvps" class="col-md-12 form-inline justify-content-center my-3">
-                Host:
-                <select id="server" name="server" class="custom-select mx-2" required>
-                    <option disabled selected> Server ID </option>
-
-                    <?php foreach ((array) $this->data['servers'] as $server) { ?>
-                        <option value="<?= $server['nid'] ?>"> <?= $server['nid'] ?> </option>
-                    <?php } ?>
-                </select>
+            <form id="add-vps" action="ipt/addvps" class="col-md-12 form-inline justify-content-center my-3">
                 IP.Loc:
                 <select id="iploc" name="iploc" class="custom-select mx-2" required>
-
+                    <?php foreach ((array) $this->data['ip_loc'] as $loc) { ?>
+                        <option value="<?= $loc['country'] ?>"> <?= $loc['country'] ?> </option>
+                    <?php } ?>
                 </select>
                 Plan:
                 <select id="plan" name="plan" class="custom-select mx-2" required>
@@ -45,7 +39,7 @@
         <!-- Row List -->
         <div class="card mt-4 py-4 px-1">
             <h4 class="text-center">
-                Reserved VPS List
+                VPS List
             </h4>
             <?php if ($this->data['rvps']) : ?>
             <table id="lisr-networks" class="table table-striped table-hover table-sm table-DT" >

@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
     /**
-     * IPT rVps
+     * IPT VPS
      */
 
-    // Ajax Save rVPS  - ipt/rvps
+    // Ajax Save rVPS  - ipt/vps
     $('body').on('submit','form#save-rvps', function(event){
         event.preventDefault();
         const id = $(this).attr('id');
@@ -26,7 +26,7 @@ $(document).ready(function() {
         });
     })
 
-    // Ajax Get VM Data  - ipt/rvps
+    // Ajax Get VM Data  - ipt/vps
     $('body').on('click','#get-vm-data', function(event){
         $('#get-vm-data').html(' <span class="spinner-border " role="status" aria-hidden="true"></span> Looking for VM... ');
         const name = $('#vm_name').html();
@@ -54,7 +54,7 @@ $(document).ready(function() {
         });
     })
 
-    // Ajax Add New rVPS  - ipt/rvps
+    // Ajax Add New rVPS  - ipt/vps
     $('body').on('submit','form#add-rvps', function(event){
         event.preventDefault();
         $('#get-vm-data').html('Get VM Data');
@@ -117,7 +117,7 @@ $(document).ready(function() {
         });
     })
 
-    // Ajax IP LOC  - ipt/rvps
+    // Ajax IP LOC  - ipt/vps
     $('body').on('keyup change','#server', function(){
         const server = $(this).val();
         const data = 'server='+server
@@ -133,7 +133,7 @@ $(document).ready(function() {
     })
 
 
-    // Ajax remove rVPS Call - ipt/rvps
+    // Ajax remove rVPS Call - ipt/vps
     $('body').on('click','.doA-removeCall', function(){
         let ipid = $(this).data('ipid');
         let ip = $(this).data('ip');
@@ -144,7 +144,7 @@ $(document).ready(function() {
         makeModal('Delete Item',body,'sm',footer);
     });
 
-    // Ajax remove rVPS - ipt/rvps
+    // Ajax remove rVPS - ipt/vps
     $('body').on('click','.doA-remove', function(){
         let thisClick = $(this);
         let rid = thisClick.data('rid');
@@ -162,7 +162,7 @@ $(document).ready(function() {
     });
 
 
-    // Ajax set status rVPS - ipt/rvps
+    // Ajax set status rVPS - ipt/vps
     $('body').on('click','.doA-setStatus', function(){
         let thisClick = $(this);
         let rid = thisClick.data('rid');
