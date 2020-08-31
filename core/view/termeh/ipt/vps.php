@@ -17,7 +17,7 @@
             <h4 class="text-center">
                 Add New VPS
             </h4>
-            <form id="add-vps" action="ipt/getrvps" class="col-md-12 form-inline justify-content-center my-3">
+            <form id="get-rvps" action="ipt/getRvps" class="col-md-12 form-inline justify-content-center my-3">
                 IP.Loc:
                 <select id="iploc" name="iploc" class="custom-select mx-2" required>
                     <?php foreach ((array) $this->data['ip_loc'] as $loc) { ?>
@@ -95,11 +95,12 @@
             <?php endif; ?>
         </div>
 
-        <div id="modal-newRvps" class="modal fade mt-5" tabindex="-1" role="dialog">
+
+        <div id="modal-getRvps" class="modal fade mt-5" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg mt-5" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"> Creat rVPS </h5>
+                        <h5 class="modal-title"> Convert rVPS > VPS </h5>
                         <button type="button" class="close close-right" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -121,9 +122,10 @@
                                             <h4 id="ip" class="panel-title text-success cb-copy-html"> </h4>
                                             <hr>
                                             <i id="net-flag" class="cb-flag" data-toggle="tooltip"data-placement="left"></i>
-                                            <span id="net" class="text-muted cb-copy-html"></span>
+                                            <a id="net" class="text-muted cb-copy-html" data-toggle="collapse" href="#network" aria-expanded="false" class="collapsed"></a>
+
                                         </div>
-                                        <div class="card-body">
+                                        <div id="network" class="card-body panel-collapse collapse">
                                             <div class="list-group list-group-flush">
                                                 <span class="list-group-item">IP Country: <i id="ip-flag" class="float-right cb-flag cb-copy-html" data-toggle="tooltip"data-placement="left"></i></span>
                                                 <span class="list-group-item">Mac: <strong id="mac" class="float-right cb-copy-html"> </strong></span>
@@ -133,8 +135,8 @@
                                                 <span class="list-group-item">DNS 2: <strong id="dns-2" class="float-right cb-copy-html"> </strong></span>
                                             </div>
                                         </div>
-                                        <div class="card-footer wa">
-
+                                        <div class="card-footer text-center">
+                                            <a id="addIP" data-toggle="modal" href="#modal-addIP" class="btn btn-sm btn-outline-dark col-md-7">Add IP</a>
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +160,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-12 border border-warning my-2">
+                                                <div class="col-md-12 border border-warning my-2  d-none">
                                                     <div class="row">
                                                         <span class="col bg-warning">Limits: </span>
                                                         <span class="col text-center">RAM: <strong id="ram_limit" class="text-danger cb-copy-html"> </strong></span>
@@ -171,14 +173,10 @@
                                     </div>
                                     <div class="pt-4">
                                         <div class="text-center text-muted">
-                                         Creat VM Named <button id="vm_name" class="cb-copy-html btn-outline-info rounded"> </button>
-                                         Set Password: <button id="vm_pass" class="cb-copy-html btn-outline-info rounded">r@VPS#12</button>
-                                         <br>
-                                         <button id="get-vm-data" class="btn btn-success my-3">Get VM Data</button>
-                                         <div id="get-vm-data-error" class="w-100 d-block alerts alert-warning"><br></div>
+
                                         </div>
-                                        <form id="save-rvps" action="ipt/saveRvps" data-reload="true" class="d-none">
-                                            <input type="hidden" id="vm_name" name="vm_name">
+                                        <form id="save-rvps" action="ipt/saveRvps" data-reload="true" class="">
+                                            <input type="hidden" id="rvps_id" name="rvps_id">
                                             <input type="hidden" id="obj_id" name="obj_id">
                                             <input type="hidden" id="server_nid" name="server_nid">
                                             <input type="hidden" id="network_id" name="network_id">
@@ -189,20 +187,15 @@
                                             <input type="hidden" class="hdd" name="hdd">
                                             <input type="hidden" class="ssd" name="ssd">
                                             <input type="hidden" class="nvme" name="nvme">
+                                            <input type="text" class="cb-copy-val form-control mb-3" id="vm_name" name="vm_name" placeholder="VM Name" readonly>
                                             <input type="text" class="cb-copy-val form-control mb-3" id="uuid" name="uuid" placeholder="UUID" readonly>
-                                            <select id="os" name="os" class="custom-select col-md-8 d-inline-block" required>
-                                                <option> OS</option>
-                                            </select>
-                                            <input type="number" class="form-control col-md-3 d-inline-block" id="port" name="port" placeholder="Port" autocomplete="off">
-                                            <textarea class="form-control my-3" placeholder="Note" name="note"></textarea>
-                                            <select id="status" name="status" class="custom-select col-md-6 d-inline-block" required>
-                                                <option value="0" selected>VM Created</option>
-                                                <option value="1">OS Installed</option>
-                                                <option value="2">Network Connected</option>
-                                                <option value="3">Ezzz Done</option>
-                                                <option value="4">Ready VPS</option>
-                                            </select>
-                                            <button type="submit" class="btn btn-primary col-md-4 float-right">Save rVPS</button>
+                                            <textarea class="cb-copy-val form-control my-3" placeholder="Note" name="note" readonly></textarea>
+                                            <input type="text" class="cb-copy-val form-control  col-md-8 d-inline-block" id="os" name="os" placeholder="OS" readonly>
+                                            <input type="number" class="cb-copy-val form-control col-md-3 d-inline-block float-right" id="port" name="port" placeholder="Port" autocomplete="off" readonly>
+                                            <input type="text" class="form-control  col-md-5 d-inline-block mt-3" id="vm_user" name="vm_user" placeholder="Username" readonly>
+                                            <input type="text" class="form-control  col-md-6 d-inline-block float-right mt-3" id="vm_pass" name="vm_pass" placeholder="New Password" required>
+
+                                            <button type="submit" class="btn btn-primary col-md-7 mt-3">Convert to VPS</button>
                                             <div class="cb-ltr w-100 d-block alerts"><br></div>
                                         </form>
                                     </div>
@@ -220,6 +213,23 @@
         </div>
 
 
+        <div id="modal-addIP" class="modal bg-dark mt-5 pt-5" data-backdrop="static">
+            <div class="modal-dialog modal-lg mt-5">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h4 class="modal-title">Add addition IP</h4>
+                        <button type="button" class="close close-right" data-dismiss="modal">×</button>
+                    </div><div class="container"></div>
+                    <div class="modal-body">
+                        ..
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" data-dismiss="modal" class="btn">Close</a>
+                        <a href="#" class="btn btn-primary">Save changes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Row Logs -->
         <?php include('core/view/termeh/logsrow.php'); ?>

@@ -18,7 +18,7 @@ $(document).ready(function() {
             ajaxAlert (id, type, text);
             // (reload) && ajaxReload ();
             if (!obj.e) {
-                $("#modal-newRvps").modal('hide');
+                $("#modal-getRvps").modal('hide');
                 setTimeout(function () {
                     location.reload(false);
                 }, 633);
@@ -26,97 +26,81 @@ $(document).ready(function() {
         });
     })
 
-    // Ajax Get VM Data  - ipt/vps
-    $('body').on('click','#get-vm-data', function(event){
-        $('#get-vm-data').html(' <span class="spinner-border " role="status" aria-hidden="true"></span> Looking for VM... ');
-        const name = $('#vm_name').html();
+    // Ajax Add IP Modal  - ipt/vps
+    $('body').on('click','#addIP', function(event){
         const server_nid = $('#server_nid').val();
-        const data = 'server_nid='+server_nid+'&name='+name;
-        const classA = 'ipt/getVM'
+        const data = 'server_nid='+server_nid;
+        const classA = 'ipt/getNetworkVPS'
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
-            if (obj.e) {
-                $('#get-vm-data-error').html(obj.res);
-                $('#get-vm-data').html('Get VM Data');
-            } else {
-                if (obj.res) {
-                    let vm = obj.res;
-                    $('#get-vm-data-error').html('Object '+vm.object_id+' loaded, VM is '+vm.state);
-                    $('#modal-newRvps #save-rvps').removeClass('d-none')
-                    $('#modal-newRvps #obj_id').val(vm.object_id);
-                    $('#modal-newRvps #uuid').val(vm.uuid);
-                    $('#modal-newRvps #vm_name').val(vm.name);
-                } else {
-                    $('#get-vm-data-error').html('No result, Is VM created?');
-                }
-                $('#get-vm-data').html('Update VM Data');
-            }
+           console.log(obj);
         });
     })
 
-    // Ajax Add New rVPS  - ipt/vps
-    $('body').on('submit','form#add-rvps', function(event){
+    // Ajax Get rVPS  - ipt/vps
+    $('body').on('submit','form#get-rvps', function(event){
         event.preventDefault();
-        $('#get-vm-data').html('Get VM Data');
         const data = $(this).serialize();
         const classA = $(this).attr('action');
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
 
             if (obj.e) {
-                alert('No Free IP !');
+                alert('No rVPS !');
             } else {
-                let server = $('#server').val();
-                let plan = $('#plan').val();
 
-                $('#modal-newRvps #vm_name').html(obj.res.ip.ip+'_'+obj.res.plan.plan_name+'__r');
+                $('#modal-getRvps #rvps_id').val(obj.res.id);
 
-                $('#modal-newRvps #server_nid').val(server);
-                $('#modal-newRvps #host-server').html(obj.res.server.nid);
-                $('#modal-newRvps #idc').html(obj.res.server.datacenter);
-                $('#modal-newRvps #host-flag').addClass('cbf-'+obj.res.server.flag);
-                $('#modal-newRvps #host-flag').attr('title', obj.res.server.country);
+                $('#modal-getRvps #vm_name').val(obj.res.ip.ip+'_'+obj.res.plan.plan_name+'__r');
 
-
-                $('#modal-newRvps #plan_id').val(plan);
-
-                $('#modal-newRvps #ip_id').val(obj.res.ip.id);
-                $('#modal-newRvps #ip').html(obj.res.ip.ip);
-                $('#modal-newRvps #ip-flag').addClass('cbf-'+obj.res.ip.flag);
-                $('#modal-newRvps #ip-flag').attr('title', obj.res.ip.country);
-                $('#modal-newRvps #mac').html(obj.res.ip.mac);
+                $('#modal-getRvps #server_nid').val(obj.res.server_nid);
+                $('#modal-getRvps #host-server').html(obj.res.server.nid);
+                $('#modal-getRvps #idc').html(obj.res.server.datacenter);
+                $('#modal-getRvps #host-flag').addClass('cbf-'+obj.res.server.flag);
+                $('#modal-getRvps #host-flag').attr('title', obj.res.server.country);
 
 
-                $('#modal-newRvps #network_id').val(obj.res.network.id);
-                $('#modal-newRvps #net').html(obj.res.network.subnet);
-                $('#modal-newRvps #net-flag').addClass('cbf-'+obj.res.network.flag);
-                $('#modal-newRvps #net-flag').attr('title', obj.res.network.country);
-                $('#modal-newRvps #gw').html(obj.res.network.gateway);
-                $('#modal-newRvps #netmask').html(obj.res.network.netmask);
-                $('#modal-newRvps #dns-1').html(obj.res.network.dns_1);
-                $('#modal-newRvps #dns-2').html(obj.res.network.dns_2);
+                $('#modal-getRvps #plan_id').val(obj.res.plan_id);
 
-                $('#modal-newRvps #plan-name').html(obj.res.plan.flag+'.'+obj.res.plan.plan_name);
-                $('#modal-newRvps .ram').html(obj.res.plan.ram);
-                $('#modal-newRvps .cpu').html(obj.res.plan.cpu_core);
-                $('#modal-newRvps .hdd').html(obj.res.plan.hdd);
-                $('#modal-newRvps .ssd').html(obj.res.plan.ssd);
-                $('#modal-newRvps .nvme').html(obj.res.plan.nvme);
+                $('#modal-getRvps #ip_id').val(obj.res.ip.id);
+                $('#modal-getRvps #ip').html(obj.res.ip.ip);
+                $('#modal-getRvps #ip-flag').addClass('cbf-'+obj.res.ip.flag);
+                $('#modal-getRvps #ip-flag').attr('title', obj.res.ip.country);
+                $('#modal-getRvps #mac').html(obj.res.ip.mac);
 
-                $('#modal-newRvps #ram_limit').html(obj.res.limits.ram_limit);
-                $('#modal-newRvps #cpu_limit').html(obj.res.limits.cpu_limit);
-                $('#modal-newRvps #disk_limit').html(obj.res.limits.disk_limit);
 
-                let options;
-                $.each(obj.res.os,function( key, value ) {
-                    options +='<option value="'+value['id']+'"> '+value['type']+' '+value['name']+' '+value['version']+' '+' </option>'
-                });
-                $('#modal-newRvps #os').html(options);
-                $("#modal-newRvps").modal('show');
+                $('#modal-getRvps #network_id').val(obj.res.network.id);
+                $('#modal-getRvps #net').html(obj.res.network.subnet);
+                $('#modal-getRvps #net-flag').addClass('cbf-'+obj.res.network.flag);
+                $('#modal-getRvps #net-flag').attr('title', obj.res.network.country);
+                $('#modal-getRvps #gw').html(obj.res.network.gateway);
+                $('#modal-getRvps #netmask').html(obj.res.network.netmask);
+                $('#modal-getRvps #dns-1').html(obj.res.network.dns_1);
+                $('#modal-getRvps #dns-2').html(obj.res.network.dns_2);
+
+                $('#modal-getRvps #plan-name').html(obj.res.plan.flag+'.'+obj.res.plan.plan_name);
+                $('#modal-getRvps .ram').html(obj.res.plan.ram);
+                $('#modal-getRvps .cpu').html(obj.res.plan.cpu_core);
+                $('#modal-getRvps .hdd').html(obj.res.plan.hdd);
+                $('#modal-getRvps .ssd').html(obj.res.plan.ssd);
+                $('#modal-getRvps .nvme').html(obj.res.plan.nvme);
+
+                $('#modal-getRvps #ram_limit').html(obj.res.limits.ram_limit);
+                $('#modal-getRvps #cpu_limit').html(obj.res.limits.cpu_limit);
+                $('#modal-getRvps #disk_limit').html(obj.res.limits.disk_limit);
+
+
+                $('#modal-getRvps #obj_id').val(obj.res.object_id);
+                $('#modal-getRvps #uuid').val(obj.res.uuid);
+                $('#modal-getRvps #os').val(obj.res.os.type+' '+obj.res.os.name+' '+obj.res.os.version);
+                $('#modal-getRvps #vm_user').val(obj.res.os.username);
+                $('#modal-getRvps #port').val(obj.res.port);
+                $('#modal-getRvps #note').val(obj.res.note);
+
+                $("#modal-getRvps").modal('show');
             }
         });
     })
-
 
     // Ajax remove rVPS Call - ipt/vps
     $('body').on('click','.doA-removeCall', function(){
@@ -145,7 +129,6 @@ $(document).ready(function() {
             }
         });
     });
-
 
     // Ajax set status rVPS - ipt/vps
     $('body').on('click','.doA-setStatus', function(){

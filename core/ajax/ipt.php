@@ -26,7 +26,6 @@
 
     if ($_SESSION['M']['user'] ?? false) {
 
-
         /**
          * Update rVPS Status
          */
@@ -200,6 +199,19 @@
         }
 
         /**
+         * Add IP MOdal
+         */
+        function getNetworkVPS()
+        {
+            $db = new MySQL(DB_INFO);
+            $nets = $db->select('ipt_networks', 'status=1 AND server_nid='.$_POST['server_nid']);
+            $output = new stdClass();
+            $output->e = false;
+            $output->res = $nets;
+            echo json_encode($output);
+        }
+
+        /**
          * Insert IPs
          */
         function insertIPs()
@@ -246,6 +258,49 @@
                 $actlog->add("Add Item to ($table)", $data, ($res) ?? null, $output->res);
                 echo json_encode($output);
             }
+        }
+
+        /**
+         * Get rVPS Modal
+         */
+        function getRvps()
+        {
+            $output = new stdClass();
+
+            $db = new MySQL(DB_INFO);
+
+            $table = 'ipt_networks';
+            $where = "status=1 AND country='".$_POST['iploc']."'";
+            $networks = $db->select($table, $where);
+            foreach ((array) $networks as $net) $nets[$net['id']] = $net['id'];
+            $output->nets = implode("','",$nets);
+            $table = 'ipt_rvps';
+            $where = 'plan_id='.$_POST['plan']." AND network_id IN ('".$output->nets."')";
+            $output->res = $db->selectRow($where, null,$table);
+            $output->e = ($output->res) ? false : true;
+            if ($output->res) {
+
+                $table = 'ipt_servers';
+                $where = 'status=1 AND nid='.$output->res['server_nid'];
+                $output->res['server'] = $db->selectRow($where, null,$table);
+
+                $table ='ipt_networks';
+                $output->res['network'] = $db->selectId($output->res['network_id'],'*',$table);
+
+                $table ='ipt_ips';
+                $output->res['ip'] = $db->selectId($output->res['ip_id'],'*',$table);
+
+                $table ='ipt_os';
+                $output->res['os'] = $db->selectId($output->res['os_id'],'*',$table);
+
+                $table ='fin_plans';
+                $output->res['plan'] = $db->selectId($output->res['plan_id'],'*',$table);
+
+                $table = 'fin_plan_limits';
+                $where = "plan_name='".$output->res['plan']['plan_name']."'";
+                $output->res['limits'] = $db->selectRow($where, null,$table);
+            }
+            echo json_encode($output);
         }
 
     }
