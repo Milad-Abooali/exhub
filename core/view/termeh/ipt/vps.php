@@ -107,12 +107,43 @@
                     </div>
                     <div class="modal-body">
 
-                        <div id="creatVPS">
-                            <h1>First Step</h1>
-                            <div>First Content</div>
+                        <div id="checklist" class="text-center">
+                            <strong>Check:</strong>
+                            <span id="d-rvps" class="badge-light text-muted mx-2 px-3">rVPS</span>
+                            <span id="d-hw" class="badge-light text-muted mx-2 px-3">Hardware</span>
+                            <span id="d-net" class="badge-light text-muted mx-2 px-3">Network</span>
+                            <span id="d-os" class="badge-light text-muted mx-2 px-3">OS</span>
+                            <span id="d-sync" class="badge-light text-muted mx-2 px-3">Sync</span>
+                        </div>
+                        <hr>
+                        <div id="tabs">
+                            <div class="nav-tabs-boxed">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Convert rVPS</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Finalize Hardware</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Finalize Network</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Change Password</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Sync WHMCS</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab-1" role="tabpanel">
+                                        <div class="row mt-2">
+                                            <div class="col-md-10">
 
-                            <h1>Second Step</h1>
-                            <div>Second Content</div>
+                                            </div>
+                                            <div class="col-md-2 text-right"><button data-rel="rvps" class="do-done btn btn-outline-success btn-xs"><i class="fa fa-check"></i> Done</button></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3"></div>
+                                            <div class="col-md-9"></div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab-2" role="tabpanel">Finalize Hardware</div>
+                                    <div class="tab-pane" id="tab-3" role="tabpanel">Finalize Network</div>
+                                    <div class="tab-pane" id="tab-4" role="tabpanel">Change Password</div>
+                                    <div class="tab-pane" id="tab-5" role="tabpanel">Sync WHMCS</div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>

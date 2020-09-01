@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-    var creatVPS = $("#creatVPS").steps();
-
     /**
      * IPT VPS
      */
