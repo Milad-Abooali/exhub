@@ -107,7 +107,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <div id="checklist" class="text-center">
+                        <div id="rVPS" class="text-center">
                             <strong>Check:</strong>
                             <span id="d-rvps" class="badge-light text-muted mx-2 px-3">rVPS</span>
                             <span id="d-hw" class="badge-light text-muted mx-2 px-3">Hardware</span>
