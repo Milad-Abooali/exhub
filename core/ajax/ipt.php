@@ -199,19 +199,6 @@
         }
 
         /**
-         * Add IP MOdal
-         */
-        function getNetworkVPS()
-        {
-            $db = new MySQL(DB_INFO);
-            $nets = $db->select('ipt_networks', 'status=1 AND server_nid='.$_POST['server_nid']);
-            $output = new stdClass();
-            $output->e = false;
-            $output->res = $nets;
-            echo json_encode($output);
-        }
-
-        /**
          * Insert IPs
          */
         function insertIPs()
@@ -260,10 +247,12 @@
             }
         }
 
+        // VPS Page
+
         /**
-         * Get rVPS Modal
+         * New VPS Modal - Step 1
          */
-        function getRvps()
+        function newVPS()
         {
             $output = new stdClass();
 
@@ -302,5 +291,27 @@
             }
             echo json_encode($output);
         }
+
+
+        /**
+         * Add IP MOdal
+         */
+//        function getNetworkVPS()
+//        {
+//            $db = new MySQL(DB_INFO);
+//            $nets = $db->select('ipt_networks', 'status=1 AND server_nid='.$_POST['server_nid']);
+//            $ips = array();
+//            foreach ((array) $nets as $net) {
+//                $table = 'ipt_ips';
+//                $where = 'status=1 AND network_id='.$net['id'];
+//                $ips[] = $db->selectRow($where,null,$table);
+//            }
+//            $output = new stdClass();
+//            $output->e = false;
+//            $output->res['nets'] = $nets;
+//            $output->res['ips'] = $ips;
+//            echo json_encode($output);
+//        }
+
 
     }

@@ -31,6 +31,7 @@
     <script defer src="<?= JS ?>jquery.dataTables.min.js"></script>
     <script defer src="<?= JS ?>dataTables.bootstrap4.min.js"></script>
     <script defer src="<?= JS ?>circle-progress.min.js"></script>
+    <script defer src="<?= JS ?>jquery.steps.min.js"></script>
     <script defer src="<?= JS ?>ex.js"></script>
   <!--- Head -->
     <?= $this->data['PAGE']['head'] ?>

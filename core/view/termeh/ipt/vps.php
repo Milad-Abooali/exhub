@@ -17,7 +17,7 @@
             <h4 class="text-center">
                 Add New VPS
             </h4>
-            <form id="get-rvps" action="ipt/getRvps" class="col-md-12 form-inline justify-content-center my-3">
+            <form id="new-vps" action="ipt/newVPS" class="col-md-12 form-inline justify-content-center my-3">
                 IP.Loc:
                 <select id="iploc" name="iploc" class="custom-select mx-2" required>
                     <?php foreach ((array) $this->data['ip_loc'] as $loc) { ?>
@@ -96,112 +96,24 @@
         </div>
 
 
-        <div id="modal-getRvps" class="modal fade mt-5" tabindex="-1" role="dialog">
+        <div id="modal-main" class="modal fade mt-5" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg mt-5" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"> Convert rVPS > VPS </h5>
+                        <h5 class="modal-title"></h5>
                         <button type="button" class="close close-right" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
 
-                        <!-- Row Form -->
-                            <div class="row">
+                        <div id="creatVPS">
+                            <h1>First Step</h1>
+                            <div>First Content</div>
 
-                                <div class="col-md-5 mb-4">
-                                    <div class="card">
-                                        <div class="card-header text-center">
-                                            <span id="idc" class="float-left cb-copy-html"> </span>
-                                            <strong class="float-right text-dark">
-                                                <i id="host-flag" class="cb-flag" data-toggle="tooltip"data-placement="left"></i>
-                                                <span id="host-server" class="cb-copy-html"></span>
-                                            </strong>
-                                            <hr>
-                                            <h4 id="ip" class="panel-title text-success cb-copy-html"> </h4>
-                                            <hr>
-                                            <i id="net-flag" class="cb-flag" data-toggle="tooltip"data-placement="left"></i>
-                                            <a id="net" class="text-muted cb-copy-html" data-toggle="collapse" href="#network" aria-expanded="false" class="collapsed"></a>
-
-                                        </div>
-                                        <div id="network" class="card-body panel-collapse collapse">
-                                            <div class="list-group list-group-flush">
-                                                <span class="list-group-item">IP Country: <i id="ip-flag" class="float-right cb-flag cb-copy-html" data-toggle="tooltip"data-placement="left"></i></span>
-                                                <span class="list-group-item">Mac: <strong id="mac" class="float-right cb-copy-html"> </strong></span>
-                                                <span class="list-group-item">Gateway: <strong id="gw" class="float-right cb-copy-html"> </strong></span>
-                                                <span class="list-group-item">Netmask: <strong id="netmask" class="float-right cb-copy-html"> </strong></span>
-                                                <span class="list-group-item">DNS 1: <strong id="dns-1" class="float-right cb-copy-html"> </strong></span>
-                                                <span class="list-group-item">DNS 2: <strong id="dns-2" class="float-right cb-copy-html"> </strong></span>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer text-center">
-                                            <a id="addIP" data-toggle="modal" href="#modal-addIP" class="btn btn-sm btn-outline-dark col-md-7">Add IP</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-7">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <h4 id="plan-name" class="panel-title text-primary text-center text-uppercase cb-copy-html"> </h4>
-                                                    <div class="list-group list-group">
-                                                        <span class="list-group-item">Ram: <strong class="ram float-right cb-copy-html"> </strong></span>
-                                                        <span class="list-group-item">CPU Core: <strong class="cpu float-right cb-copy-html"> </strong></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="list-group list-group">
-                                                        <span class="list-group-item">HDD: <strong class="hdd float-right cb-copy-html"> </strong></span>
-                                                        <span class="list-group-item">SSD: <strong class="ssd float-right cb-copy-html"> </strong></span>
-                                                        <span class="list-group-item">NVMe: <strong class="nvme float-right cb-copy-html"> </strong></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12 border border-warning my-2  d-none">
-                                                    <div class="row">
-                                                        <span class="col bg-warning">Limits: </span>
-                                                        <span class="col text-center">RAM: <strong id="ram_limit" class="text-danger cb-copy-html"> </strong></span>
-                                                        <span class="col text-center">CPU: <strong id="cpu_limit" class="text-danger cb-copy-html"> </strong></span>
-                                                        <span class="col text-center">DISK: <strong id="disk_limit" class="text-danger cb-copy-html"> </strong></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pt-4">
-                                        <div class="text-center text-muted">
-
-                                        </div>
-                                        <form id="save-rvps" action="ipt/saveRvps" data-reload="true" class="">
-                                            <input type="hidden" id="rvps_id" name="rvps_id">
-                                            <input type="hidden" id="obj_id" name="obj_id">
-                                            <input type="hidden" id="server_nid" name="server_nid">
-                                            <input type="hidden" id="network_id" name="network_id">
-                                            <input type="hidden" id="plan_id" name="plan_id">
-                                            <input type="hidden" id="ip_id" name="ip_id">
-                                            <input type="hidden" class="ram" name="ram">
-                                            <input type="hidden" class="cpu" name="cpu_core">
-                                            <input type="hidden" class="hdd" name="hdd">
-                                            <input type="hidden" class="ssd" name="ssd">
-                                            <input type="hidden" class="nvme" name="nvme">
-                                            <input type="text" class="cb-copy-val form-control mb-3" id="vm_name" name="vm_name" placeholder="VM Name" readonly>
-                                            <input type="text" class="cb-copy-val form-control mb-3" id="uuid" name="uuid" placeholder="UUID" readonly>
-                                            <textarea class="cb-copy-val form-control my-3" placeholder="Note" name="note" readonly></textarea>
-                                            <input type="text" class="cb-copy-val form-control  col-md-8 d-inline-block" id="os" name="os" placeholder="OS" readonly>
-                                            <input type="number" class="cb-copy-val form-control col-md-3 d-inline-block float-right" id="port" name="port" placeholder="Port" autocomplete="off" readonly>
-                                            <input type="text" class="form-control  col-md-5 d-inline-block mt-3" id="vm_user" name="vm_user" placeholder="Username" readonly>
-                                            <input type="text" class="form-control  col-md-6 d-inline-block float-right mt-3" id="vm_pass" name="vm_pass" placeholder="New Password" required>
-
-                                            <button type="submit" class="btn btn-primary col-md-7 mt-3">Convert to VPS</button>
-                                            <div class="cb-ltr w-100 d-block alerts"><br></div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
+                            <h1>Second Step</h1>
+                            <div>Second Content</div>
+                        </div>
 
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
@@ -212,20 +124,19 @@
             </div>
         </div>
 
-
-        <div id="modal-addIP" class="modal bg-dark mt-5 pt-5" data-backdrop="static">
-            <div class="modal-dialog modal-lg mt-5">
+        <div id="modal-top" class="modal bg-dark mt-5 pt-5" data-backdrop="static">
+            <div class="modal-dialog modal-sm mt-5">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <h4 class="modal-title">Add addition IP</h4>
+                        <h4 class="modal-title"></h4>
                         <button type="button" class="close close-right" data-dismiss="modal">×</button>
                     </div><div class="container"></div>
                     <div class="modal-body">
-                        ..
+
+
                     </div>
                     <div class="modal-footer">
                         <a href="#" data-dismiss="modal" class="btn">Close</a>
-                        <a href="#" class="btn btn-primary">Save changes</a>
                     </div>
                 </div>
             </div>
