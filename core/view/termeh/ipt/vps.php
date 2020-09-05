@@ -107,15 +107,6 @@
                     </div>
                     <div class="modal-body">
 
-                        <div id="rVPS" class="text-center">
-                            <strong>Check:</strong>
-                            <span id="d-rvps" class="badge-light text-muted mx-2 px-3">rVPS</span>
-                            <span id="d-hw" class="badge-light text-muted mx-2 px-3">Hardware</span>
-                            <span id="d-net" class="badge-light text-muted mx-2 px-3">Network</span>
-                            <span id="d-os" class="badge-light text-muted mx-2 px-3">OS</span>
-                            <span id="d-sync" class="badge-light text-muted mx-2 px-3">Sync</span>
-                        </div>
-                        <hr>
                         <div id="tabs">
                             <div class="nav-tabs-boxed">
                                 <ul class="nav nav-tabs" role="tablist">
@@ -127,11 +118,14 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab-1" role="tabpanel">
-                                        <div class="row mt-2">
-                                            <div class="col-md-10">
+                                        <div class="row pt-3">
+                                            <div class="col-md-8">
 
                                             </div>
-                                            <div class="col-md-2 text-right"><button data-rel="rvps" class="do-done btn btn-outline-success btn-xs"><i class="fa fa-check"></i> Done</button></div>
+                                            <div class="col-md-4 text-right">
+                                                <button data-rel="rvps" class="do-unfine btn btn-outline-danger btn-xs"><i class="fa fa-remove"></i> Unfine</button>
+                                                <button data-rel="rvps" class="do-fine btn btn-outline-success btn-xs"><i class="fa fa-check"></i> Fine</button>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-3"></div>
