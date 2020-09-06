@@ -122,7 +122,7 @@
                                 </ul>
                                 <div class="row p-3">
                                     <div class="col-md-8">
-                                        VPS: <input class="" value="12">
+                                        IP: <span id="ip" class="cb-copy-html badge-success"></span>
                                     </div>
                                     <div class="col-md-4 text-right">
                                         <button data-rel="rvps" class="do-fine btn btn-outline-success btn-xs"><i class="fa fa-check"></i> Fine</button>

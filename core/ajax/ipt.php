@@ -278,7 +278,7 @@
             foreach ((array) $networks as $net) $nets[$net['id']] = $net['id'];
             $output->res['nets'] = implode("','",$nets);
             $table = 'ipt_rvps';
-            $where = 'plan_id='.$_POST['plan']." AND network_id IN ('".$output->res['nets']."')";
+            $where = 'plan_id='.$_POST['plan']." AND network_id IN ('".$output->res['nets']."')"."AND os_id=".$_POST['os'];
             $output->res['rvps'] = $db->selectRow($where, null,$table);
             $output->e = ($output->res['rvps']) ? false : true;
             if ($output->res['rvps']) {
