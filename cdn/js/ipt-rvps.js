@@ -120,8 +120,8 @@ $(document).ready(function() {
     // Ajax IP LOC  - ipt/rvps
     $('body').on('keyup change','#server', function(){
         const server = $(this).val();
-        const data = 'server='+server
-        const classA = 'ipt/getNetworksLoc'
+        const data = 'server='+server;
+        const classA = 'ipt/getNetworksLoc';
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
             let options;

@@ -204,8 +204,8 @@
         function getPlanOS()
         {
             $db = new MySQL(DB_INFO);
-            $min_ram = $db->selectId($_POST['plan'],'ram','ipt_plans');
-            $oss = $db->select('ipt_os', 'mi_ram='.$min_ram);
+            $min_ram = $db->selectId($_POST['plan'],'ram','fin_plans')['ram'];
+            $oss = $db->select('ipt_os', 'min_ram<='.$min_ram);
             $output = new stdClass();
             $output->e = false;
             $output->res = $oss;

@@ -7,8 +7,8 @@ $(document).ready(function() {
     // Ajax Plan OS  - ipt/vps
     $('body').on('keyup change','#plan', function(){
         const plan = $(this).val();
-        const data = 'plan='+plan
-        const classA = 'ipt/getPlanOS'
+        const data = 'plan='+plan;
+        const classA = 'ipt/getPlanOS';
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
             let options;
