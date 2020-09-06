@@ -122,7 +122,9 @@
                                 </ul>
                                 <div class="row p-3">
                                     <div class="col-md-8">
-                                        IP: <span id="ip" class="cb-copy-html badge-success"></span>
+                                        IP:
+                                        <i id="ip-flag" title=" " class="cb-flag"></i>
+                                        <span id="ip" class="cb-copy-html rounded px-2 badge-success"></span>
                                     </div>
                                     <div class="col-md-4 text-right">
                                         <button data-rel="rvps" class="do-fine btn btn-outline-success btn-xs"><i class="fa fa-check"></i> Fine</button>

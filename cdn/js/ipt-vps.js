@@ -31,7 +31,10 @@ $(document).ready(function() {
                 alert('No rVPS !');
             } else {
                 $("#modal-main .modal-title").html('New VPS');
+
                 $("#modal-main #ip").html(obj.res.rvps.ip.ip);
+                $("#modal-main #ip-flag").addClass('cbf-'+obj.res.rvps.ip.flag);
+                $("#modal-main #ip-flag").attr('title',obj.res.rvps.ip.country);
 
 
                 $("#modal-main").modal('show');
