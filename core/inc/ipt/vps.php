@@ -36,6 +36,7 @@
 
     // New rVPS
 
-    $this->data['plans'] = $db->select('fin_plans', "service_type='VPS'",'id, plan_name',null,null,'plan_name');
+    $this->data['os'] = $db->select('ipt_os');
+    $this->data['plans'] = $db->select('fin_plans', "service_type='VPS'",'id, plan_name');
     $this->data['ip_loc'] = $db->select('ipt_networks', 'status=1','country',null,null,'country');
 

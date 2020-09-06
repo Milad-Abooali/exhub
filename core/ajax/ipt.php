@@ -262,32 +262,32 @@
             $where = "status=1 AND country='".$_POST['iploc']."'";
             $networks = $db->select($table, $where);
             foreach ((array) $networks as $net) $nets[$net['id']] = $net['id'];
-            $output->nets = implode("','",$nets);
+            $output->res['nets'] = implode("','",$nets);
             $table = 'ipt_rvps';
-            $where = 'plan_id='.$_POST['plan']." AND network_id IN ('".$output->nets."')";
-            $output->res = $db->selectRow($where, null,$table);
-            $output->e = ($output->res) ? false : true;
-            if ($output->res) {
+            $where = 'plan_id='.$_POST['plan']." AND network_id IN ('".$output->res['nets']."')";
+            $output->res['rvps'] = $db->selectRow($where, null,$table);
+            $output->e = ($output->res['rvps']) ? false : true;
+            if ($output->res['rvps']) {
 
                 $table = 'ipt_servers';
-                $where = 'status=1 AND nid='.$output->res['server_nid'];
-                $output->res['server'] = $db->selectRow($where, null,$table);
+                $where = 'status=1 AND nid='.$output->res['rvps']['server_nid'];
+                $output->res['rvps']['server'] = $db->selectRow($where, null,$table);
 
                 $table ='ipt_networks';
-                $output->res['network'] = $db->selectId($output->res['network_id'],'*',$table);
+                $output->res['rvps']['network'] = $db->selectId($output->res['rvps']['network_id'],'*',$table);
 
                 $table ='ipt_ips';
-                $output->res['ip'] = $db->selectId($output->res['ip_id'],'*',$table);
+                $output->res['rvps']['ip'] = $db->selectId($output->res['rvps']['ip_id'],'*',$table);
 
                 $table ='ipt_os';
-                $output->res['os'] = $db->selectId($output->res['os_id'],'*',$table);
+                $output->res['rvps']['os'] = $db->selectId($output->res['rvps']['os_id'],'*',$table);
 
                 $table ='fin_plans';
-                $output->res['plan'] = $db->selectId($output->res['plan_id'],'*',$table);
+                $output->res['rvps']['plan'] = $db->selectId($output->res['rvps']['plan_id'],'*',$table);
 
                 $table = 'fin_plan_limits';
-                $where = "plan_name='".$output->res['plan']['plan_name']."'";
-                $output->res['limits'] = $db->selectRow($where, null,$table);
+                $where = "plan_name='".$output->res['rvps']['plan']['plan_name']."'";
+                $output->res['rvps']['limits'] = $db->selectRow($where, null,$table);
             }
             echo json_encode($output);
         }

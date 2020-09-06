@@ -30,7 +30,12 @@
                         <option value="<?= $plan['id'] ?>"> <?= $plan['plan_name'] ?> </option>
                     <?php } ?>
                 </select>
-
+                OS:
+                <select id="os" name="os" class="custom-select mx-2" required>
+                    <?php foreach ((array) $this->data['os'] as $os) { ?>
+                        <option value="<?= $os['id'] ?>"> <?= $os['type'].' '.$os['name'].' '.$os['version'] ?> </option>
+                    <?php } ?>
+                </select>
                 <button type="submit" class="btn btn-primary mx-3">Get rVPS</button>
 
             </form>
@@ -116,20 +121,23 @@
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Change Password</a></li>
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Sync WHMCS</a></li>
                                 </ul>
+                                <div class="row p-3">
+                                    <div class="col-md-8">
+                                        VPS: <input class="" value="12">
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <button data-rel="rvps" class="do-fine btn btn-outline-success btn-xs"><i class="fa fa-check"></i> Fine</button>
+                                    </div>
+                                </div>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab-1" role="tabpanel">
-                                        <div class="row pt-3">
-                                            <div class="col-md-8">
 
-                                            </div>
-                                            <div class="col-md-4 text-right">
-                                                <button data-rel="rvps" class="do-unfine btn btn-outline-danger btn-xs"><i class="fa fa-remove"></i> Unfine</button>
-                                                <button data-rel="rvps" class="do-fine btn btn-outline-success btn-xs"><i class="fa fa-check"></i> Fine</button>
-                                            </div>
-                                        </div>
                                         <div class="row">
-                                            <div class="col-md-3"></div>
-                                            <div class="col-md-9"></div>
+
+                                                <div class="col-md-5 mb-4">
+
+                                                </div>
+
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab-2" role="tabpanel">Finalize Hardware</div>

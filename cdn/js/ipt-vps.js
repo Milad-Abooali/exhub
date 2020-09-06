@@ -15,9 +15,9 @@ $(document).ready(function() {
             if (obj.e) {
                 alert('No rVPS !');
             } else {
-
-
                 $("#modal-main .modal-title").html('New VPS');
+
+
                 $("#modal-main").modal('show');
             }
         });
