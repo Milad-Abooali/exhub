@@ -32,9 +32,7 @@
                 </select>
                 OS:
                 <select id="os" name="os" class="custom-select mx-2" required>
-                    <?php foreach ((array) $this->data['os'] as $os) { ?>
-                        <option value="<?= $os['id'] ?>"> <?= $os['type'].' '.$os['name'].' '.$os['version'] ?> </option>
-                    <?php } ?>
+
                 </select>
                 <button type="submit" class="btn btn-primary mx-3">Get rVPS</button>
 
