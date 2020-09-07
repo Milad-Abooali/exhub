@@ -6,23 +6,28 @@ $(document).ready(function() {
 
     // Ajax Loc Plan - ipt/vps
     $('body').on('keyup change','#iploc', function(){
-        const plan = $(this).val();
-        const data = 'plan='+plan;
+        let data = {
+            loc: $(this).val()
+        };
         const classA = 'ipt/getLocPlan';
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
             let options;
-            $.each(obj.res,function( key, v ) {
-                options +='<option value="'+v['id']+'">'+v['type']+' '+v['name']+' '+v['version']+'</option>'
-            });
-            $('#os').html(options);
+            if (obj.res) {
+                options += '<option disabled selected> Select Plan </option>';
+                $.each(obj.res,function( key, v ) {
+                    options +='<option value="'+v['id']+'">'+v['plan_name']+'</option>'
+                });
+            }
+            $('#plan').html(options);
         });
     })
 
     // Ajax Plan OS  - ipt/vps
     $('body').on('keyup change','#plan', function(){
-        const plan = $(this).val();
-        const data = 'plan='+plan;
+        let data = {
+            plan: $(this).val()
+        };
         const classA = 'ipt/getPlanOS';
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
@@ -68,15 +73,15 @@ $(document).ready(function() {
                     $("#modal-main #planR-O").removeClass("d-none");
 
                     $('#modal-main #oplan .plan-name').html(rvps.plan.flag+'.'+rvps.plan.plan_name);
-                    $('#modal-main #oplan .ram').html(obj.res.plan.ram);
-                    $('#modal-main #oplan .cpu').html(obj.res.plan.cpu_core);
-                    $('#modal-main #oplan .hdd').html(obj.res.plan.hdd);
-                    $('#modal-main #oplan .ssd').html(obj.res.plan.ssd);
-                    $('#modal-main #oplan .nvme').html(obj.res.plan.nvme);
+                    $('#modal-main #oplan .ram').html(rvps.plan.ram);
+                    $('#modal-main #oplan .cpu').html(rvps.plan.cpu_core);
+                    $('#modal-main #oplan .hdd').html(rvps.plan.hdd);
+                    $('#modal-main #oplan .ssd').html(rvps.plan.ssd);
+                    $('#modal-main #oplan .nvme').html(rvps.plan.nvme);
 
-                    $('#modal-main #oplan .ram_limit').html(obj.res.limits.ram_limit);
-                    $('#modal-main #oplan .cpu_limit').html(obj.res.limits.cpu_limit);
-                    $('#modal-main #oplan .disk_limit').html(obj.res.limits.disk_limit);
+                    $('#modal-main #oplan .ram_limit').html(rvps.limits.ram_limit);
+                    $('#modal-main #oplan .cpu_limit').html(rvps.limits.cpu_limit);
+                    $('#modal-main #oplan .disk_limit').html(rvps.limits.disk_limit);
                 }
                 $("#modal-main").modal('show');
             }

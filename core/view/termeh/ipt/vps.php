@@ -26,10 +26,7 @@
                 </select>
                 Plan:
                 <select id="plan" name="plan" class="custom-select mx-2" required>
-                    <option disabled selected> Select Plan </option>
-                    <?php foreach ((array) $this->data['plans'] as $plan) { ?>
-                        <option value="<?= $plan['id'] ?>"> <?= $plan['plan_name'] ?> </option>
-                    <?php } ?>
+
                 </select>
                 OS:
                 <select id="os" name="os" class="custom-select mx-2" required>

@@ -198,6 +198,21 @@
             echo json_encode($output);
         }
 
+
+
+        /**
+         * Get Plan OS
+         */
+        function getLocPlan()
+        {
+            $db = new MySQL(DB_INFO);
+            $oss = $db->select('fin_plans', 'country="'.$_POST['loc'].'"');
+            $output = new stdClass();
+            $output->e = false;
+            $output->res = $oss;
+            echo json_encode($output);
+        }
+
         /**
          * Get Plan OS
          */
