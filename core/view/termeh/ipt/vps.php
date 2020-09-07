@@ -182,11 +182,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="rplan" class="col-md-2 float-left text-center pt-5">
+                                                <div class="col-md-2 float-left text-center pt-5">
                                                     Plan Change<br>
                                                     <i class="fa fa-arrow-right fa-3x"></i>
                                                 </div>
-                                                <div class="col-md-5 float-right">
+                                                <div id="rplan" class="col-md-5 float-right">
                                                     <div class="card">
                                                         <div class="card-header">
                                                             <div class="row">
