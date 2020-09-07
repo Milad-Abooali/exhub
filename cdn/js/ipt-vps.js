@@ -4,6 +4,21 @@ $(document).ready(function() {
      * IPT VPS
      */
 
+    // Ajax Loc Plan - ipt/vps
+    $('body').on('keyup change','#iploc', function(){
+        const plan = $(this).val();
+        const data = 'plan='+plan;
+        const classA = 'ipt/getLocPlan';
+        ajaxCall (classA, data,function(response) {
+            let obj = JSON.parse(response);
+            let options;
+            $.each(obj.res,function( key, v ) {
+                options +='<option value="'+v['id']+'">'+v['type']+' '+v['name']+' '+v['version']+'</option>'
+            });
+            $('#os').html(options);
+        });
+    })
+
     // Ajax Plan OS  - ipt/vps
     $('body').on('keyup change','#plan', function(){
         const plan = $(this).val();
@@ -51,6 +66,17 @@ $(document).ready(function() {
                 $("#modal-main #planR-O").addClass("d-none");
                 if (obj.res.plan_r) {
                     $("#modal-main #planR-O").removeClass("d-none");
+
+                    $('#modal-main #oplan .plan-name').html(rvps.plan.flag+'.'+rvps.plan.plan_name);
+                    $('#modal-main #oplan .ram').html(obj.res.plan.ram);
+                    $('#modal-main #oplan .cpu').html(obj.res.plan.cpu_core);
+                    $('#modal-main #oplan .hdd').html(obj.res.plan.hdd);
+                    $('#modal-main #oplan .ssd').html(obj.res.plan.ssd);
+                    $('#modal-main #oplan .nvme').html(obj.res.plan.nvme);
+
+                    $('#modal-main #oplan .ram_limit').html(obj.res.limits.ram_limit);
+                    $('#modal-main #oplan .cpu_limit').html(obj.res.limits.cpu_limit);
+                    $('#modal-main #oplan .disk_limit').html(obj.res.limits.disk_limit);
                 }
                 $("#modal-main").modal('show');
             }

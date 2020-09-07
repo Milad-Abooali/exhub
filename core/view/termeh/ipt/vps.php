@@ -159,7 +159,7 @@
                                                         <div class="card-header">
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    <h4 id="plan-name" class="panel-title text-primary text-center text-uppercase cb-copy-html"> </h4>
+                                                                    <h4 class="plan-name panel-title text-primary text-center text-uppercase cb-copy-html"> </h4>
                                                                     <div class="list-group list-group">
                                                                         <span class="list-group-item">Ram: <strong class="ram float-right cb-copy-html"> </strong></span>
                                                                         <span class="list-group-item">CPU Core: <strong class="cpu float-right cb-copy-html"> </strong></span>
@@ -176,9 +176,9 @@
                                                                 <div class="col-md-12 border border-warning my-2">
                                                                     <div class="row">
                                                                         <span class="col bg-warning">Limits: </span>
-                                                                        <span class="col text-center">RAM: <strong id="ram_limit" class="text-danger cb-copy-html"> </strong></span>
-                                                                        <span class="col text-center">CPU: <strong id="cpu_limit" class="text-danger cb-copy-html"> </strong></span>
-                                                                        <span class="col text-center">DISK: <strong id="disk_limit" class="text-danger cb-copy-html"> </strong></span>
+                                                                        <span class="col text-center">RAM: <strong class="ram_limit text-danger cb-copy-html"> </strong></span>
+                                                                        <span class="col text-center">CPU: <strong class="cpu_limit text-danger cb-copy-html"> </strong></span>
+                                                                        <span class="col text-center">DISK: <strong class="disk_limit text-danger cb-copy-html"> </strong></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -194,7 +194,7 @@
                                                         <div class="card-header">
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    <h4 id="plan-name" class="panel-title text-primary text-center text-uppercase cb-copy-html"> </h4>
+                                                                    <h4 class="plan-name panel-title text-primary text-center text-uppercase cb-copy-html"> </h4>
                                                                     <div class="list-group list-group">
                                                                         <span class="list-group-item">Ram: <strong class="ram float-right cb-copy-html"> </strong></span>
                                                                         <span class="list-group-item">CPU Core: <strong class="cpu float-right cb-copy-html"> </strong></span>
@@ -211,9 +211,9 @@
                                                                 <div class="col-md-12 border border-warning my-2">
                                                                     <div class="row">
                                                                         <span class="col bg-warning">Limits: </span>
-                                                                        <span class="col text-center">RAM: <strong id="ram_limit" class="text-danger cb-copy-html"> </strong></span>
-                                                                        <span class="col text-center">CPU: <strong id="cpu_limit" class="text-danger cb-copy-html"> </strong></span>
-                                                                        <span class="col text-center">DISK: <strong id="disk_limit" class="text-danger cb-copy-html"> </strong></span>
+                                                                        <span class="col text-center">RAM: <strong class="ram_limit text-danger cb-copy-html"> </strong></span>
+                                                                        <span class="col text-center">CPU: <strong class="cpu_limit text-danger cb-copy-html"> </strong></span>
+                                                                        <span class="col text-center">DISK: <strong class="disk_limit text-danger cb-copy-html"> </strong></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
