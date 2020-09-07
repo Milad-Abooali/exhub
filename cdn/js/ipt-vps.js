@@ -78,10 +78,21 @@ $(document).ready(function() {
                     $('#modal-main #oplan .hdd').html(rvps.plan.hdd);
                     $('#modal-main #oplan .ssd').html(rvps.plan.ssd);
                     $('#modal-main #oplan .nvme').html(rvps.plan.nvme);
-
                     $('#modal-main #oplan .ram_limit').html(rvps.limits.ram_limit);
                     $('#modal-main #oplan .cpu_limit').html(rvps.limits.cpu_limit);
                     $('#modal-main #oplan .disk_limit').html(rvps.limits.disk_limit);
+
+                    $('#modal-main #rplan .plan-name').html(obj.res.o_plan.flag+'.'+obj.res.o_plan.plan_name);
+                    $('#modal-main #rplan .ram').html(obj.res.o_plan.ram);
+                    $('#modal-main #rplan .cpu').html(obj.res.o_plan.cpu_core);
+                    $('#modal-main #rplan .hdd').html(obj.res.o_plan.hdd);
+                    $('#modal-main #rplan .ssd').html(obj.res.o_plan.ssd);
+                    $('#modal-main #rplan .nvme').html(obj.res.o_plan.nvme);
+                    $('#modal-main #rplan .ram_limit').html(obj.res.o_limits.ram_limit);
+                    $('#modal-main #rplan .cpu_limit').html(obj.res.o_limits.cpu_limit);
+                    $('#modal-main #rplan .disk_limit').html(obj.res.o_limits.disk_limit);
+
+
                 }
                 $("#modal-main").modal('show');
             }
