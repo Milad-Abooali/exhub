@@ -138,7 +138,7 @@
                                             <div id="check-planr" class="col-md-12 mb-3 h5">
 
                                             </div>
-                                            <div class="col-md-12 mb-5">
+                                            <div class="col-md-12 mb-3">
                                                 Plan:
                                                 <span id="check-plan" class="cb-copy-html rounded px-2 mr-2 badge-primary"></span>
                                                 IP:
@@ -150,9 +150,76 @@
                                                 Status:
                                                 <small id="check-status" class=""></small>
                                                 <button id="doA-select-rvps" class="btn btn-sm btn-dark float-right">Select</button>
+                                                <hr>
                                             </div>
-                                            <hr>
-                                            <div id="planR-O" class="col-md-12 mb-3">
+
+                                            <div id="planR-O" class="row mb-3 px-1">
+                                                <div id="oplan" class="col-md-5 float-left">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <h4 id="plan-name" class="panel-title text-primary text-center text-uppercase cb-copy-html"> </h4>
+                                                                    <div class="list-group list-group">
+                                                                        <span class="list-group-item">Ram: <strong class="ram float-right cb-copy-html"> </strong></span>
+                                                                        <span class="list-group-item">CPU Core: <strong class="cpu float-right cb-copy-html"> </strong></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="list-group list-group">
+                                                                        <span class="list-group-item">HDD: <strong class="hdd float-right cb-copy-html"> </strong></span>
+                                                                        <span class="list-group-item">SSD: <strong class="ssd float-right cb-copy-html"> </strong></span>
+                                                                        <span class="list-group-item">NVMe: <strong class="nvme float-right cb-copy-html"> </strong></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12 border border-warning my-2">
+                                                                    <div class="row">
+                                                                        <span class="col bg-warning">Limits: </span>
+                                                                        <span class="col text-center">RAM: <strong id="ram_limit" class="text-danger cb-copy-html"> </strong></span>
+                                                                        <span class="col text-center">CPU: <strong id="cpu_limit" class="text-danger cb-copy-html"> </strong></span>
+                                                                        <span class="col text-center">DISK: <strong id="disk_limit" class="text-danger cb-copy-html"> </strong></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="rplan" class="col-md-2 float-left text-center pt-5">
+                                                    Plan Change<br>
+                                                    <i class="fa fa-arrow-right fa-3x"></i>
+                                                </div>
+                                                <div class="col-md-5 float-right">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <h4 id="plan-name" class="panel-title text-primary text-center text-uppercase cb-copy-html"> </h4>
+                                                                    <div class="list-group list-group">
+                                                                        <span class="list-group-item">Ram: <strong class="ram float-right cb-copy-html"> </strong></span>
+                                                                        <span class="list-group-item">CPU Core: <strong class="cpu float-right cb-copy-html"> </strong></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="list-group list-group">
+                                                                        <span class="list-group-item">HDD: <strong class="hdd float-right cb-copy-html"> </strong></span>
+                                                                        <span class="list-group-item">SSD: <strong class="ssd float-right cb-copy-html"> </strong></span>
+                                                                        <span class="list-group-item">NVMe: <strong class="nvme float-right cb-copy-html"> </strong></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12 border border-warning my-2">
+                                                                    <div class="row">
+                                                                        <span class="col bg-warning">Limits: </span>
+                                                                        <span class="col text-center">RAM: <strong id="ram_limit" class="text-danger cb-copy-html"> </strong></span>
+                                                                        <span class="col text-center">CPU: <strong id="cpu_limit" class="text-danger cb-copy-html"> </strong></span>
+                                                                        <span class="col text-center">DISK: <strong id="disk_limit" class="text-danger cb-copy-html"> </strong></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
                                         </div>
