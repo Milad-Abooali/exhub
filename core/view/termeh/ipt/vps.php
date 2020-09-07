@@ -121,24 +121,40 @@
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Sync WHMCS</a></li>
                                 </ul>
                                 <div class="row p-3">
-                                    <div class="col-md-8">
-                                        IP:
-                                        <i id="ip-flag" title=" " class="cb-flag"></i>
-                                        <span id="ip" class="cb-copy-html rounded px-2 badge-success"></span>
+                                    <div class="col-md-10">
+
+
                                     </div>
-                                    <div class="col-md-4 text-right">
+                                    <div class="col-md-2 text-right">
                                         <button data-rel="rvps" class="do-fine btn btn-outline-success btn-xs"><i class="fa fa-check"></i> Fine</button>
                                     </div>
                                 </div>
+                                <hr>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab-1" role="tabpanel">
 
                                         <div class="row">
 
-                                                <div class="col-md-5 mb-4">
+                                            <div id="check-planr" class="col-md-12 mb-3 h5">
 
-                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-5">
+                                                Plan:
+                                                <span id="check-plan" class="cb-copy-html rounded px-2 mr-2 badge-primary"></span>
+                                                IP:
+                                                <i id="check-ip-flag" title=" " class="cb-flag"></i>
+                                                <span id="check-ip" class="cb-copy-html rounded px-2 mr-2 badge-success"></span>
+                                                OS:
+                                                <small id="check-os" class="cb-copy-html rounded px-2 mr-2 badge-warning"></small>
 
+                                                Status:
+                                                <small id="check-status" class=""></small>
+                                                <button id="doA-select-rvps" class="btn btn-sm btn-dark float-right">Select</button>
+                                            </div>
+                                            <hr>
+                                            <div id="planR-O" class="col-md-12 mb-3">
+
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab-2" role="tabpanel">Finalize Hardware</div>

@@ -280,8 +280,40 @@
             $table = 'ipt_rvps';
             $where = 'plan_id='.$_POST['plan']." AND network_id IN ('".$output->res['nets']."')"."AND os_id=".$_POST['os'];
             $output->res['rvps'] = $db->selectRow($where, null,$table);
+            $output->res['plan_r'] = false;
+            if (!$output->res['rvps']) {
+
+                $table ='fin_plans';
+                $output->res['o_plan'] = $db->selectId($_POST['plan'],'*',$table);
+
+                $table = 'fin_plan_limits';
+                $where = "plan_name='".$output->res['o_plan']['plan_name']."'";
+                $output->res['o_limits'] = $db->selectRow($where, null,$table);
+
+
+                $table = 'ipt_rvps';
+                $where = "network_id IN ('" . $output->res['nets'] . "')" . "AND os_id=" . $_POST['os'];
+                $output->res['rvps'] = $db->selectRow($where, null, $table);
+                $output->res['plan_r'] = true;
+            }
             $output->e = ($output->res['rvps']) ? false : true;
             if ($output->res['rvps']) {
+
+                $output->res['rvps']['status_text'] = [
+                  0 =>  'VM Created',
+                  1 =>  'OS Installed',
+                  2 =>  'Network Connected',
+                  3 =>  'Ezzz Done',
+                  4 =>  'Ready VPS'
+                ];
+
+                $output->res['rvps']['status_color'] = [
+                  0 =>  'light text-dark',
+                  1 =>  'warning text-dark',
+                  2 =>  'info text-light',
+                  3 =>  'primary text-light',
+                  4 =>  'success text-light'
+                ];
 
                 $table = 'ipt_servers';
                 $where = 'status=1 AND nid='.$output->res['rvps']['server_nid'];
@@ -304,6 +336,22 @@
                 $output->res['rvps']['limits'] = $db->selectRow($where, null,$table);
             }
             echo json_encode($output);
+        }
+
+
+        /**
+         * Convert rVPS to VPS
+         */
+        function rVPS2VPS()
+        {
+            $output = new stdClass();
+            $output->e = false;
+            $db = new MySQL(DB_INFO);
+
+            if ($_POST['planR']) {
+
+            }
+            echo json_encode($_POST);
         }
 
 
