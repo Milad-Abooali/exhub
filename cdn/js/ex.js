@@ -305,7 +305,7 @@ $(document).ready(function() {
       }
     });
   }
-  setInterval(async function(){serverCheck();}, 30000);
+  setInterval(async function(){serverCheck();}, 75000);
 
   // Ajax Login - Core
   $('body').on('submit','form#login', function(event){

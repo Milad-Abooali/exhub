@@ -51,12 +51,14 @@ $(document).ready(function() {
                 alert('No rVPS !');
             } else {
                 $("#modal-main .modal-title").html('New VPS');
+                $('#modal-main .nav-tabs a').data('toggle','');
+
                 rvps = obj.res.rvps
                 const o_plan = $('#plan option:selected').text();
                 const o_os = $('#os option:selected').text();
                 const planR = (obj.res.plan_r) ? '<span class="text-danger">Plan Need Change To <i>'+o_plan+'</i></span>' :'<span class="text-success">Same Plan.</span>';
                 $("#modal-main #check-planr").html(planR);
-                $("#modal-main #doA-select-rvps").data('planR',obj.res.plan_r && rvps.plan.id);
+                $("#modal-main #doA-select-rvps").data('planR',obj.res.plan_r && rvps.plan.plan_name);
                 $("#modal-main #doA-select-rvps").data('plan',o_plan);
                 $("#modal-main #doA-select-rvps").data('rvps',rvps.id);
                 $("#modal-main #check-ip").html(rvps.ip.ip);
@@ -92,25 +94,48 @@ $(document).ready(function() {
                     $('#modal-main #rplan .cpu_limit').html(obj.res.o_limits.cpu_limit);
                     $('#modal-main #rplan .disk_limit').html(obj.res.o_limits.disk_limit);
 
-
                 }
                 $("#modal-main").modal('show');
             }
         });
     })
 
+
+
     // Ajax Select rVPS  - ipt/vps
     $('body').on('click','#doA-select-rvps', function(){
-        let data = {
-            plan: $(this).data('plan'),
-            planR: $(this).data('planR'),
-            rvps: $(this).data('rvps')
-        };
-        const classA = 'ipt/rVPS2VPS';
-        ajaxCall (classA, data,function(response) {
-            let obj = JSON.parse(response);
-            console.log(obj);
-        });
+        const plan =$(this).data('plan');
+        const planR = $(this).data('planR');
+        const rvps = $(this).data('rvps');
+        if (planR){
+            let body ='Are you changed VM plan from "'+planR+'" to "'+plan+'"?';
+            let footer ='<button type="button" class="btn btn-success" data-dismiss="modal" onclick="convertRvps('+rvps+');">Yes</button>';
+            footer +='<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>';
+            makeModal('Change Plan',body,'sm',footer);
+        } else {
+            convertRvps(rvps);
+        }
     })
 
+
+
 })
+
+// Ajax Convert rVPS  - ipt/vps
+function convertRvps(id) {
+    let data = {
+        rvps: id
+    };
+    const classA = 'ipt/rVPS2VPS';
+    ajaxCall (classA, data,function(response) {
+        let obj = JSON.parse(response);
+        (obj.e) && alert('Error, Check Console !');
+        (obj.res) && loadVPS(obj.res);
+    });
+}
+
+// Ajax Convert rVPS  - ipt/vps
+function loadVPS(id) {
+    $('#modal-main .nav-tabs a').data('toggle','tab');
+    alert(id);
+}

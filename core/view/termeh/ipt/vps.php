@@ -112,10 +112,10 @@
                             <div class="nav-tabs-boxed">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Convert rVPS</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Finalize Hardware</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Finalize Network</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Change Password</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Sync WHMCS</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle=" " href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Finalize Hardware</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle=" " href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Finalize Network</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle=" " href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Change Password</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle=" " href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Sync WHMCS</a></li>
                                 </ul>
                                 <div class="row p-3">
                                     <div class="col-md-10">

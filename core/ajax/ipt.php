@@ -362,11 +362,37 @@
             $output = new stdClass();
             $output->e = false;
             $db = new MySQL(DB_INFO);
-
-            if ($_POST['planR']) {
-
+            $table = 'ipt_rvps';
+            $rvps_id = $_POST['rvps'] ?? 0;
+            $rvps = $db->selectId($rvps_id,'*',$table);
+            $output->e = ($rvps) ? false : 'Not found rvps !';
+            if ($rvps) {
+                $vps['object_id'] = $rvps['object_id'];
+                $vps['ip_id'] = $rvps['ip_id'];
+                $vps['network_id'] = $rvps['network_id'];
+                $vps['server_nid'] = $rvps['server_nid'];
+                $vps['plan_id'] = $rvps['plan_id'];
+                $vps['uuid'] = $rvps['uuid'];
+                $vps['os_id'] = $rvps['os_id'];
+                $vps['port'] = $rvps['port'];
+                $vps['ram'] = $rvps['ram'];
+                $vps['cpu_core'] = $rvps['cpu_core'];
+                $vps['hdd'] = $rvps['hdd'];
+                $vps['ssd'] = $rvps['ssd'];
+                $vps['nvme'] = $rvps['nvme'];
+                $vps['rvps_meta'] = $rvps['id'].','.$rvps['status'].','.$rvps['timestamp'].','.$rvps['note'];
+                $table = 'ipt_vps';
+                $insert = $db->insert($vps,$table);
+                $output->e = ($insert) ? false : 'Error Insert !';
+                $output->res = ($insert) ?? false;
+                if ($insert) {
+                    $table = 'ipt_ips';
+                    $data['status'] = 3;
+                    $update = $db->updateId($vps['ip_id'],$data,$table);
+                    $output->e = ($update) ? false : 'Error Update IP !';
+                }
             }
-            echo json_encode($_POST);
+            echo json_encode($output);
         }
 
 
