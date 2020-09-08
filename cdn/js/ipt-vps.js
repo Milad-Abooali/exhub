@@ -156,7 +156,7 @@ function loadVPS(id) {
             $("#modal-main #vps-ip-flag").addClass('cbf-'+vps.ip.flag);
             $("#modal-main #vps-ip-flag").attr('title',vps.ip.country);
             $("#modal-main #vps-plan").html(vps.plan.plan_name);
-            $("#modal-main #vps-os").html(o_os);
+            $("#modal-main #vps-os").html(vps.os.name);
             $("#modal-main #vps-status").html(vps.status);
             $("#modal-main #vps-status").html(vps.status_text[rvps.status]);
             $("#modal-main #vps-status").removeClass();

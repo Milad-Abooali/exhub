@@ -396,6 +396,73 @@
         }
 
 
+
+        /**
+         * New Load VPS
+         */
+        function loadVPS()
+        {
+            $output = new stdClass();
+
+            $db = new MySQL(DB_INFO);
+
+            $table = 'ipt_vps';
+            $vps_id = $_POST['vps'] ?? 0;
+            $output->res['vps'] = $db->selectId($vps_id,'*',$table);
+            $output->e = ($output->res['vps']) ? false : true;
+
+            if ($output->res['vps']) {
+
+                $output->res['vps']['status_text'] = [
+                  0 =>  'VM Created',
+                  1 =>  'OS Installed',
+                  2 =>  'Network Connected',
+                  3 =>  'Ezzz Done',
+                  4 =>  'Ready VPS'
+                ];
+
+                $output->res['vps']['status_color'] = [
+                  0 =>  'light text-dark',
+                  1 =>  'warning text-dark',
+                  2 =>  'info text-light',
+                  3 =>  'primary text-light',
+                  4 =>  'success text-light'
+                ];
+
+                $table = 'ipt_servers';
+                $where = 'status=1 AND nid='.$output->res['rvps']['server_nid'];
+                $output->res['rvps']['server'] = $db->selectRow($where, null,$table);
+
+                $table ='ipt_networks';
+                $output->res['rvps']['network'] = $db->selectId($output->res['rvps']['network_id'],'*',$table);
+
+                $table ='ipt_ips';
+                $output->res['rvps']['ip'] = $db->selectId($output->res['rvps']['ip_id'],'*',$table);
+
+                $table ='ipt_os';
+                $output->res['rvps']['os'] = $db->selectId($output->res['rvps']['os_id'],'*',$table);
+
+                $table ='fin_plans';
+                $output->res['rvps']['plan'] = $db->selectId($output->res['rvps']['plan_id'],'*',$table);
+
+                $table = 'fin_plan_limits';
+                $where = "plan_name='".$output->res['rvps']['plan']['plan_name']."'";
+                $output->res['rvps']['limits'] = $db->selectRow($where, null,$table);
+            }
+
+            $table = 'ipt_networks';
+            $where = "status=1 AND country='".$_POST['iploc']."'";
+            $networks = $db->select($table, $where);
+            foreach ((array) $networks as $net) $nets[$net['id']] = $net['id'];
+            $output->res['nets'] = implode("','",$nets);
+
+
+
+            echo json_encode($output);
+        }
+
+
+
         /**
          * Add IP MOdal
          */
