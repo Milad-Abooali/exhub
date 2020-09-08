@@ -51,8 +51,10 @@ $(document).ready(function() {
                 alert('No rVPS !');
             } else {
                 $("#modal-main .modal-title").html('New VPS');
-                $('#modal-main .nav-tabs a').data('toggle','');
-
+                $('#modal-main .nav-link').attr('data-toggle','');
+                $('#modal-main .nav-link').addClass('text-secondary');
+                $('#modal-main #vps-ribbon').addClass('d-none');
+                $('#modal-main #tab-1').removeClass('d-none');
                 rvps = obj.res.rvps
                 const o_plan = $('#plan option:selected').text();
                 const o_os = $('#os option:selected').text();
@@ -134,8 +136,31 @@ function convertRvps(id) {
     });
 }
 
-// Ajax Convert rVPS  - ipt/vps
+// Ajax Load VPS  - ipt/vps
+var vps;
 function loadVPS(id) {
-    $('#modal-main .nav-tabs a').data('toggle','tab');
-    alert(id);
+    $('#modal-main .nav-link').attr('data-toggle','tab');
+    $('#modal-main .nav-link').removeClass('text-secondary');
+    $('#modal-main #vps-ribbon').removeClass('d-none');
+    $('#modal-main #tab-1').addClass('d-none');
+    let data = {
+        vps: id
+    };
+    const classA = 'ipt/loadVPS';
+    ajaxCall (classA, data,function(response) {
+        let obj = JSON.parse(response);
+        (obj.e) && alert('Error, Check Console !');
+        if (obj.res.vps) {
+            vps = obj.res.vps
+            $("#modal-main #vps-ip").html(vps.ip.ip);
+            $("#modal-main #vps-ip-flag").addClass('cbf-'+vps.ip.flag);
+            $("#modal-main #vps-ip-flag").attr('title',vps.ip.country);
+            $("#modal-main #vps-plan").html(vps.plan.plan_name);
+            $("#modal-main #vps-os").html(o_os);
+            $("#modal-main #vps-status").html(vps.status);
+            $("#modal-main #vps-status").html(vps.status_text[rvps.status]);
+            $("#modal-main #vps-status").removeClass();
+            $("#modal-main #vps-status").addClass('cb-copy-html rounded px-2 bg-'+vps.status_color[vps.status]);
+        }
+    });
 }

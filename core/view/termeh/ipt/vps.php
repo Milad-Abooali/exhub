@@ -111,16 +111,23 @@
                         <div id="tabs">
                             <div class="nav-tabs-boxed">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Convert rVPS</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle=" " href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Finalize Hardware</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle=" " href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Finalize Network</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle=" " href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Change Password</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle=" " href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Sync WHMCS</a></li>
+                                    <li class="nav-item"><a class="nav-link active" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">VPS</a></li>
+                                    <li class="nav-item"><a class="nav-link text-secondary"  href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Hardware</a></li>
+                                    <li class="nav-item"><a class="nav-link text-secondary"  href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Network</a></li>
+                                    <li class="nav-item"><a class="nav-link text-secondary"  href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Password</a></li>
+                                    <li class="nav-item"><a class="nav-link text-secondary"  href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">WHMCS</a></li>
                                 </ul>
-                                <div class="row p-3">
+                                <div id="vps-ribbon" class="row p-3 d-none">
                                     <div class="col-md-10">
-
-
+                                        Plan:
+                                        <span id="vps-plan" class="cb-copy-html rounded px-2 mr-2 badge-primary"></span>
+                                        IP:
+                                        <i id="vps-ip-flag" title=" " class="cb-flag"></i>
+                                        <span id="vps-ip" class="cb-copy-html rounded px-2 mr-2 badge-success"></span>
+                                        OS:
+                                        <small id="vps-os" class="cb-copy-html rounded px-2 mr-2 badge-warning"></small>
+                                        Status:
+                                        <small id="vps-status" class=""></small>
                                     </div>
                                     <div class="col-md-2 text-right">
                                         <button data-rel="rvps" class="do-fine btn btn-outline-success btn-xs"><i class="fa fa-check"></i> Fine</button>
@@ -132,9 +139,7 @@
 
                                         <div class="row">
 
-                                            <div id="check-planr" class="col-md-12 mb-3 h5">
-
-                                            </div>
+                                            <div id="check-planr" class="col-md-12 mb-3 h5"> </div>
                                             <div class="col-md-12 mb-3">
                                                 Plan:
                                                 <span id="check-plan" class="cb-copy-html rounded px-2 mr-2 badge-primary"></span>
