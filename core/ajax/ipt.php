@@ -191,14 +191,15 @@
         function getNetworksLoc()
         {
             $db = new MySQL(DB_INFO);
-            $locs = $db->select('ipt_networks', 'status=1 AND server_nid='.$_POST['server'],'country',null,null,'country');
+            $server = ($_POST['server']) ?? false;
+            $where = 'status=1 ';
+            (!$server) ?: $where .= 'AND server_nid='.$server;
+            $locs = $db->select('ipt_networks', $where,'country',null,null,'country');
             $output = new stdClass();
             $output->e = false;
             $output->res = $locs;
             echo json_encode($output);
         }
-
-
 
         /**
          * Get Plan OS
@@ -395,8 +396,6 @@
             echo json_encode($output);
         }
 
-
-
         /**
          * New Load VPS
          */
@@ -458,9 +457,9 @@
         }
 
 
-      /**
-       * Filter VPS List
-       */
+        /**
+         * Filter VPS List
+         */
         function filterVPS()
         {
             $output = new stdClass();
@@ -470,7 +469,7 @@
             if ($loc) {
                 $table = 'ipt_networks';
                 $where = " status=1";
-                $where .= ($server==0) ?: " AND country='".$loc."'";
+                $where .=" AND country='".$loc."'";
                 $networks = $db->select($table, $where);
                 $nets =array();
                 foreach ((array) $networks as $net) $nets[$net['id']] = $net['id'];

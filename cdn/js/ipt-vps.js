@@ -149,9 +149,12 @@ $(document).ready(function() {
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
             if (obj.e) {
-
+                alert('Check Console');
             } else {
+                $.each(obj.res,function( key, value ) {
+                    console.log(value);
 
+                });
             }
         });
     })

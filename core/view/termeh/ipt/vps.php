@@ -43,7 +43,7 @@
                 Pending VPS List
             </h4>
             <?php if ($this->data['vps_pending']) : ?>
-            <table id="list-vps" class="table table-striped table-hover table-sm table-DT" >
+            <table id="list-pending-vps" class="table table-striped table-hover table-sm table-DT" >
                 <thead>
                 <tr>
                     <th>Status</th>
@@ -99,7 +99,7 @@
             </h4>
             <form id="vps-filter" action="ipt/filterVPS" class="col-md-12 form-inline justify-content-center float-right">
                 <small> Host </small>
-                <select id="host-list" name="host-list" class="btn btn-light mx-2 text-primary">
+                <select id="host-list" name="host-list" class="btn btn-light mx-2 text-primary" required>
                     <option disabled selected> Select Host </option>
                     <option value="0"> Show All </option>
                     <?php foreach ((array) $this->data['servers'] as $server) { ?>
