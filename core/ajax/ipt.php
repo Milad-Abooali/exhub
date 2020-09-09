@@ -464,21 +464,34 @@
         function filterVPS()
         {
             $output = new stdClass();
-
-            $db = new MySQL(DB_INFO,'ipt_vps');
-            $list = $db->selectAll();
+            $db = new MySQL(DB_INFO);
+            $server = ($_POST['host-list']) ?? false;
+            $loc = ($_POST['loc-list']) ?? false;
+            if ($loc) {
+                $table = 'ipt_networks';
+                $where = " status=1";
+                $where .= ($server==0) ?: " AND country='".$loc."'";
+                $networks = $db->select($table, $where);
+                $nets =array();
+                foreach ((array) $networks as $net) $nets[$net['id']] = $net['id'];
+                $networks = implode("','",$nets);
+            }
+            $where = '1 ';
+            (!$server) ?: $where .=' AND server_nid='.$server;
+            (!$loc) ?: $where .=' AND network_id IN('.$networks.')';
+            $table = 'ipt_vps';
+            $list = $db->select($table,$where);
             if ($list) {
                 foreach ($list as $k => $vps) {
-                    $list[$k]['ip'] = $db->selectId($rvps['ip_id'],'*','ipt_ips');
-                    $list[$k]['network'] = $db->selectId($rvps['network_id'],'*','ipt_networks');
-                    $list[$k]['plan'] = $db->selectId($rvps['plan_id'],'*','fin_plans');
-                    $list[$k]['os'] = $db->selectId($rvps['os_id'],'*','ipt_os');
-                    $where = 'status=1 AND nid='.$v['server_nid'];
+                    $list[$k]['ip'] = $db->selectId($vps['ip_id'],'*','ipt_ips');
+                    $list[$k]['network'] = $db->selectId($vps['network_id'],'*','ipt_networks');
+                    $list[$k]['plan'] = $db->selectId($vps['plan_id'],'*','fin_plans');
+                    $list[$k]['os'] = $db->selectId($vps['os_id'],'*','ipt_os');
+                    $where = 'status=1 AND nid='.$vps['server_nid'];
                     $list[$k]['server'] = $db->selectRow($where, null,'ipt_servers');
-
                 }
             }
-
+            $output->res = $list;
             echo json_encode($output);
         }
 
