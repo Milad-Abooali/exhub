@@ -102,8 +102,6 @@ $(document).ready(function() {
         });
     })
 
-
-
     // Ajax Select rVPS  - ipt/vps
     $('body').on('click','#doA-select-rvps', function(){
         const plan =$(this).data('plan');
@@ -123,6 +121,63 @@ $(document).ready(function() {
     $('body').on('click','.doA-manageVPS', function(){
         loadVPS($(this).data('vps'));
         $("#modal-main").modal('show');
+    })
+
+    // Ajax Host Loc - ipt/vps
+    $('body').on('keyup change','#host-list', function(){
+        let data = {
+            server: $(this).val()
+        };
+        const classA = 'ipt/getNetworksLoc';
+        ajaxCall (classA, data,function(response) {
+            let obj = JSON.parse(response);
+            let options = (obj.res.length) ? '<option value="0" selected> All ('+obj.res.length+') </option>' : null;
+            $.each(obj.res,function( key, value ) {
+                options +='<option value="'+value['country']+'"> '+value['country']+' </option>'
+            });
+            $('#loc-list').html(options);
+        });
+    })
+
+
+    // Ajax Get rVPS  - ipt/vps
+    var rvps;
+    $('body').on('submit','form#new-vps', function(event){
+        event.preventDefault();
+        const data = $(this).serialize();
+        const classA = $(this).attr('action');
+        ajaxCall (classA, data,function(response) {
+            let obj = JSON.parse(response);
+            if (obj.e) {
+                alert('No rVPS !');
+            } else {
+                $("#modal-main .modal-title").html('New VPS');
+                $('#modal-main .nav-link').attr('data-toggle','');
+                $('#modal-main .nav-link').addClass('text-secondary');
+                $('#modal-main #vps-ribbon').addClass('d-none');
+                $('#modal-main #tab-1').removeClass('d-none');
+                rvps = obj.res.rvps
+                const o_plan = $('#plan option:selected').text();
+                const o_os = $('#os option:selected').text();
+                const planR = (obj.res.plan_r) ? '<span class="text-danger">Plan Need Change To <i>'+o_plan+'</i></span>' :'<span class="text-success">Same Plan.</span>';
+                $("#modal-main #check-planr").html(planR);
+                $("#modal-main #doA-select-rvps").data('planR',obj.res.plan_r && rvps.plan.plan_name);
+                $("#modal-main #doA-select-rvps").data('plan',o_plan);
+                $("#modal-main #doA-select-rvps").data('rvps',rvps.id);
+                $("#modal-main #check-ip").html(rvps.ip.ip);
+                $("#modal-main #check-ip-flag").addClass('cbf-'+rvps.ip.flag);
+                $("#modal-main #check-ip-flag").attr('title',rvps.ip.country);
+                $("#modal-main #check-plan").html(rvps.plan.plan_name);
+                $("#modal-main #check-os").html(o_os);
+                $("#modal-main #check-status").html(rvps.status);
+                $("#modal-main #check-status").html(rvps.status_text[rvps.status]);
+                $("#modal-main #check-status").removeClass();
+                $("#modal-main #check-status").addClass('cb-copy-html rounded px-2 bg-'+rvps.status_color[rvps.status]);
+                $("#modal-main #planR-O").addClass("d-none");
+
+                $("#modal-main").modal('show');
+            }
+        });
     })
 
 })

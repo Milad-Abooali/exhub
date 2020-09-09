@@ -108,12 +108,9 @@
                 </select>
                 <small> Loc </small>
                 <select id="loc-list" name="loc-list" class="btn btn-light mx-2 text-primary">
-                    <option value="0" selected> All </option>
-                    <?php foreach ((array) $this->data['ip_loc'] as $loc) { ?>
-                        <option value="<?= $loc['country'] ?>"> <?= $loc['country'] ?> </option>
-                    <?php } ?>
+
                 </select>
-                <button type="submit" class="btn btn-outline-secondary mx-3">Filter</button>
+                <button type="submit" class="btn btn-outline-secondary mx-3">Filter List</button>
             </form>
             <?php if ($this->data['vps_pending']) : ?>
                 <table id="list-vps" class="table table-striped table-hover table-sm table-DT" >
