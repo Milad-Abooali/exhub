@@ -97,7 +97,7 @@
             <h4 class="text-center">
                 VPS List
             </h4>
-            <form id="vps-filter" action="ipt/listVPS" class="col-md-12 form-inline justify-content-center float-right">
+            <form id="vps-filter" action="ipt/filterVPS" class="col-md-12 form-inline justify-content-center float-right">
                 <small> Host </small>
                 <select id="host-list" name="host-list" class="btn btn-light mx-2 text-primary">
                     <option disabled selected> Select Host </option>
