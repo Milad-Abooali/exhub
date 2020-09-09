@@ -40,31 +40,29 @@
         <!-- Row List -->
         <div class="card mt-4 py-4 px-1">
             <h4 class="text-center">
-                VPS List
+                Pending VPS List
             </h4>
-            <?php if ($this->data['rvps']) : ?>
-            <table id="lisr-networks" class="table table-striped table-hover table-sm table-DT" >
+            <?php if ($this->data['vps_pending']) : ?>
+            <table id="list-vps" class="table table-striped table-hover table-sm table-DT" >
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>status</th>
-                    <th>OS</th>
-                    <th>Loc</th>
+                    <th>Status</th>
                     <th>IP</th>
+                    <th>OS</th>
                     <th>Server</th>
                     <th>Plan</th>
                     <th>Note</th>
-                    <th>Manage Status</th>
+                    <th>Manage</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ((array) $this->data['rvps'] as $item) { ?>
+                <?php foreach ((array) $this->data['vps_pending'] as $item) { ?>
                     <tr id="item-<?= $item['id']; ?>">
-                        <td><?= $item['id'] ?></td>
                         <td id="status-<?= $item['id']; ?>" class="bg-<?= $this->data['status_color'][$item['status']] ?>"><?= $this->data['status_text'][$item['status']] ?></td>
-                        <td><?= $item['os']['type'].' | '.$item['os']['name'].' '.$item['os']['version'] ?></td>
-                        <td><i title="<?= $item['ip']['country'] ?>" class="cb-flag cbf-<?= $item['ip']['flag'] ?>"></i></td>
-                        <td> <?= $item['ip']['ip'] ?></td>
+                        <td><i title="<?= $item['ip']['country'] ?>" class="cb-flag cbf-<?= $item['ip']['flag'] ?>"></i> <?= $item['ip']['ip'] ?></td>
+                        <td>
+                            <i title="<?= $item['os']['type'].' | '.$item['os']['name'].' '.$item['os']['version'] ?>" class="fa fa-<?= $item['os']['type_ico'] ?>"></i>
+                        </td>
                         <td>
                             <i title="<?= $item['server']['country'] ?>" class="cb-flag cbf-<?= $item['server']['flag'] ?>"></i>
                             <strong class="text-primary"><?= $item['server']['nid'] ?></strong>
@@ -93,6 +91,8 @@
                 <?php } ?>
                 </tbody>
             </table>
+            <?php else: ?>
+                No Pending VPS.
             <?php endif; ?>
         </div>
 
@@ -130,9 +130,10 @@
                                         <small id="vps-status" class=""></small>
                                     </div>
                                     <div class="col-md-2 text-right">
-                                        <button data-rel="vps" class="do-fine btn btn-outline-success btn-xs"><i class="fa fa-play"></i></button>
-                                        <button data-rel="vps" class="do-fine btn btn-outline-danger btn-xs"><i class="fa fa-pause"></i></button>
-                                        <button data-rel="vps" class="do-fine btn btn-outline-dark btn-xs"><i class="fa fa-stop"></i></button>
+                                        <button data-rel="vps" class="do-fine btn btn-outline-success btn-xs btn-block"><i class="fa fa-play"></i> Power ON</button>
+                                        <button data-rel="vps" class="do-fine btn btn-outline-info btn-xs btn-block"><i class="fa fa-refresh"></i> Restart</button>
+                                        <button data-rel="vps" class="do-fine btn btn-outline-danger btn-xs btn-block"><i class="fa fa-pause"></i> Susspend</button>
+                                        <button data-rel="vps" class="do-fine btn btn-outline-dark btn-xs btn-block"><i class="fa fa-stop"></i> Power OFF</button>
                                     </div>
                                 </div>
                                 <hr>
