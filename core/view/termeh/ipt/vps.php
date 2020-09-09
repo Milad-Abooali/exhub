@@ -123,20 +123,21 @@
                                         <span id="vps-plan" class="cb-copy-html rounded px-2 mr-2 badge-primary"></span>
                                         IP:
                                         <i id="vps-ip-flag" title=" " class="cb-flag"></i>
-                                        <span id="vps-ip" class="cb-copy-html rounded px-2 mr-2 badge-success"></span>
+                                        <span id="vps-ip" class="cb-copy-html rounded px-2 mr-2 text-primary"></span>
                                         OS:
-                                        <small id="vps-os" class="cb-copy-html rounded px-2 mr-2 badge-warning"></small>
+                                        <small id="vps-os" class="cb-copy-html rounded px-2 mr-2 text-success"></small>
                                         Status:
                                         <small id="vps-status" class=""></small>
                                     </div>
                                     <div class="col-md-2 text-right">
-                                        <button data-rel="rvps" class="do-fine btn btn-outline-success btn-xs"><i class="fa fa-check"></i> Fine</button>
+                                        <button data-rel="vps" class="do-fine btn btn-outline-success btn-xs"><i class="fa fa-play"></i></button>
+                                        <button data-rel="vps" class="do-fine btn btn-outline-danger btn-xs"><i class="fa fa-pause"></i></button>
+                                        <button data-rel="vps" class="do-fine btn btn-outline-dark btn-xs"><i class="fa fa-stop"></i></button>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab-1" role="tabpanel">
-
                                         <div class="row">
 
                                             <div id="check-planr" class="col-md-12 mb-3 h5"> </div>
@@ -226,7 +227,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="tab-2" role="tabpanel">Finalize Hardware</div>
+                                    <div class="tab-pane" id="tab-2" role="tabpanel">
+                                        <button data-rel="rvps" class="do-fine btn btn-outline-success btn-xs"><i class="fa fa-check"></i> Fine</button>
+
+                                        Finalize Hardware
+                                    </div>
                                     <div class="tab-pane" id="tab-3" role="tabpanel">Finalize Network</div>
                                     <div class="tab-pane" id="tab-4" role="tabpanel">Change Password</div>
                                     <div class="tab-pane" id="tab-5" role="tabpanel">Sync WHMCS</div>

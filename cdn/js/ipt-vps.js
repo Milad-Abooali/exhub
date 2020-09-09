@@ -158,7 +158,7 @@ function loadVPS(id) {
             $("#modal-main #vps-plan").html(vps.plan.plan_name);
             $("#modal-main #vps-os").html(vps.os.name);
             $("#modal-main #vps-status").html(vps.status);
-            $("#modal-main #vps-status").html(vps.status_text[rvps.status]);
+            $("#modal-main #vps-status").html(vps.status_text[vps.status]);
             $("#modal-main #vps-status").removeClass();
             $("#modal-main #vps-status").addClass('cb-copy-html rounded px-2 bg-'+vps.status_color[vps.status]);
         }

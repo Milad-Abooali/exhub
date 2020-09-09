@@ -403,7 +403,6 @@
         function loadVPS()
         {
             $output = new stdClass();
-
             $db = new MySQL(DB_INFO);
 
             $table = 'ipt_vps';
@@ -414,50 +413,47 @@
             if ($output->res['vps']) {
 
                 $output->res['vps']['status_text'] = [
-                  0 =>  'VM Created',
-                  1 =>  'OS Installed',
-                  2 =>  'Network Connected',
-                  3 =>  'Ezzz Done',
-                  4 =>  'Ready VPS'
+                  0 =>  'Pending',
+                  1 =>  'Active',
+                  2 =>  'Completed',
+                  3 =>  'Suspended',
+                  4 =>  'Terminated',
+                  5 =>  'Cancelled',
+                  6 =>  'Fraud'
                 ];
 
                 $output->res['vps']['status_color'] = [
-                  0 =>  'light text-dark',
-                  1 =>  'warning text-dark',
-                  2 =>  'info text-light',
-                  3 =>  'primary text-light',
-                  4 =>  'success text-light'
+                  0 =>  'warning text-dark',
+                  1 =>  'success text-dark',
+                  2 =>  'light text-light',
+                  3 =>  'danger text-light',
+                  4 =>  'danger text-light',
+                  5 =>  'dark text-light',
+                  6 =>  'danger text-light',
                 ];
 
                 $table = 'ipt_servers';
-                $where = 'status=1 AND nid='.$output->res['rvps']['server_nid'];
-                $output->res['rvps']['server'] = $db->selectRow($where, null,$table);
+                $where = 'status=1 AND nid='.$output->res['vps']['server_nid'];
+                $output->res['vps']['server'] = $db->selectRow($where, null,$table);
 
                 $table ='ipt_networks';
-                $output->res['rvps']['network'] = $db->selectId($output->res['rvps']['network_id'],'*',$table);
+                $output->res['vps']['network'] = $db->selectId($output->res['vps']['network_id'],'*',$table);
+                $where = "status=1 AND server_nid='".$output->res['vps']['server_nid']."'";
+                $output->res['nets'] = $db->select($table, $where);
 
                 $table ='ipt_ips';
-                $output->res['rvps']['ip'] = $db->selectId($output->res['rvps']['ip_id'],'*',$table);
+                $output->res['vps']['ip'] = $db->selectId($output->res['vps']['ip_id'],'*',$table);
 
                 $table ='ipt_os';
-                $output->res['rvps']['os'] = $db->selectId($output->res['rvps']['os_id'],'*',$table);
+                $output->res['vps']['os'] = $db->selectId($output->res['vps']['os_id'],'*',$table);
 
                 $table ='fin_plans';
-                $output->res['rvps']['plan'] = $db->selectId($output->res['rvps']['plan_id'],'*',$table);
+                $output->res['vps']['plan'] = $db->selectId($output->res['vps']['plan_id'],'*',$table);
 
                 $table = 'fin_plan_limits';
-                $where = "plan_name='".$output->res['rvps']['plan']['plan_name']."'";
-                $output->res['rvps']['limits'] = $db->selectRow($where, null,$table);
+                $where = "plan_name='".$output->res['vps']['plan']['plan_name']."'";
+                $output->res['vps']['limits'] = $db->selectRow($where, null,$table);
             }
-
-            $table = 'ipt_networks';
-            $where = "status=1 AND country='".$_POST['iploc']."'";
-            $networks = $db->select($table, $where);
-            foreach ((array) $networks as $net) $nets[$net['id']] = $net['id'];
-            $output->res['nets'] = implode("','",$nets);
-
-
-
             echo json_encode($output);
         }
 
