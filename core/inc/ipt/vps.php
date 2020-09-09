@@ -19,22 +19,6 @@
     $db = new MySQL(DB_INFO,'ipt_servers');
     $this->data['servers'] = $db->selectAll();
 
-//    $db = new MySQL(DB_INFO,'ipt_servers');
-//    $servers = $db->selectAll();
-//    foreach ($servers as $server) {
-//        $db = new MySQL(DB_INFO,'ipt_vps');
-//        $this->data[$server['id']]['vps'] = $db->selectAll();
-//        if ($this->data[$server['id']]['vps']) {
-//            foreach ($this->data[$server['id']]['vps'] as $k => $rvps) {
-//                $this->data[$server['id']]['vps'][$k]['ip'] = $db->selectId($rvps['ip_id'],'*','ipt_ips');
-//                $this->data[$server['id']]['vps'][$k]['network'] = $db->selectId($rvps['network_id'],'*','ipt_networks');
-//                $this->data[$server['id']]['vps'][$k]['plan'] = $db->selectId($rvps['plan_id'],'*','fin_plans');
-//                $this->data[$server['id']]['vps'][$k]['os'] = $db->selectId($rvps['os_id'],'*','ipt_os');
-//                $this->data[$server['id']]['vps'][$k]['server'] = $server;
-//            }
-//        }
-//    }
-
     $this->data['status_text'] = [
       0 =>  'Pending',
       1 =>  'Active',

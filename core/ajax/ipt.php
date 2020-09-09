@@ -458,6 +458,30 @@
         }
 
 
+      /**
+       * Filter VPS List
+       */
+        function filterVPS()
+        {
+            $output = new stdClass();
+
+            $db = new MySQL(DB_INFO,'ipt_vps');
+            $list = $db->selectAll();
+            if ($list) {
+                foreach ($list as $k => $vps) {
+                    $list[$k]['ip'] = $db->selectId($rvps['ip_id'],'*','ipt_ips');
+                    $list[$k]['network'] = $db->selectId($rvps['network_id'],'*','ipt_networks');
+                    $list[$k]['plan'] = $db->selectId($rvps['plan_id'],'*','fin_plans');
+                    $list[$k]['os'] = $db->selectId($rvps['os_id'],'*','ipt_os');
+                    $where = 'status=1 AND nid='.$v['server_nid'];
+                    $list[$k]['server'] = $db->selectRow($where, null,'ipt_servers');
+
+                }
+            }
+
+            echo json_encode($output);
+        }
+
 
         /**
          * Add IP MOdal
