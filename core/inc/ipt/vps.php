@@ -16,6 +16,9 @@
         }
     }
 
+    $db = new MySQL(DB_INFO,'ipt_servers');
+    $this->data['servers'] = $db->selectAll();
+
 //    $db = new MySQL(DB_INFO,'ipt_servers');
 //    $servers = $db->selectAll();
 //    foreach ($servers as $server) {
