@@ -119,7 +119,11 @@ $(document).ready(function() {
         }
     })
 
-
+    // Ajax Mange VPS  - ipt/vps
+    $('body').on('click','.doA-manageVPS', function(){
+        loadVPS($(this).data('vps'));
+        $("#modal-main").modal('show');
+    })
 
 })
 
@@ -139,6 +143,7 @@ function convertRvps(id) {
 // Ajax Load VPS  - ipt/vps
 var vps;
 function loadVPS(id) {
+    $("#modal-main .modal-title").html('Manage VPS');
     $('#modal-main .nav-link').attr('data-toggle','tab');
     $('#modal-main .nav-link').removeClass('text-secondary');
     $('#modal-main #vps-ribbon').removeClass('d-none');
@@ -156,7 +161,7 @@ function loadVPS(id) {
             $("#modal-main #vps-ip-flag").addClass('cbf-'+vps.ip.flag);
             $("#modal-main #vps-ip-flag").attr('title',vps.ip.country);
             $("#modal-main #vps-plan").html(vps.plan.plan_name);
-            $("#modal-main #vps-os").html(vps.os.name);
+            $("#modal-main #vps-os").html(vps.os.type+' '+vps.os.name+' '+vps.os.version);
             $("#modal-main #vps-status").html(vps.status);
             $("#modal-main #vps-status").html(vps.status_text[vps.status]);
             $("#modal-main #vps-status").removeClass();

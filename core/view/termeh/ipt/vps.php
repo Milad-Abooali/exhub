@@ -52,6 +52,7 @@
                     <th>Server</th>
                     <th>Plan</th>
                     <th>Note</th>
+                    <th>Owner</th>
                     <th>Manage</th>
                 </tr>
                 </thead>
@@ -59,12 +60,12 @@
                 <?php foreach ((array) $this->data['vps_pending'] as $item) { ?>
                     <tr id="item-<?= $item['id']; ?>">
                         <td id="status-<?= $item['id']; ?>" class="bg-<?= $this->data['status_color'][$item['status']] ?>"><?= $this->data['status_text'][$item['status']] ?></td>
-                        <td><i title="<?= $item['ip']['country'] ?>" class="cb-flag cbf-<?= $item['ip']['flag'] ?>"></i> <?= $item['ip']['ip'] ?></td>
+                        <td><i title="<?= $item['ip']['country'] ?>" class="cb-flag cbf-<?= $item['ip']['flag'] ?>" data-toggle="tooltip" data-placement="left"></i> <?= $item['ip']['ip'] ?></td>
                         <td>
-                            <i title="<?= $item['os']['type'].' | '.$item['os']['name'].' '.$item['os']['version'] ?>" class="fa fa-<?= $item['os']['type_ico'] ?>"></i>
+                            <i title="<?= $item['os']['type'].' | '.$item['os']['name'].' '.$item['os']['version'] ?>"  data-toggle="tooltip" data-placement="left" class="fa fa-<?= $item['os']['type_ico'] ?>"></i>
                         </td>
                         <td>
-                            <i title="<?= $item['server']['country'] ?>" class="cb-flag cbf-<?= $item['server']['flag'] ?>"></i>
+                            <i title="<?= $item['server']['country'] ?>" class="cb-flag cbf-<?= $item['server']['flag'] ?>" data-toggle="tooltip" data-placement="left"></i>
                             <strong class="text-primary"><?= $item['server']['nid'] ?></strong>
                         </td>
                         <td><small class="text-muted"><?= $item['plan']['plan_name'] ?></small></td>
@@ -74,18 +75,12 @@
                             <?php } ?>
                         </td>
                         <td>
-                            <select id="new-status-<?= $item['id']; ?>" class="custom-select custom-select-sm col-md-7 float-left d-inline-block" required>
-                                <?php
-                                    for ($i=0;$i < count($this->data['status_text']);$i++) {
-                                ?>
-                                    <option value="<?= $i ?>" class="text-dark bg-<?= $this->data['status_color'][$i] ?>" <?= ($i==$item['status']) ? 'selected' : null ?>><?= $this->data['status_text'][$i] ?></option>
-                                <?php
-                                        }
-                                ?>
-                            </select>
-                            <button data-rid="<?= $item['id']; ?>" class="btn btn-outline-dark btn-sm float-left doA-setStatus"> Set</button>
-
-                            <button data-rid="<?= $item['id']; ?>" data-ip="<?= $item['ip']['ip'] ?>" data-ipid="<?= $item['ip']['id'] ?>"class="btn btn-danger btn-sm float-right doA-removeCall"> Delete</button>
+                            <?php if ($item['owner']) { ?>
+                                <button class="btn btn-outline-dark btn-xs" data-container="body" data-toggle="popover" data-placement="top" data-content="<?= $item['service_id'] ?>"><?= $item['owner'] ?></button>
+                            <?php } ?>
+                        </td>
+                        <td>
+                            <button data-vps="<?= $item['id']; ?>" class="btn btn-outline-info btn-sm btn-block float-left doA-manageVPS"> Load VPS</button>
                         </td>
                     </tr>
                 <?php } ?>
