@@ -392,6 +392,9 @@
                     $update = $db->updateId($vps['ip_id'],$data,$table);
                     $output->e = ($update) ? false : 'Error Update IP !';
                 }
+                global $actlog;
+                $actlog->add("Convert rVPS to VPS", $rvps, ($insert) ?? null, $output->res);
+
             }
             echo json_encode($output);
         }
@@ -464,8 +467,8 @@
         {
             $output = new stdClass();
             $db = new MySQL(DB_INFO);
-            $server = ($_POST['host-list']) ?? false;
-            $loc = ($_POST['loc-list']) ?? false;
+            $server = ($_POST['host']) ?? false;
+            $loc = ($_POST['loc']) ?? false;
             if ($loc) {
                 $table = 'ipt_networks';
                 $where = " status=1";
@@ -508,18 +511,18 @@
                     $server = $db->selectRow($where, null,'ipt_servers');
 
                     $view[$k] = array(
-                      '<small id="vps-status" class="bg-'.$status['color'][$vps['status']].'">'.$status['text'][$vps['status']].'</small>',
+                      '<small id="vps-status" class="d-block py-2 pl-3 bg-'.$status['color'][$vps['status']].'">'.$status['text'][$vps['status']].'</small>',
                       '<i title="'. $ip['country'].'" class="cb-flag cbf-'. $ip['flag'].'" data-toggle="tooltip" data-placement="left"></i> '. $ip['ip'],
                       '<i title="'. $os['type'].' | '.$os['name'].' '.$os['version'].'"  data-toggle="tooltip" data-placement="left" class="fa fa-'. $os['type_ico'].'"></i>',
                       '<i title="'. $server['country'].'" class="cb-flag cbf-'. $server['flag'].'" data-toggle="tooltip" data-placement="left"></i><strong class="text-primary">'. $server['nid'].'</strong>',
                       '<small class="text-muted">'. $plan['plan_name'].'</small>',
-                      ($vps['note']) ? '<button class="btn btn-outline-dark btn-xs" data-container="body" data-toggle="popover" data-placement="top" data-content="'. $vps['note'].'">Show</button>' : null,
-                      ($vps['owner']) ? '<button class="btn btn-outline-dark btn-xs" data-container="body" data-toggle="popover" data-placement="top" data-content="'. $vps['service_id'].'">'. $vps['owner'].'</button>' : null,
+                      ($vps['note']) ? '<button class="btn btn-light btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="'. $vps['note'].'"><i class="fa fa-sticky-note-o"></i></button>' : null,
+                      ($vps['owner']) ? '<button class="btn btn-outline-dark btn-xs" data-container="body" data-toggle="popover" data-placement="top" data-content="Service ID: '. $vps['service_id'].'">'. $vps['owner'].'</button>' : null,
                       '<button data-vps="'. $vps['id'].'" class="btn btn-outline-info btn-sm btn-block float-left doA-manageVPS"> Load VPS</button>'
                     );
                 }
             }
-            $output->res = ($view) ?? false;
+            $output->data = ($view) ?? false;
             echo json_encode($output);
         }
 

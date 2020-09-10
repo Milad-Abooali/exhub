@@ -25,15 +25,10 @@
                     <?php } ?>
                 </select>
                 Plan:
-                <select id="plan" name="plan" class="custom-select mx-2" required>
-
-                </select>
+                <select id="plan" name="plan" class="custom-select mx-2" required></select>
                 OS:
-                <select id="os" name="os" class="custom-select mx-2" required>
-
-                </select>
+                <select id="os" name="os" class="custom-select mx-2" required></select>
                 <button type="submit" class="btn btn-primary mx-3">Get rVPS</button>
-
             </form>
         </div>
 
@@ -59,7 +54,7 @@
                 <tbody>
                 <?php foreach ((array) $this->data['vps_pending'] as $item) { ?>
                     <tr id="item-<?= $item['id']; ?>">
-                        <td id="status-<?= $item['id']; ?>" class="bg-<?= $this->data['status_color'][$item['status']] ?>"><?= $this->data['status_text'][$item['status']] ?></td>
+                        <td id="status-<?= $item['id']; ?>"><small id="vps-status" class="d-block py-2 pl-3 bg-<?= $this->data['status_color'][$item['status']]?>"><?= $this->data['status_text'][$item['status']] ?></small></td>
                         <td><i title="<?= $item['ip']['country'] ?>" class="cb-flag cbf-<?= $item['ip']['flag'] ?>" data-toggle="tooltip" data-placement="left"></i> <?= $item['ip']['ip'] ?></td>
                         <td>
                             <i title="<?= $item['os']['type'].' | '.$item['os']['name'].' '.$item['os']['version'] ?>"  data-toggle="tooltip" data-placement="left" class="fa fa-<?= $item['os']['type_ico'] ?>"></i>
@@ -71,12 +66,12 @@
                         <td><small class="text-muted"><?= $item['plan']['plan_name'] ?></small></td>
                         <td>
                             <?php if ($item['note']) { ?>
-                                 <button class="btn btn-outline-dark btn-xs" data-container="body" data-toggle="popover" data-placement="top" data-content="<?= $item['note'] ?>">Show</button>
+                                 <button class="btn btn-light btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="<?= $item['note'] ?>"><i class="fa fa-sticky-note-o"></i></button>
                             <?php } ?>
                         </td>
                         <td>
                             <?php if ($item['owner']) { ?>
-                                <button class="btn btn-outline-dark btn-xs" data-container="body" data-toggle="popover" data-placement="top" data-content="<?= $item['service_id'] ?>"><?= $item['owner'] ?></button>
+                                <button class="btn btn-outline-dark btn-xs" data-container="body" data-toggle="popover" data-placement="top" data-content="Service ID: <?= $item['service_id'] ?>"><?= $item['owner'] ?></button>
                             <?php } ?>
                         </td>
                         <td>
@@ -112,7 +107,6 @@
                 </select>
                 <button type="submit" class="btn btn-outline-secondary mx-3">Filter List</button>
             </form>
-            <?php if ($this->data['vps_pending']) : ?>
                 <table id="list-vps" class="table table-striped table-hover table-sm" >
                     <thead>
                     <tr>
@@ -127,9 +121,6 @@
                     </tr>
                     </thead>
                 </table>
-            <?php else: ?>
-                No Pending VPS.
-            <?php endif; ?>
         </div>
 
         <div id="modal-main" class="modal fade mt-5" tabindex="-1" role="dialog">

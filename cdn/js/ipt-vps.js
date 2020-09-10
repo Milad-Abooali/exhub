@@ -131,7 +131,7 @@ $(document).ready(function() {
         const classA = 'ipt/getNetworksLoc';
         ajaxCall (classA, data,function(response) {
             let obj = JSON.parse(response);
-            let options = (obj.res.length) ? '<option value="0" selected> All ('+obj.res.length+') </option>' : null;
+            let options = (obj.res.length>1) ? '<option value="0" selected> All ('+obj.res.length+') </option>' : null;
             $.each(obj.res,function( key, value ) {
                 options +='<option value="'+value['country']+'"> '+value['country']+' </option>'
             });
@@ -140,23 +140,28 @@ $(document).ready(function() {
     })
 
 
-    // Ajax Get rVPS  - ipt/vps
-    var rvps;
+    // Ajax VPS List  - ipt/vps
+    var initList = false;
+    var tableList;
     $('body').on('submit','form#vps-filter', function(event){
         event.preventDefault();
-        const data = $(this).serialize();
         const classA = $(this).attr('action');
-        ajaxCall (classA, data,function(response) {
-            let obj = JSON.parse(response);
-            if (obj.e) {
-                alert('Check Console');
-            } else {
-                $.each(obj.res,function( key, value ) {
-                    console.log(value);
-
-                });
-            }
-        });
+        const URL = cbURL+"ajax/"+classA+'&token='+cbToken;
+        if (initList == false){
+            tableList = $('#list-vps').DataTable({
+                "ajax": {
+                    "url": URL,
+                    "type": "POST",
+                    "data":  function(d){
+                        d.host = $('#host-list').val();
+                        d.loc  = $('#loc-list').val();
+                    }
+                }
+            });
+            initList = true;
+        } else {
+            tableList.ajax.reload();
+        }
     })
 
 })
