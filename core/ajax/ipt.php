@@ -480,17 +480,46 @@
             (!$loc) ?: $where .=' AND network_id IN('.$networks.')';
             $table = 'ipt_vps';
             $list = $db->select($table,$where);
+            $status['text'] = [
+              0 =>  'Pending',
+              1 =>  'Active',
+              2 =>  'Completed',
+              3 =>  'Suspended',
+              4 =>  'Terminated',
+              5 =>  'Cancelled',
+              6 =>  'Fraud'
+            ];
+            $status['color'] = [
+              0 =>  'warning text-dark',
+              1 =>  'success text-dark',
+              2 =>  'light text-light',
+              3 =>  'danger text-light',
+              4 =>  'danger text-light',
+              5 =>  'dark text-light',
+              6 =>  'danger text-light',
+            ];
             if ($list) {
                 foreach ($list as $k => $vps) {
-                    $list[$k]['ip'] = $db->selectId($vps['ip_id'],'*','ipt_ips');
-                    $list[$k]['network'] = $db->selectId($vps['network_id'],'*','ipt_networks');
-                    $list[$k]['plan'] = $db->selectId($vps['plan_id'],'*','fin_plans');
-                    $list[$k]['os'] = $db->selectId($vps['os_id'],'*','ipt_os');
+                    $ip = $db->selectId($vps['ip_id'],'*','ipt_ips');
+                    $network = $db->selectId($vps['network_id'],'*','ipt_networks');
+                    $plan = $db->selectId($vps['plan_id'],'*','fin_plans');
+                    $os = $db->selectId($vps['os_id'],'*','ipt_os');
                     $where = 'status=1 AND nid='.$vps['server_nid'];
-                    $list[$k]['server'] = $db->selectRow($where, null,'ipt_servers');
+                    $server = $db->selectRow($where, null,'ipt_servers');
+
+                    $view[$k] = array(
+                      '<small id="vps-status" class="bg-'.$status['color'][$vps['status']].'">'.$status['text'][$vps['status']].'</small>',
+                      '<i title="'. $ip['country'].'" class="cb-flag cbf-'. $ip['flag'].'" data-toggle="tooltip" data-placement="left"></i> '. $ip['ip'],
+                      '<i title="'. $os['type'].' | '.$os['name'].' '.$os['version'].'"  data-toggle="tooltip" data-placement="left" class="fa fa-'. $os['type_ico'].'"></i>',
+                      '<i title="'. $server['country'].'" class="cb-flag cbf-'. $server['flag'].'" data-toggle="tooltip" data-placement="left"></i><strong class="text-primary">'. $server['nid'].'</strong>',
+                      '<small class="text-muted">'. $plan['plan_name'].'</small>',
+                      ($vps['note']) ? '<button class="btn btn-outline-dark btn-xs" data-container="body" data-toggle="popover" data-placement="top" data-content="'. $vps['note'].'">Show</button>' : null,
+                      ($vps['owner']) ? '<button class="btn btn-outline-dark btn-xs" data-container="body" data-toggle="popover" data-placement="top" data-content="'. $vps['service_id'].'">'. $vps['owner'].'</button>' : null,
+                      '<button data-vps="'. $vps['id'].'" class="btn btn-outline-info btn-sm btn-block float-left doA-manageVPS"> Load VPS</button>'
+                    );
                 }
             }
-            $output->res = $list;
+            $output->res = ($view) ?? false;
             echo json_encode($output);
         }
 
