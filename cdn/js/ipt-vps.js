@@ -97,6 +97,7 @@ $(document).ready(function() {
                     $('#modal-main #rplan .disk_limit').html(obj.res.o_limits.disk_limit);
 
                 }
+                $("#modal-main #tab-1").tab('show');
                 $("#modal-main").modal('show');
             }
         });

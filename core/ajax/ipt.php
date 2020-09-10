@@ -511,6 +511,7 @@
                     $server = $db->selectRow($where, null,'ipt_servers');
 
                     $view[$k] = array(
+                      $vps['id'],
                       '<small id="vps-status" class="d-block py-2 pl-3 bg-'.$status['color'][$vps['status']].'">'.$status['text'][$vps['status']].'</small>',
                       '<i title="'. $ip['country'].'" class="cb-flag cbf-'. $ip['flag'].'" data-toggle="tooltip" data-placement="left"></i> '. $ip['ip'],
                       '<i title="'. $os['type'].' | '.$os['name'].' '.$os['version'].'"  data-toggle="tooltip" data-placement="left" class="fa fa-'. $os['type_ico'].'"></i>',

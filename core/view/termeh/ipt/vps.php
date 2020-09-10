@@ -41,6 +41,7 @@
             <table id="list-pending-vps" class="table table-striped table-hover table-sm table-DT" >
                 <thead>
                 <tr>
+                    <th>#</th>
                     <th>Status</th>
                     <th>IP</th>
                     <th>OS</th>
@@ -54,7 +55,8 @@
                 <tbody>
                 <?php foreach ((array) $this->data['vps_pending'] as $item) { ?>
                     <tr id="item-<?= $item['id']; ?>">
-                        <td id="status-<?= $item['id']; ?>"><small id="vps-status" class="d-block py-2 pl-3 bg-<?= $this->data['status_color'][$item['status']]?>"><?= $this->data['status_text'][$item['status']] ?></small></td>
+                        <td><?= $item['id']; ?></td>
+                        <td><small id="vps-status" class="d-block py-2 pl-3 bg-<?= $this->data['status_color'][$item['status']]?>"><?= $this->data['status_text'][$item['status']] ?></small></td>
                         <td><i title="<?= $item['ip']['country'] ?>" class="cb-flag cbf-<?= $item['ip']['flag'] ?>" data-toggle="tooltip" data-placement="left"></i> <?= $item['ip']['ip'] ?></td>
                         <td>
                             <i title="<?= $item['os']['type'].' | '.$item['os']['name'].' '.$item['os']['version'] ?>"  data-toggle="tooltip" data-placement="left" class="fa fa-<?= $item['os']['type_ico'] ?>"></i>
@@ -110,6 +112,7 @@
                 <table id="list-vps" class="table table-striped table-hover table-sm" >
                     <thead>
                     <tr>
+                        <th>#</th>
                         <th>Status</th>
                         <th>IP</th>
                         <th>OS</th>
