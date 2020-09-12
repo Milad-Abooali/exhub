@@ -54,7 +54,8 @@ $(document).ready(function() {
                 $('#modal-main .nav-link').attr('data-toggle','');
                 $('#modal-main .nav-link').addClass('text-secondary');
                 $('#modal-main #vps-ribbon').addClass('d-none');
-                $('#modal-main #tab-1').removeClass('d-none');
+                $('#modal-main .nav-tabs').hide();
+                $('#modal-main #rvps2vps').show();
                 rvps = obj.res.rvps
                 const o_plan = $('#plan option:selected').text();
                 const o_os = $('#os option:selected').text();
@@ -75,7 +76,6 @@ $(document).ready(function() {
                 $("#modal-main #planR-O").addClass("d-none");
                 if (obj.res.plan_r) {
                     $("#modal-main #planR-O").removeClass("d-none");
-
                     $('#modal-main #oplan .plan-name').html(rvps.plan.flag+'.'+rvps.plan.plan_name);
                     $('#modal-main #oplan .ram').html(rvps.plan.ram);
                     $('#modal-main #oplan .cpu').html(rvps.plan.cpu_core);
@@ -85,7 +85,6 @@ $(document).ready(function() {
                     $('#modal-main #oplan .ram_limit').html(rvps.limits.ram_limit);
                     $('#modal-main #oplan .cpu_limit').html(rvps.limits.cpu_limit);
                     $('#modal-main #oplan .disk_limit').html(rvps.limits.disk_limit);
-
                     $('#modal-main #rplan .plan-name').html(obj.res.o_plan.flag+'.'+obj.res.o_plan.plan_name);
                     $('#modal-main #rplan .ram').html(obj.res.o_plan.ram);
                     $('#modal-main #rplan .cpu').html(obj.res.o_plan.cpu_core);
@@ -95,9 +94,7 @@ $(document).ready(function() {
                     $('#modal-main #rplan .ram_limit').html(obj.res.o_limits.ram_limit);
                     $('#modal-main #rplan .cpu_limit').html(obj.res.o_limits.cpu_limit);
                     $('#modal-main #rplan .disk_limit').html(obj.res.o_limits.disk_limit);
-
                 }
-                $("#modal-main #tab-1").tab('show');
                 $("#modal-main").modal('show');
             }
         });
@@ -183,11 +180,12 @@ function convertRvps(id) {
 // Ajax Load VPS  - ipt/vps
 var vps;
 function loadVPS(id) {
+    $('#modal-main #rvps2vps').hide();
+    $('#modal-main .nav-tabs').show();
     $("#modal-main .modal-title").html('Manage VPS');
     $('#modal-main .nav-link').attr('data-toggle','tab');
     $('#modal-main .nav-link').removeClass('text-secondary');
     $('#modal-main #vps-ribbon').removeClass('d-none');
-    $('#modal-main #tab-1').addClass('d-none');
     let data = {
         vps: id
     };

@@ -12,7 +12,7 @@
     <meta name="codebox-cdn" content="<?= CDN ?>" />
     <meta name="codebox-img" content="<?= IMG ?>" />
     <meta name="codebox-js" content="<?= JS ?>" />
-  <!--- Prefetch 
+  <!--- Prefetch
     <link rel='dns-prefetch' href="<?= CDN ?>" />
   -->
   <!--- SEO -->

@@ -147,7 +147,7 @@
                                     <li class="nav-item"><a class="nav-link text-secondary"  href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">WHMCS</a></li>
                                 </ul>
                                 <div id="vps-ribbon" class="row p-3 d-none">
-                                    <div class="col-md-10">
+                                    <div class="col-md-12">
                                         Plan:
                                         <span id="vps-plan" class="cb-copy-html rounded px-2 mr-2 badge-primary"></span>
                                         IP:
@@ -157,103 +157,110 @@
                                         <small id="vps-os" class="cb-copy-html rounded px-2 mr-2 text-success"></small>
                                         Status:
                                         <small id="vps-status" class=""></small>
-                                    </div>
-                                    <div class="col-md-2 text-right">
-                                        <button data-rel="vps" class="do-fine btn btn-outline-success btn-xs btn-block"><i class="fa fa-play"></i> Power ON</button>
-                                        <button data-rel="vps" class="do-fine btn btn-outline-info btn-xs btn-block"><i class="fa fa-refresh"></i> Restart</button>
-                                        <button data-rel="vps" class="do-fine btn btn-outline-danger btn-xs btn-block"><i class="fa fa-pause"></i> Susspend</button>
-                                        <button data-rel="vps" class="do-fine btn btn-outline-dark btn-xs btn-block"><i class="fa fa-stop"></i> Power OFF</button>
+                                        <hr>
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab-1" role="tabpanel">
-                                        <div class="row">
+                                <div id="rvps2vps" class="my-2">
+                                    <div class="row">
+                                        <div id="check-planr" class="col-md-12 h5"> </div>
+                                        <div class="w-100 m-2">
+                                            Plan:
+                                            <span id="check-plan" class="cb-copy-html rounded px-2 mr-2 badge-primary"></span>
+                                            IP:
+                                            <i id="check-ip-flag" title=" " class="cb-flag"></i>
+                                            <span id="check-ip" class="cb-copy-html rounded px-2 mr-2 badge-success"></span>
+                                            OS:
+                                            <small id="check-os" class="cb-copy-html rounded px-2 mr-2 badge-warning"></small>
+                                            Status:
+                                            <small id="check-status" class=""></small>
+                                            <button id="doA-select-rvps" class="btn btn-sm btn-dark float-right">Select</button>
+                                            <hr>
+                                        </div>
 
-                                            <div id="check-planr" class="col-md-12 mb-3 h5"> </div>
-                                            <div class="col-md-12 mb-3">
-                                                Plan:
-                                                <span id="check-plan" class="cb-copy-html rounded px-2 mr-2 badge-primary"></span>
-                                                IP:
-                                                <i id="check-ip-flag" title=" " class="cb-flag"></i>
-                                                <span id="check-ip" class="cb-copy-html rounded px-2 mr-2 badge-success"></span>
-                                                OS:
-                                                <small id="check-os" class="cb-copy-html rounded px-2 mr-2 badge-warning"></small>
+                                        <div id="planR-O" class="row mb-3 px-1">
+                                            <div id="oplan" class="col-md-5 float-left">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <h4 class="plan-name panel-title text-primary text-center text-uppercase cb-copy-html"> </h4>
+                                                                <div class="list-group list-group">
+                                                                    <span class="list-group-item">Ram: <strong class="ram float-right cb-copy-html"> </strong></span>
+                                                                    <span class="list-group-item">CPU Core: <strong class="cpu float-right cb-copy-html"> </strong></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="list-group list-group">
+                                                                    <span class="list-group-item">HDD: <strong class="hdd float-right cb-copy-html"> </strong></span>
+                                                                    <span class="list-group-item">SSD: <strong class="ssd float-right cb-copy-html"> </strong></span>
+                                                                    <span class="list-group-item">NVMe: <strong class="nvme float-right cb-copy-html"> </strong></span>
+                                                                </div>
+                                                            </div>
 
-                                                Status:
-                                                <small id="check-status" class=""></small>
-                                                <button id="doA-select-rvps" class="btn btn-sm btn-dark float-right">Select</button>
-                                                <hr>
+                                                            <div class="col-md-12 border border-warning my-2">
+                                                                <div class="row">
+                                                                    <span class="col bg-warning">Limits: </span>
+                                                                    <span class="col text-center">RAM: <strong class="ram_limit text-danger cb-copy-html"> </strong></span>
+                                                                    <span class="col text-center">CPU: <strong class="cpu_limit text-danger cb-copy-html"> </strong></span>
+                                                                    <span class="col text-center">DISK: <strong class="disk_limit text-danger cb-copy-html"> </strong></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 float-left text-center pt-5">
+                                                Plan Change<br>
+                                                <i class="fa fa-arrow-right fa-3x"></i>
+                                            </div>
+                                            <div id="rplan" class="col-md-5 float-right">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <h4 class="plan-name panel-title text-primary text-center text-uppercase cb-copy-html"> </h4>
+                                                                <div class="list-group list-group">
+                                                                    <span class="list-group-item">Ram: <strong class="ram float-right cb-copy-html"> </strong></span>
+                                                                    <span class="list-group-item">CPU Core: <strong class="cpu float-right cb-copy-html"> </strong></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="list-group list-group">
+                                                                    <span class="list-group-item">HDD: <strong class="hdd float-right cb-copy-html"> </strong></span>
+                                                                    <span class="list-group-item">SSD: <strong class="ssd float-right cb-copy-html"> </strong></span>
+                                                                    <span class="list-group-item">NVMe: <strong class="nvme float-right cb-copy-html"> </strong></span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12 border border-warning my-2">
+                                                                <div class="row">
+                                                                    <span class="col bg-warning">Limits: </span>
+                                                                    <span class="col text-center">RAM: <strong class="ram_limit text-danger cb-copy-html"> </strong></span>
+                                                                    <span class="col text-center">CPU: <strong class="cpu_limit text-danger cb-copy-html"> </strong></span>
+                                                                    <span class="col text-center">DISK: <strong class="disk_limit text-danger cb-copy-html"> </strong></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                            <div id="planR-O" class="row mb-3 px-1">
-                                                <div id="oplan" class="col-md-5 float-left">
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <h4 class="plan-name panel-title text-primary text-center text-uppercase cb-copy-html"> </h4>
-                                                                    <div class="list-group list-group">
-                                                                        <span class="list-group-item">Ram: <strong class="ram float-right cb-copy-html"> </strong></span>
-                                                                        <span class="list-group-item">CPU Core: <strong class="cpu float-right cb-copy-html"> </strong></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="list-group list-group">
-                                                                        <span class="list-group-item">HDD: <strong class="hdd float-right cb-copy-html"> </strong></span>
-                                                                        <span class="list-group-item">SSD: <strong class="ssd float-right cb-copy-html"> </strong></span>
-                                                                        <span class="list-group-item">NVMe: <strong class="nvme float-right cb-copy-html"> </strong></span>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-md-12 border border-warning my-2">
-                                                                    <div class="row">
-                                                                        <span class="col bg-warning">Limits: </span>
-                                                                        <span class="col text-center">RAM: <strong class="ram_limit text-danger cb-copy-html"> </strong></span>
-                                                                        <span class="col text-center">CPU: <strong class="cpu_limit text-danger cb-copy-html"> </strong></span>
-                                                                        <span class="col text-center">DISK: <strong class="disk_limit text-danger cb-copy-html"> </strong></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 float-left text-center pt-5">
-                                                    Plan Change<br>
-                                                    <i class="fa fa-arrow-right fa-3x"></i>
-                                                </div>
-                                                <div id="rplan" class="col-md-5 float-right">
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <h4 class="plan-name panel-title text-primary text-center text-uppercase cb-copy-html"> </h4>
-                                                                    <div class="list-group list-group">
-                                                                        <span class="list-group-item">Ram: <strong class="ram float-right cb-copy-html"> </strong></span>
-                                                                        <span class="list-group-item">CPU Core: <strong class="cpu float-right cb-copy-html"> </strong></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="list-group list-group">
-                                                                        <span class="list-group-item">HDD: <strong class="hdd float-right cb-copy-html"> </strong></span>
-                                                                        <span class="list-group-item">SSD: <strong class="ssd float-right cb-copy-html"> </strong></span>
-                                                                        <span class="list-group-item">NVMe: <strong class="nvme float-right cb-copy-html"> </strong></span>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-md-12 border border-warning my-2">
-                                                                    <div class="row">
-                                                                        <span class="col bg-warning">Limits: </span>
-                                                                        <span class="col text-center">RAM: <strong class="ram_limit text-danger cb-copy-html"> </strong></span>
-                                                                        <span class="col text-center">CPU: <strong class="cpu_limit text-danger cb-copy-html"> </strong></span>
-                                                                        <span class="col text-center">DISK: <strong class="disk_limit text-danger cb-copy-html"> </strong></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab-1" role="tabpanel">
+                                        <div class="row m-1">
+                                            <div class="col-md-10 text-muted">
+                                                Resources + Screen + Remote Access
+                                                <hr>
+                                                Action Queue + Action History
+                                            </div>
+                                            <div class="col-md-2 text-right">
+                                                <button data-rel="vps" class="do-fine btn btn-outline-success btn-xs btn-block"><i class="fa fa-play"></i> Start VM</button>
+                                                <button data-rel="vps" class="do-fine btn btn-outline-info btn-xs btn-block"><i class="fa fa-refresh"></i> Restart</button>
+                                                <button data-rel="vps" class="do-fine btn btn-outline-danger btn-xs btn-block"><i class="fa fa-pause"></i> Susspend</button>
+                                                <button data-rel="vps" class="do-fine btn btn-outline-dark btn-xs btn-block"><i class="fa fa-stop"></i> PowerOFF</button>
                                             </div>
                                         </div>
                                     </div>

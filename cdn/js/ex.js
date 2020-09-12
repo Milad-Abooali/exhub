@@ -328,10 +328,7 @@ $(document).ready(function() {
 
   // Ajax Logout - Core
   $('body').on('click','.doA-logout', function(){
-    let thisClick = $(this);
-    let rid = thisClick.data('rid');
-    data = "rid="+rid;
-    ajaxCall ('users/logout', data,function(response) {
+    ajaxCall ('users/logout', null,function(response) {
       let obj = JSON.parse(response);
       let type = (obj.e) ? 'danger' : 'success';
       let text = (obj.e) ? 'Error !' : 'Success, User Loged out.';
